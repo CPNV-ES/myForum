@@ -4,7 +4,7 @@
  * Author : X. Carrel
  * Created : 2020-10-01
  * Contributor : M. Burnat
- * Modified last : 02.10.2020
+ * Modified last : 2020-10-02
  **/
 
 require_once ("../Reference.php");
