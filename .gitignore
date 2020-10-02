@@ -1,4 +1,7 @@
 .idea/*
 node_modules
 
+# Database config
+config.ini
+
 /vendor/
