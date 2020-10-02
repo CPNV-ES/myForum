@@ -23,9 +23,11 @@ function dbEnvInit($envPath = '../env.json'){
  * Initialize the connection with the database using environnement variable
  */
 function initDbConnection(){
-    $dsn = 'mysql:host=' . $dbEnv["host"].';dbname='.$dbEnv["name"];
+    if(empty($dbConnection)){
+        $dsn = 'mysql:host=' . $dbEnv["host"].';dbname='.$dbEnv["name"];
 
-    $dbConnection = new PDO($dsn,$dbEnv["login"]["username"],$dbEnv["login"]["password"]);
+        $dbConnection = new PDO($dsn,$dbEnv["login"]["username"],$dbEnv["login"]["password"]);
+    }    
 }
 
 
@@ -36,5 +38,5 @@ function initDbConnection(){
  * @return array $entry
  */
 function selectOneRecord($req,$values = null){
-
+    
 }
