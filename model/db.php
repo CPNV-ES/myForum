@@ -10,11 +10,7 @@ class DataBase
     {
         //Get the configuration from config.ini and put-it into variables.
         $config  = parse_ini_file("config.ini");
-        $host    = $config[0];
-        $db      = $config[1];
-        $user    = $config[2];
-        $pass    = $config[3];
-        $charset = $config[4];
+        $dbh = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['db'], $config['user'], $config['pass']);
     }
 
     public function selectOneRecord($query, $value){
