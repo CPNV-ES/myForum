@@ -1,19 +1,28 @@
 <?php
  
-require_once 'dbconfig.php';
- 
-$dsn= "mysql:host=$host;dbname=$db";
- 
-try{
- // create a PDO connection with the configuration data
- $conn = new PDO($dsn, $username, $password);
- 
- // display a message if connected to database successfully
- if($conn){
- echo "Connected to the $db database successfully!";
-        }
-}catch (PDOException $e){
- // report error message
- echo ("ca marche pas");
- echo $e->getMessage();
+class Db{
+
+    private static function connectToDb(){
+        $ini_array = parse_ini_file("dbconfig.ini");
+        $dsn= "mysql:host=$ini_array[host];dbname=$ini_array[dbname]";
+        $conn = new PDO($dsn, $ini_array['user'], $ini_array['password']);
+        return $conn;
+    }
+
+    public static function  Insert($query)
+    {
+        $conn = self::connectToDb();
+        $prepare = $conn->prepare($query);
+        $prepare->execute();
+    }
+
+    public static function selectOneRecord($query){
+        $conn =  self::connectToDb();
+        $prepare = $conn->prepare($query);
+        printf($query);
+        $prepare->execute();
+        return $prepare->fetchAll();
+    }
 }
+ 
+
