@@ -12,7 +12,7 @@ class Role{
     }
 
     /**
-     * This method try to load information in database based on properties informations.
+     * This method try to load information in database based on object properties informations.
      */
     public function load(){
 
