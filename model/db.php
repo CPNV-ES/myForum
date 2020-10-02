@@ -1,12 +1,16 @@
 <?php
-/**
- * Author : M. Burnat
- * Created : 2020-10-02
- * Modified last : 2020-10-02
- **/
 
-function selectOneRecord($query, $value){
-    return $query;
+class DataBase
+{
+
+    /**
+     * DataBase constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    public function selectOneRecord($query, $value){
+        return $query;
+    }
 }
-
-?>
