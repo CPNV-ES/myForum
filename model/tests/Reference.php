@@ -7,6 +7,10 @@ class Reference
      * @var string
      */
     public $name;
+    /**
+     * @var mixed
+     */
+    public $id;
 
     /**
      * Reference constructor.
@@ -16,6 +20,18 @@ class Reference
     }
 
     public function save()
+    {
+    }
+
+    public function load()
+    {
+    }
+
+    public function update()
+    {
+    }
+
+    public function delete()
     {
     }
 }
