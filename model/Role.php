@@ -1,4 +1,11 @@
 <?php
+/**
+ * File : Role.php
+ * Author : A. Quentin
+ * Created : 2020-10-02
+ * Modified last : 2020-10-02
+ **/
+
 
 class Role{
     public $id;
@@ -29,6 +36,6 @@ class Role{
      * This method try to delete the database entry bases on object properties informations
      */
     public function delete(){
-        
+
     }
 }   
