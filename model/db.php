@@ -33,12 +33,11 @@ class Db{
      * @param array $values
      * @return array $entry
      */
-    function selectOneRecord($req,$values = null){
-        initDbConnection();
+    public static function selectOneRecord($req,$values = null){
 
-        $dbConnection->prepare($req);
-        $dbConnection->execute($values);
+        $this->dbConnection->prepare($req);
+        $this->dbConnection->execute($values);
 
-        return $dbConnection->fetchAll();
+        return $this->dbConnection->fetchAll();
     }
 }
