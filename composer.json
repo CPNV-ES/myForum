@@ -9,12 +9,17 @@
         }
     ],
     "require": {
-        "expreql/expreql": "dev-master"
+        "expreql/expreql": "dev-master",
+        "routier/routier": "dev-master"
     },
     "repositories": [
         {
             "type": "vcs",
             "url": "git@github.com:AlexandrePhilibertCPNV/expreql.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:AlexandrePhilibertCPNV/routier.git"
         }
     ]
 }

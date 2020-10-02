@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b94f1283317acc4b92bccfd5216cdc29",
+    "content-hash": "1002ce0e88cd7f62fce2769bc0672bae",
     "packages": [
         {
             "name": "expreql/expreql",
@@ -47,13 +47,53 @@
                 "issues": "https://github.com/AlexandrePhilibertCPNV/expreql/issues"
             },
             "time": "2020-10-01T11:55:42+00:00"
+        },
+        {
+            "name": "routier/routier",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AlexandrePhilibertCPNV/routier.git",
+                "reference": "a2d739de62b5cd50b10a875fcbfbeeb5b8f1b007"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AlexandrePhilibertCPNV/routier/zipball/a2d739de62b5cd50b10a875fcbfbeeb5b8f1b007",
+                "reference": "a2d739de62b5cd50b10a875fcbfbeeb5b8f1b007",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Routier\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandre Philibert",
+                    "email": "alexandre.philibert@cpnv.ch"
+                }
+            ],
+            "description": "An Express.js like router",
+            "support": {
+                "source": "https://github.com/AlexandrePhilibertCPNV/routier/tree/master",
+                "issues": "https://github.com/AlexandrePhilibertCPNV/routier/issues"
+            },
+            "time": "2020-10-02T08:25:09+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "expreql/expreql": 20
+        "expreql/expreql": 20,
+        "routier/routier": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
