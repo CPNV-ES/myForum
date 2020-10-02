@@ -14,13 +14,15 @@ class Role{
 
     public function _construct($dbConnection = null){
         $this->dbConnection = $dbConnection;
+        var_dump($dbConnection);
     }
 
     /**
      * This method will insert in the database a new entry with current information
      */
     public function save(){
-
+        $req = '';
+        $this->dbConnection->prepare($req);
     }
 
     /**

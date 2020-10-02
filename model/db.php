@@ -13,18 +13,18 @@ class Db{
     /**
      * Load and initialize the connection with the database using environnement variable.
      */
-    public function _construct($envPath = '../env.json'){
-        $json = file_get_contents($envPath);
+    public function __construct($envPath = '/.env.json'){
+        $json = file_get_contents(dirname(__DIR__, 1).$envPath);
 
-        $this->dbEnv = json_decode($json)["db"];
+        $tmpEnv = json_decode($json,true);        
+        $this->dbEnv = $tmpEnv["db"];
 
         if(empty($dbConnection)){
-            $dsn = 'mysql:host=' . $dbEnv["host"].';dbname='.$dbEnv["name"];
+            $dsn = 'mysql:host=' . $this->dbEnv["host"].':'.$this->dbEnv["port"].';dbname='.$this->dbEnv["name"];
 
-            $dbConnection = new PDO($dsn,$dbEnv["login"]["username"],$dbEnv["login"]["password"]);
-        } 
-
-        var_dump($this->dbEnv);
+            var_dump($dsn);
+            $dbConnection = new PDO($dsn,$this->dbEnv["login"]["username"],$this->dbEnv["login"]["password"]);
+        }
     }
 
     /**
@@ -33,11 +33,18 @@ class Db{
      * @param array $values
      * @return array $entry
      */
-    public static function selectOneRecord($req,$values = null){
+    public function selectOneRecord($req,$values = null){
 
         $this->dbConnection->prepare($req);
-        $this->dbConnection->execute($values);
 
-        return $this->dbConnection->fetchAll();
+        if(!empty($values)){    
+            foreach($values as $key => $value){
+                $newValues[':'.$key] = $value;
+            }
+        }
+
+        $this->dbConnection->execute(isset($newValues) ? $newValues : '');
+
+        return $this->dbConnection->fetch();
     }
 }
