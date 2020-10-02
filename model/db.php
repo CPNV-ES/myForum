@@ -5,7 +5,8 @@
  * Modified last : 2020-10-02
  **/
 
-function selectOneRecord(){
-
+function selectOneRecord($query, $value){
+    return $query;
 }
+
 ?>
