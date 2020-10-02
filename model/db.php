@@ -6,22 +6,38 @@
  * Date: 02/10/2020
  */
 
+require_once "config.php";
+
 function getDB()
 {
-    $connexion = new PDO('mysql:host=localhost; dbname=exercicelooper');
+    $config = new config();
 
-    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $connect = new PDO($config->GetDSN(), $config -> GetUser(), $config -> GetPass());
 
-    return $connexion;
+    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    return $connect;
 }
 
 
+function selectOneRecord($req)
+{
 
-function selectOneRecord($req){
+    $connect = getDB();
 
-    $connect = getBD();
+    $result = $connect->prepare($req);
+
+    $result->execute();
+
+    return $result->fetch();
+}
+
+function execReq($req){
+
+    $connect = getDB();
 
     $result = $connect->query($req);
 
     return $result;
+
 }

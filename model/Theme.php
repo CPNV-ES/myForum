@@ -1,17 +1,38 @@
 <?php
+require "db.php";
+class Theme
+{
+    public $id;
+    public $name;
 
-require_once ("db.php");
+    public function save()
+    {
+        $req = "INSERT INTO themes (name) VALUES ('$this->name')";
 
-function load(){
+        execReq($req);
+    }
 
-}
+    function load()
+    {
+        //$req = "INSERT INTO themes (name) VALUES ($this->name)";
 
-function update(){
+        //execReq($req);
 
-}
+    }
 
-function delete(){
+    function update()
+    {
+        //$req = "INSERT INTO themes (name) VALUES ($this->name)";
 
+       // execReq($req);
+    }
+
+    function delete()
+    {
+       // $req = "INSERT INTO themes (name) VALUES ($this->name)";
+
+       // execReq($req);
+    }
 }
 
 
