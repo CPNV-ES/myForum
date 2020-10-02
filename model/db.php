@@ -20,24 +20,37 @@ function getDB()
 }
 
 
-function selectOneRecord($req)
+function selectOneRecord($req, $values)
 {
 
     $connect = getDB();
 
     $result = $connect->prepare($req);
 
+    foreach ($values as $key => $value){
+        $result->bindParam(":".$key, $value);
+    }
+
     $result->execute();
 
     return $result->fetch();
 }
 
-function execReq($req){
+function ExecReq($req){
 
     $connect = getDB();
 
     $result = $connect->query($req);
 
-    return $result;
+
+}
+
+function ReturnExecReq($req){
+
+    $connect = getDB();
+
+    $result = $connect->query($req);
+
+    return $result->fetch();
 
 }

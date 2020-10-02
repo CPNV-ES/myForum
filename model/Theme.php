@@ -7,16 +7,17 @@ class Theme
 
     public function save()
     {
-        $req = "INSERT INTO themes (name) VALUES ('$this->name')";
+        $req = "INSERT INTO `themes` (`name`) VALUES ('$this->name')";
 
-        execReq($req);
+        ExecReq($req);
     }
 
     function load()
     {
-        //$req = "INSERT INTO themes (name) VALUES ($this->name)";
+        $req = "SELECT `name` FROM `themes` WHERE `id`=$this->id";
 
-        //execReq($req);
+
+        $this->name = ReturnExecReq($req)["name"];
 
     }
 
