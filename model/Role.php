@@ -5,7 +5,7 @@ class Role{
     public $name;
 
     /**
-     * This method will insert in the database a new entry with current information.
+     * This method will insert in the database a new entry with current information
      */
     public function save(){
 
@@ -24,4 +24,11 @@ class Role{
     public function update(){
 
     }
-}
+
+    /**
+     * This method try to delete the database entry bases on object properties informations
+     */
+    public function delete(){
+        
+    }
+}   
