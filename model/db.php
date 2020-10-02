@@ -11,26 +11,21 @@ class Db{
     protected $dbConnection = null;
 
     /**
-     * Load and initialize database environment variable
+     * Load and initialize the connection with the database using environnement variable.
      */
     public function _construct($envPath = '../env.json'){
         $json = file_get_contents($envPath);
 
         $this->dbEnv = json_decode($json)["db"];
-        var_dump($this->dbEnv);
-    }
 
-    /**
-     * Initialize the connection with the database using environnement variable
-     */
-    function initDbConnection(){
         if(empty($dbConnection)){
             $dsn = 'mysql:host=' . $dbEnv["host"].';dbname='.$dbEnv["name"];
 
             $dbConnection = new PDO($dsn,$dbEnv["login"]["username"],$dbEnv["login"]["password"]);
-        }    
-    }
+        } 
 
+        var_dump($this->dbEnv);
+    }
 
     /**
      * This function try to select an entry in the database
