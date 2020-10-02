@@ -1,4 +1,10 @@
 <?php 
+/**
+ * File : db.php
+ * Author : A. Quentin
+ * Created : 2020-10-02
+ * Modified last : 2020-10-02
+ **/
 
 $dbEnv = null;
 $dbConnection = null;
