@@ -10,22 +10,32 @@ require_once ("../db.php");
 
 class Theme
 {
+    public $db;
     public $id;
     public $name;
 
-    public function save() {
-        insertOneRecord("insert into themes values (this->name)");
+    public function __construct()
+    {
+        $this->db = new db();
     }
 
-    public function load() {
+    public function save()
+    {
+        $this->db->insertOneRecord("insert into themes values (null, '" . $this->name . "')");
+    }
+
+    public function load()
+    {
 
     }
 
-    public function update() {
+    public function update()
+    {
 
     }
 
-    public function delete() {
+    public function delete()
+    {
 
     }
 }

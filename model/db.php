@@ -6,21 +6,32 @@
  * Modified last :
  **/
 
-function databaseConnection() {
-    $connection = new PDO('mysql:host=localhost; dbname=myforum', 'root', '');
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+class db
+{
+    private $connection;
 
-    return $connection;
-}
+    public function __construct()
+    {
+        $this->connection = new PDO('mysql:host=localhost; dbname=myforum', 'root', '');
+    }
 
-function selectOneRecord($request) {
-    $connection = databaseConnection();
-    $data = $connection->query($request);
+    public function selectOneRecord($request, $array)
+    {
+        $statement = $this->connection->prepare($request);
 
-    return $data;
-}
+        foreach($array as $key => $value)
+        {
+            $v = $value;
+        }
 
-function insertOneRecord($request) {
-    $connection = databaseConnection();
-    $connection->exec($request);
+        $statement->execute($v);
+        $data = $statement->fetch();
+
+        return $data;
+    }
+
+    public function insertOneRecord($request)
+    {
+        $this->connection->exec($request);
+    }
 }
