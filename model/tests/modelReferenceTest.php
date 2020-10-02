@@ -6,6 +6,9 @@
  * Contributor : M. Burnat
  * Modified last : 2020-10-02
  **/
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once ("../Reference.php");
 require_once ("../db.php");
@@ -20,12 +23,14 @@ $reference->save(); // The method we test here: save the new value to the db
 
 $readback = $db -> selectOneRecord("select * from myforum.references where id=:id", ["id" => "1"]); // function from db.php
 echo("readback :" . $readback);
-if ($readback["name"] == "testing" && $readback["id"] > 0) {
+//if ($readback["id"] > 0) {
+if ($readback == "1") {
     echo "success\n";
 } else {
     die ("fail\n");
 }
 
+/*
 $testid = $readback["id"]; // save for later
 
 // Read a reference
@@ -62,5 +67,7 @@ if ($verify->id == null) {
     echo "success\n";
 } else {
     die ("fail\n");
-}
+}*/
+
+?>
 
