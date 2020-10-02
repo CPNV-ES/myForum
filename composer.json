@@ -1,0 +1,20 @@
+{
+    "name": "alexandre/my-forum",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexandre Philibert",
+            "email": "alexandre.philibert@cpnv.ch"
+        }
+    ],
+    "require": {
+        "expreql/expreql": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:AlexandrePhilibertCPNV/expreql.git"
+        }
+    ]
+}
