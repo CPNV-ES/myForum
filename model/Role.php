@@ -17,4 +17,11 @@ class Role{
     public function load(){
 
     }
+
+    /**
+     * This method try to update the database entry based on object properties informations
+     */
+    public function update(){
+
+    }
 }
