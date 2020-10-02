@@ -5,17 +5,20 @@
  * Created : 2020-10-01
  * Modified last :
  **/
-require_once ("../Reference.php");
-require_once ("../db.php");
+require_once ("model/Reference.php");
+require_once ("model/db.php");
 // Create a new reference
 echo "Test of save(): ";
 $reference = new Reference();
-$reference->name = "testing";
+$reference->description = "testing";
+$reference->url="http://testing.com";
+
+$database = new Db();
 
 $reference->save(); // The method we test here: save the new value to the db
 
-$readback = selectOneRecord("select * from references where name=:name", ["name" => "testing"]); // function from db.php
-if ($readback["name"] == "testing" && $readback["id"] > 0) {
+$readback = $database->selectOneRecord("select * from `references` where description=:description", ["description" => "testing"]); // function from db.php
+if ($readback["description"] == "testing" && $readback["id"] > 0) {
     echo "success\n";
 } else {
     die ("fail\n");
