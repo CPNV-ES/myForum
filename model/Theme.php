@@ -14,7 +14,7 @@ class Theme
     public $name;
 
     public function save() {
-        insertOneRecord("insert into themes values ()", ["name" => "testing"]);
+        insertOneRecord("insert into themes values (this->name)");
     }
 
     public function load() {
