@@ -10,6 +10,11 @@
 class Role{
     public $id;
     public $name;
+    public $dbConnection;
+
+    public function _construct($dbConnection = null){
+        $this->dbConnection = $dbConnection;
+    }
 
     /**
      * This method will insert in the database a new entry with current information
