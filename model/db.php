@@ -1,6 +1,7 @@
 <?php 
 
 $dbEnv = null;
+$dbConnection = null;
 
 /**
  * Load and initialize database environment variable
@@ -9,7 +10,18 @@ function dbEnvInit($envPath = '../env.json'){
     $json = file_get_contents($envPath);
 
     $dbEnv = json_decode($json)["db"];
+    var_dump($dbEnv);
 }
+
+/**
+ * Initialize the connection with the database using environnement variable
+ */
+function initDbConnection(){
+    $dsn = 'mysql:host=' . $dbEnv["host"].';dbname='.$dbEnv["name"];
+
+    $dbConnection = new PDO($dsn,$dbEnv["login"]["username"],$dbEnv["login"]["password"]);
+}
+
 
 /**
  * This function try to select an entry in the database
