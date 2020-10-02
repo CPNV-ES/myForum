@@ -3,10 +3,13 @@
  * File : modelReferenceTest.php
  * Author : X. Carrel
  * Created : 2020-10-01
- * Modified last :
+ * Contributor : M. Burnat
+ * Modified last : 02.10.2020
  **/
+
 require_once ("../Reference.php");
 require_once ("../db.php");
+
 // Create a new reference
 echo "Test of save(): ";
 $reference = new Reference();
