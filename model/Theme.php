@@ -23,16 +23,17 @@ class Theme
 
     function update()
     {
-        //$req = "INSERT INTO themes (name) VALUES ($this->name)";
 
-       // execReq($req);
+        $req = "UPDATE `themes` SET `name` = '$this->name' WHERE `id` = $this->id ";
+        
+        ExecReq($req);
     }
 
     function delete()
     {
-       // $req = "INSERT INTO themes (name) VALUES ($this->name)";
+        $req = "DELETE FROM `themes` WHERE `name` = '$this->name'";
 
-       // execReq($req);
+        ExecReq($req);
     }
 }
 
