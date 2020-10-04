@@ -21,7 +21,7 @@ class Theme
 
     public function save()
     {
-        $this->db->insertOneRecord("insert into themes values (null, '" . $this->name . "')");
+        $this->db->insertOneRecord("insert into themes values (null, :name)", ["name" => $this->name]);
     }
 
     public function load()
