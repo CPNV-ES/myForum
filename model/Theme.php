@@ -26,7 +26,9 @@ class Theme
 
     public function load()
     {
+        $data = $this->db->selectOneRecord("select * from themes where id=:name", ["name" => $this->id]);
 
+        $this->name = $data["name"];
     }
 
     public function update()
