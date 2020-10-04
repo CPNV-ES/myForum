@@ -15,23 +15,30 @@ class db
         $this->connection = new PDO('mysql:host=localhost; dbname=myforum', 'root', '');
     }
 
-    public function selectOneRecord($request, $array)
+    public function selectOneRecord($request, $bindings)
     {
         $statement = $this->connection->prepare($request);
 
-        foreach($array as $key => $value)
+        foreach($bindings as $placeholder => $bound)
         {
-            $v = $value;
+            $statement->bindParam($placeholder, $bound);
         }
 
-        $statement->execute($v);
+        $statement->execute();
         $data = $statement->fetch();
 
         return $data;
     }
 
-    public function insertOneRecord($request)
+    public function insertOneRecord($request, $bindings)
     {
-        $this->connection->exec($request);
+        $statement = $this->connection->prepare($request);
+
+        foreach($bindings as $placeholder => $bound)
+        {
+            $statement->bindParam($placeholder, $bound);
+        }
+
+        $statement->execute();
     }
 }
