@@ -14,17 +14,8 @@ class Db{
     public function selectOneRecord($req,$name)
     {
         $pdo = $this->connect();
-
         $stmt = $pdo->prepare($req);//Protect from injection
-        
-    
-        foreach($name as $key=>$value)
-        {
-            $stmt->bindParam(":".$key,$value);
-        }
-        
-        $stmt->debugDumpParams();
-        $stmt->execute();
+        $stmt->execute($name);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $data = $stmt->fetch();
         return $data;
