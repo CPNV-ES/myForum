@@ -42,7 +42,12 @@ class Role {
 
         $stmt = Db::getDbConnection()->prepare("INSERT INTO `roles` (`name`) VALUES (:name);");
         $stmt->bindParam(":name", $this->name);
-        return $stmt->execute();
+        $success = $stmt->execute();
+        if($success) {
+            $this->id = Db::getDbConnection()->lastInsertId();
+        }
+
+        return $success;
     }
 
     /**
