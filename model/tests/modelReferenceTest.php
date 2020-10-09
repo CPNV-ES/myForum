@@ -14,7 +14,7 @@ $reference->description = "testing";
 
 $reference->save(); // The method we test here: save the new value to the db
 
-$readback = selectOneRecord("select * from references where description=:description", ["description" => "testing"]); // function from db.php
+$readback = Db::selectOneRecord("select * from references where description=:description", ["description" => "testing"]); // function from db.php
 if ($readback["description"] == "testing" && $reference->id > 0) {
     echo "success\n";
 } else {
