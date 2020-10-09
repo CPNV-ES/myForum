@@ -19,18 +19,15 @@ class db
         $dsn = $settings['database']['driver'] . ':host=' . $settings['database']['host'] . ';dbname=' . $settings['database']['schema'];
 
         $this->connection = new PDO($dsn, $settings['database']['username'], $settings['database']['password']);
+
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     public function selectOneRecord($request, $bindings)
     {
         $statement = $this->connection->prepare($request);
 
-        foreach($bindings as $placeholder => $bound)
-        {
-            $statement->bindParam($placeholder, $bound);
-        }
-
-        $statement->execute();
+        $statement->execute($bindings);
         $data = $statement->fetch();
 
         return $data;
@@ -40,11 +37,41 @@ class db
     {
         $statement = $this->connection->prepare($request);
 
-        foreach($bindings as $placeholder => $bound)
+        try
         {
-            $statement->bindParam($placeholder, $bound);
+            $statement->execute($bindings);
         }
+        catch (PDOException $exception)
+        {
+            echo $exception->getMessage();
+        }
+    }
 
-        $statement->execute();
+    public function updateOneRecord($request, $bindings)
+    {
+        $statement = $this->connection->prepare($request);
+
+        try
+        {
+            $statement->execute($bindings);
+        }
+        catch (PDOException $exception)
+        {
+            echo $exception->getMessage();
+        }
+    }
+
+    public function deleteOneRecord($request, $bindings)
+    {
+        $statement = $this->connection->prepare($request);
+
+        try
+        {
+            $statement->execute($bindings);
+        }
+        catch (PDOException $exception)
+        {
+            echo $exception->getMessage();
+        }
     }
 }

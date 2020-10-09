@@ -22,22 +22,27 @@ class Theme
     public function save()
     {
         $this->db->insertOneRecord("insert into themes values (null, :name)", ["name" => $this->name]);
+        $data = $this->db->selectOneRecord("select * from themes where name=:name", ["name" => $this->name]);
+
+        $this->id = $data['id'];
+        $this->name = $data['name'];
     }
 
     public function load()
     {
-        $data = $this->db->selectOneRecord("select * from themes where id=:name", ["name" => $this->id]);
+        $data = $this->db->selectOneRecord("select * from themes where id=:id", ["id" => $this->id]);
 
-        $this->name = $data["name"];
+        $this->id = $data['id'];
+        $this->name = $data['name'];
     }
 
     public function update()
     {
-
+        $this->db->updateOneRecord("update themes set name=:name where id=:id", ["name" => $this->name, "id" => $this->id]);
     }
 
     public function delete()
     {
-
+        $this->db->deleteOneRecord("delete from themes where id=:id", ["id" => $this->id]);
     }
 }
