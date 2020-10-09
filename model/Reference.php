@@ -10,7 +10,7 @@ class Reference
     /**
      * @var string
      */
-    public $name;
+    public $description;
     /**
      * @var int
      */
@@ -25,6 +25,7 @@ class Reference
 
     public function save()
     {
+
     }
 
     public function load()

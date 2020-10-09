@@ -17,12 +17,11 @@ $db = new DataBase();
 // Create a new reference
 echo "Test of save(): ";
 $reference = new Reference();
-$reference->name = "testing";
+$reference->description = "testing";
 
 $reference->save(); // The method we test here: save the new value to the db
 
 $readback = $db -> selectOneRecord("select * from myforum.references where description=:desc", ["desc" => "Scrum guide"]); // function from db.php
-echo("readback :" . $readback);
 //if ($readback["id"] > 0) {
 if ($readback == "1") {
     echo "success\n";
