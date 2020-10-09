@@ -5,8 +5,9 @@ class Db {
     private $dbConnection;
 
     private function __construct() {
-        $creds = (require("../../myForum.credentials.php"))["mysql"];
-        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"]);
+        //Get the configuration from config.ini and put-it into variables.
+        $config  = parse_ini_file("config.ini");
+        $this->dbConnection = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['db'], $config['user'], $config['pass']);
     }
 
     /**
