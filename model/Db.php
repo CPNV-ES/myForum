@@ -6,7 +6,7 @@ class Db {
 
     private function __construct() {
         $creds = (require("myForum.credentials.php"))["mysql"];
-        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"]);
+        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']};charset=utf8", $creds["username"], $creds["passwd"]);
     }
 
     /**
