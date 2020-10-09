@@ -38,7 +38,7 @@ class State {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT name FROM `states` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT name FROM `states` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
             $this->name = $record["name"];
 

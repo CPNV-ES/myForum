@@ -38,7 +38,7 @@ class Role {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
             $this->name = $record["name"];
 

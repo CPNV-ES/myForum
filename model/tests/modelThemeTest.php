@@ -14,7 +14,7 @@ $theme->name = "testing";
 
 $theme->save(); // The method we test here: save the new value to the db
 
-$readback =  Db::selectOneRecord("select * from themes where name=:name", ["name" => "testing"]); // function from db.php
+$readback =  Db::selectOne("select * from themes where name=:name", ["name" => "testing"]); // function from db.php
 if ($readback["name"] == "testing" && $theme->id > 0) {
     echo "success\n";
 } else {
