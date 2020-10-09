@@ -5,7 +5,7 @@ class Db {
     private $dbConnection;
 
     private function __construct() {
-        $creds = (require("../../myForum.credentials.php"))["mysql"];
+        $creds = (require(dirname(__DIR__)."/myForum.credentials.php"))["mysql"];
         $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"]);
     }
 
@@ -28,7 +28,7 @@ class Db {
         return self::getInstance()->dbConnection;
     }
 
-    private static function select($query, $params, $multirecord)
+    private static function select($query, $params, $multirecord, $classname = null)
     {
         $dbh = self::getDbConnection();
         try
@@ -37,10 +37,26 @@ class Db {
             $statement->execute($params);//execute query
             if ($multirecord)
             {
-                $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+                if(isset($classname)){
+                    $statement->setFetchMode(PDO::FETCH_CLASS,$obj);
+                }
+                else{
+                    $statement->setFetchMode(PDO::FETCH_ASSOC);
+                }
+
+                $queryResult = $statement->fetchAll();
+
             } else
             {
-                $queryResult = $statement->fetch(PDO::FETCH_ASSOC);
+                if(isset($classname)){
+                    $statement->setFetchMode(PDO::FETCH_CLASS,$obj);
+                }
+                else{
+                    $statement->setFetchMode(PDO::FETCH_ASSOC);
+                }
+
+                $queryResult = $statement->fetch();
+
             }
             return $queryResult;
         } catch (PDOException $e)
@@ -50,12 +66,12 @@ class Db {
         }
     }
 
-    public static function selectOne($query, $params)
+    public static function selectOne($query, $params, $classname)
     {
         return self::select($query, $params, false);
     }
 
-    public static function selectMany($query, $params)
+    public static function selectMany($query, $params, $classname)
     {
         return self::select($query, $params, true);
     }

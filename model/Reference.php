@@ -17,6 +17,7 @@ class Reference {
     public static function all()
     {
         // TODO Build and return an array of Reference objects
+        return Db::selectMany("SELECT * FROM `references`",[], "Reference");
     }
 
     /**

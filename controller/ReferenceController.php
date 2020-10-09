@@ -5,6 +5,12 @@ class ReferenceController
 {
     public function index()
     {
+        require_once dirname(__DIR__)."/model/Reference.php";
+
+        $references = new Reference();
+
+        $all = $references->all();
+
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php";
     }
 
