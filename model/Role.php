@@ -1,22 +1,13 @@
 <?php
 
-require_once ("../db.php");
+require_once ("Db.php");
 
-class Reference {
+class Role {
     public $id;
-    public $description;
-    public $url;
+    public $name;
 
     public function __construct() {
 
-    }
-
-    /**
-     * Returns an array of objects representing all records of the table
-     */
-    public static function all()
-    {
-        // TODO Build and return an array of Reference objects
     }
 
     /**
@@ -27,16 +18,14 @@ class Reference {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOne("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOneRecord("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
-            $this->description = $record["description"];
-            $this->url = $record["url"];
+            $this->name = $record["name"];
 
             return true;
         }
         else {
-            $this->description = null;
-            $this->url = null;
+            $this->name = null;
             $this->id = null;
 
             return false;
@@ -48,11 +37,17 @@ class Reference {
      * @return bool true on success, false otherwise
      */
     public function save() {
-        if($this->description == null)
+        if($this->name == null)
             return false;
 
-        $this->id = Db::insert("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);",["description" => $this->description, ":url" => $this->url]);
-        return $this->id;
+        $stmt = Db::getDbConnection()->prepare("INSERT INTO `roles` (`name`) VALUES (:name);");
+        $stmt->bindParam(":name", $this->name);
+        $success = $stmt->execute();
+        if($success) {
+            $this->id = Db::getDbConnection()->lastInsertId();
+        }
+
+        return $success;
     }
 
     /**
@@ -60,7 +55,10 @@ class Reference {
      * @return bool true on success, false otherwise
      */
     public function update() {
-        return Db::execute("UPDATE `references` SET `description`=:description, `url`=:url WHERE (`id` = :id);",["id" => $this->id, "description" => $this->description, "url" => $this->url]);
+        $stmt = Db::getDbConnection()->prepare("UPDATE `roles` SET `name` = :name WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":name", $this->name);
+        return $stmt->execute();
     }
 
     /**
@@ -70,6 +68,9 @@ class Reference {
     public function delete() {
         if($this->id == null)
             return false;
-        return Db::execute("DELETE FROM `references` WHERE (`id` = :id);",["id" => $this->id]);
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `roles` WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        return $stmt->execute();
     }
 }
