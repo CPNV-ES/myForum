@@ -5,7 +5,6 @@
  * Modified last : 2020-10-02
  **/
 require_once ("../db.php");
-$db = new DataBase();
 
 class Reference
 {
@@ -18,11 +17,15 @@ class Reference
      */
     public $id;
 
+
+
     /**
      * Reference constructor.
      */
     public function __construct()
     {
+        $db = new DataBase();
+
     }
 
     public function save()
