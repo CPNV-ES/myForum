@@ -4,42 +4,56 @@ class State
 {
     public $id;
     public $name;
+    private $connect;
+
+    function __construct()
+    {
+        $this->connect = getDB();
+    }
+
 
     public function save()
     {
-        $req = "INSERT INTO `states` (`name`) VALUES ('$this->name')";
+        $result = $this->connect->prepare("INSERT INTO `states` (`name`) VALUES (:name)");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
 
-        ExecReq($req);
+        $result = $this->connect->prepare("SELECT `id` FROM `states` WHERE `name`=:name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
 
-        $req2 = "SELECT `id` FROM `states` WHERE `name`='$this->name'";
-
-        $data = ReturnExecReq($req2)["id"];
+        $data = $result->fetch();
 
         $this->id = $data;
     }
 
     function load()
     {
-        $req = "SELECT `name`, `id` FROM `states` WHERE `id`=$this->id";
+        $result = $this->connect->prepare("SELECT `name`, `id` FROM `states` WHERE `id`=:id");
+        $result->bindParam(":id", $this->id);
+        $result->execute();
 
-        $this->name = ReturnExecReq($req)["name"];
-        $this->id = ReturnExecReq($req)["id"];
+        $data = $result->fetch();
 
+        $this->name = $data["name"];
+        $this->id = $data["id"];
+
+        return $result->fetch();
     }
 
     function update()
     {
-
-        $req = "UPDATE `states` SET `name` = '$this->name' WHERE `id` = $this->id ";
-        
-        ExecReq($req);
+        $result = $this->connect->prepare("UPDATE `states` SET `name` = :name WHERE `id` = :id ");
+        $result->bindParam(":id", $this->id);
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 
     function delete()
     {
-        $req = "DELETE FROM `states` WHERE `name` = '$this->name'";
-
-        ExecReq($req);
+        $result = $this->connect->prepare("DELETE FROM `states` WHERE `name` = :name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 }
 

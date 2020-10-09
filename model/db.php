@@ -35,22 +35,3 @@ function selectOneRecord($req, $values)
 
     return $result->fetch();
 }
-
-function ExecReq($req){
-
-    $connect = getDB();
-
-    $result = $connect->query($req);
-
-
-}
-
-function ReturnExecReq($req){
-
-    $connect = getDB();
-
-    $result = $connect->query($req);
-
-    return $result->fetch();
-
-}

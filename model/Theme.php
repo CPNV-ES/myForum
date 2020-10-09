@@ -4,42 +4,56 @@ class Theme
 {
     public $id;
     public $name;
+    private $connect;
+
+    function __construct()
+    {
+        $this->connect = getDB();
+    }
+
 
     public function save()
     {
-        $req = "INSERT INTO `themes` (`name`) VALUES ('$this->name')";
+        $result = $this ->connect->prepare("INSERT INTO `themes` (`name`) VALUES (:name)");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
 
-        ExecReq($req);
+        $result = $this ->connect->prepare("SELECT `id` FROM `themes` WHERE `name`=:name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
 
-        $req2 = "SELECT `id` FROM `themes` WHERE `name`='$this->name'";
-
-        $data = ReturnExecReq($req2)["id"];
+        $data = $result->fetch();
 
         $this->id = $data;
     }
 
     function load()
     {
-        $req = "SELECT `name`, `id` FROM `themes` WHERE `id`=$this->id";
+        $result = $this ->connect->prepare("SELECT `name`, `id` FROM `themes` WHERE `id`=:id");
+        $result->bindParam(":id", $this->id);
+        $result->execute();
 
-        $this->name = ReturnExecReq($req)["name"];
-        $this->id = ReturnExecReq($req)["id"];
+        $data = $result->fetch();
 
+        $this->name = $data["name"];
+        $this->id = $data["id"];
+
+        return $result->fetch();
     }
 
     function update()
     {
-
-        $req = "UPDATE `themes` SET `name` = '$this->name' WHERE `id` = $this->id ";
-        
-        ExecReq($req);
+        $result = $this ->connect->prepare("UPDATE `themes` SET `name` = :name WHERE `id` = :id ");
+        $result->bindParam(":id", $this->id);
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 
     function delete()
     {
-        $req = "DELETE FROM `themes` WHERE `name` = '$this->name'";
-
-        ExecReq($req);
+        $result = $this ->connect->prepare("DELETE FROM `themes` WHERE `name` = :name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 }
 

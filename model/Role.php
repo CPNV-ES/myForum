@@ -4,49 +4,55 @@ class Role
 {
     public $id;
     public $name;
+    private $connect;
+
+    function __construct()
+    {
+        $this->connect = getDB();
+    }
+
 
     public function save()
     {
-        $req = "INSERT INTO `roles` (`name`) VALUES ('$this->name')";
+        $result = $this->connect->prepare("INSERT INTO `roles` (`name`) VALUES (:name)");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
 
-        ExecReq($req);
+        $result = $this->connect->prepare("SELECT `id` FROM `roles` WHERE `name`=:name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
 
-        $req2 = "SELECT `id` FROM `roles` WHERE `name`='$this->name'";
-
-        $data = ReturnExecReq($req2)["id"];
+        $data = $result->fetch();
 
         $this->id = $data;
     }
 
     function load()
     {
-        $req = "SELECT `name`, `id` FROM `roles` WHERE `id`=$this->id";
+        $result = $this->connect->prepare("SELECT `name`, `id` FROM `roles` WHERE `id`=:id");
+        $result->bindParam(":id", $this->id);
+        $result->execute();
 
-        $this->name = ReturnExecReq($req)["name"];
-        $this->id = ReturnExecReq($req)["id"];
+        $data = $result->fetch();
 
+        $this->name = $data["name"];
+        $this->id = $data["id"];
+
+        return $result->fetch();
     }
 
     function update()
     {
-
-        $req = "UPDATE `roles` SET `name` = '$this->name' WHERE `id` = $this->id ";
-        
-        ExecReq($req);
+        $result = $this->connect->prepare("UPDATE `roles` SET `name` = :name WHERE `id` = :id ");
+        $result->bindParam(":id", $this->id);
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 
     function delete()
     {
-        $req = "DELETE FROM `roles` WHERE `name` = '$this->name'";
-
-        ExecReq($req);
+        $result = $this->connect->prepare("DELETE FROM `roles` WHERE `name` = :name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 }
-
-
-
-
-
-
-
-

@@ -4,42 +4,58 @@ class Reference
 {
     public $id;
     public $name;
+    public $url = 'https://testing.ch';
+    private $connect;
+
+    function __construct()
+    {
+        $this->connect = getDB();
+    }
+
 
     public function save()
     {
-        $req = "INSERT INTO `references` (`description`, `url`) VALUES ('$this->name', 'https://testing.ch')";
+        $result = $this ->connect->prepare("INSERT INTO `references` (`description`, `url`) VALUES (:name, :url)");
+        $result->bindParam(":name", $this->name);
+        $result->bindParam(":url", $this->url);
+        $result->execute();
 
-        ExecReq($req);
+        $result = $this ->connect->prepare("SELECT `id` FROM `references` WHERE `description`=:name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
 
-        $req2 = "SELECT `id` FROM `references` WHERE `description`='$this->name'";
-
-        $data = ReturnExecReq($req2)["id"];
+        $data = $result->fetch();
 
         $this->id = $data;
     }
 
     function load()
     {
-        $req = "SELECT `description`, `id` FROM `references` WHERE `id`=$this->id";
+        $result = $this ->connect->prepare("SELECT `description`, `id` FROM `references` WHERE `id`=:id");
+        $result->bindParam(":id", $this->id);
+        $result->execute();
 
-        $this->name = ReturnExecReq($req)["description"];
-        $this->id = ReturnExecReq($req)["id"];
+        $data = $result->fetch();
 
+        $this->name = $data["description"];
+        $this->id = $data["id"];
+
+        return $result->fetch();
     }
 
     function update()
     {
-
-        $req = "UPDATE `references` SET `description` = '$this->name' WHERE `id` = $this->id ";
-        
-        ExecReq($req);
+        $result = $this ->connect->prepare("UPDATE `references` SET `description` = :name WHERE `id` = :id ");
+        $result->bindParam(":id", $this->id);
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 
     function delete()
     {
-        $req = "DELETE FROM `references` WHERE `description` = '$this->name'";
-
-        ExecReq($req);
+        $result = $this ->connect->prepare("DELETE FROM `references` WHERE `description` = :name");
+        $result->bindParam(":name", $this->name);
+        $result->execute();
     }
 }
 
