@@ -1,45 +1,37 @@
 <?php
 
-class Db {
-    private static $instance;
-    private $dbConnection;
+/**
+ * Created by PhpStorm.
+ * User: Cyril.GOLDENSCHUE
+ * Date: 02/10/2020
+ */
 
-    private function __construct() {
-        $creds = (require("../myForum.credentials.php"))["mysql"];
-        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"]);
+require_once "config.php";
+
+function getDB()
+{
+    $config = new config();
+
+    $connect = new PDO($config->GetDSN(), $config -> GetUser(), $config -> GetPass());
+
+    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    return $connect;
+}
+
+
+function selectOneRecord($req, $values)
+{
+
+    $connect = getDB();
+
+    $result = $connect->prepare($req);
+
+    foreach ($values as $key => $value){
+        $result->bindParam(":".$key, $value);
     }
 
-    /**
-     * Gets the current instance of Db
-     * @return Db The current instance
-     */
-    public static function getInstance() {
-        if(!isset(self::$instance)) {
-            self::$instance = new Db();
-        }
-        return self::$instance;
-    }
+    $result->execute();
 
-    /**
-     * Returns the current open PDO connection to the database
-     * @return PDO The PDO connection
-     */
-    public static function getDbConnection() {
-        return self::getInstance()->dbConnection;
-    }
-
-    /**
-     * Executes the specified query with the specified parameters and returns the first row
-     * @param $query The SQL statement
-     * @param $params An array in which the keys are the parameter name and the value the parameter value
-     * @return mixed An array containing the selected rows, or false on error
-     */
-    public static function selectOneRecord($query, $params) {
-        $stmt = self::getInstance()->getDbConnection()->prepare($query);
-        foreach($params as $paramName => $paramVal) {
-            $stmt->bindParam(":" . $paramName, $paramVal);
-        }
-        $stmt->execute();
-        return $stmt->fetch();
-    }
+    return $result->fetch();
 }
