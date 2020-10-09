@@ -18,7 +18,7 @@ class Reference {
     {
         // TODO Build and return an array of Reference objects
     }
-    
+
     /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
