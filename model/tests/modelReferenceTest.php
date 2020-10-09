@@ -13,7 +13,6 @@ error_reporting(E_ALL);
 require_once ("../Reference.php");
 require_once ("../db.php");
 
-$db = new DataBase();
 // Create a new reference
 echo "Test of save(): ";
 
@@ -22,9 +21,7 @@ $reference->description = "testing";
 
 $reference->save(); // The method we test here: save the new value to the db
 
-$readback = $db -> selectOneRecord("select * from myforum.references where description=:desc", ["desc" => "Scrum guide"]); // function from db.php
-//if ($readback["id"] > 0) {
-if ($readback == "1") {
+
 $readback = Db::selectOne("select * from `references` where description=:description", ["description" => "testing"]); // function from db.php
 if ($readback["description"] == "testing" && $reference->id > 0) {
     echo "success\n";
@@ -32,7 +29,6 @@ if ($readback["description"] == "testing" && $reference->id > 0) {
     die ("fail\n");
 }
 
-/*
 $testid = $readback["id"]; // save for later
 
 // Read a reference
@@ -69,7 +65,7 @@ if ($verify->id == null) {
     echo "success\n";
 } else {
     die ("fail\n");
-}*/
+}
 
 ?>
 
