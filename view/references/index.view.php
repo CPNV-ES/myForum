@@ -10,11 +10,11 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($references as $key => $value):?>
+        <?php foreach ($references as $reference):?>
             <tr>
-                <th scope="row"><?= $value['id'] ?></th>
-                <td><?= $value['description'] ?></td>
-                <td><?= $value['url'] ?></td>
+                <th scope="row"><?= $reference->id ?></th>
+                <td><?= $reference->description ?></td>
+                <td><?= $reference->url ?></td>
                 <td>a</td>
             </tr>
         <?php endforeach; ?>
