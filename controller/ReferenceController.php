@@ -1,15 +1,18 @@
 <?php
 
+include "model/Reference.php";
 
 class ReferenceController
 {
     public function index()
     {
+        $references = Reference::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php";
     }
 
     public function show($id)
     {
+        
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php";
     }
 
@@ -20,6 +23,10 @@ class ReferenceController
 
     public function store() // handle form creation submit
     {
+        $ref = new Reference();
+        $ref->description = $_POST['description'];
+        $ref->url = $_POST['url'];
+        $ref->save();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php"; // back to show after storing new resource
     }
 
