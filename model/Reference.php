@@ -18,16 +18,7 @@ class Reference
      */
     public static function all()
     {
-        $recs = Db::selectMany("SELECT * FROM `references`", []);
-        // Build array of objects from array of arrays
-        foreach ($recs as $key => $rec) {
-            $obj = new Reference();
-            foreach ($rec as $field => $value) {
-                $obj->$field = $value;
-            }
-            $res[$rec["id"]] = $obj; // just in case it turns out handy: index result array on record id
-        }
-        return $res;
+        return Db::selectMany("SELECT * FROM `references`", [], "Reference");
     }
 
     /**
