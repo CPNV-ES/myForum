@@ -14,7 +14,7 @@ $db = new Db();
 $role = new Role($db);
 $role->name = "testing";
 
-//$role->save(); // The method we test here: save the new value to the db
+$role->save(); // The method we test here: save the new value to the db
 
 $readback = $db->selectOneRecord("select * from roles where name=:name", ["name" => "testing"]); // function from db.php
 if ($readback["name"] == "testing" && $readback["id"] > 0) {
@@ -27,7 +27,7 @@ $testid = $readback["id"]; // save for later
 
 // Read a role
 echo "Test of load(): ";
-$loadedRole = new Role();
+$loadedRole = new Role($db);
 $loadedRole->id = $testid;
 $loadedRole->load(); // The method we test here: load the object's attribute from the db
 if ($loadedRole->name == "testing") {
@@ -40,7 +40,7 @@ if ($loadedRole->name == "testing") {
 echo "Test of update(): ";
 $loadedRole->name = "tested";
 $loadedRole->update(); // The method we test here: update the object's attribute in the db
-$verify = new Role();
+$verify = new Role($db);
 $verify->id = $testid;
 $verify->load(); // read back from db
 if ($verify->name == "tested") {
@@ -52,7 +52,7 @@ if ($verify->name == "tested") {
 // Delete a role
 echo "Test of delete(): ";
 $loadedRole->delete(); // The method we test here: update the object's attribute in the db
-$verify = new Role();
+$verify = new Role($db);
 $verify->id = $testid;
 $verify->load(); // try to read back from db
 if ($verify->id == null) {

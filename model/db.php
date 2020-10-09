@@ -8,7 +8,7 @@
 
 class Db{
     protected $dbEnv = null;
-    protected $dbConnection = null;
+    public $dbConnection = null;
 
     /**
      * Load and initialize the connection with the database using environnement variable.
@@ -22,8 +22,7 @@ class Db{
         if(empty($dbConnection)){
             $dsn = 'mysql:host=' . $this->dbEnv["host"].':'.$this->dbEnv["port"].';dbname='.$this->dbEnv["name"];
 
-            var_dump($dsn);
-            $dbConnection = new PDO($dsn,$this->dbEnv["login"]["username"],$this->dbEnv["login"]["password"]);
+            $this->dbConnection = new PDO($dsn,$this->dbEnv["login"]["username"],$this->dbEnv["login"]["password"]);
         }
     }
 
@@ -35,16 +34,11 @@ class Db{
      */
     public function selectOneRecord($req,$values = null){
 
-        $this->dbConnection->prepare($req);
+        $sth = $this->dbConnection->prepare($req);
 
-        if(!empty($values)){    
-            foreach($values as $key => $value){
-                $newValues[':'.$key] = $value;
-            }
-        }
+        $sth->execute($values);
 
-        $this->dbConnection->execute(isset($newValues) ? $newValues : '');
-
-        return $this->dbConnection->fetch();
+        $data = $sth->fetch();
+        return $data;
     }
 }

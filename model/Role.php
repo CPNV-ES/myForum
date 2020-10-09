@@ -10,11 +10,10 @@
 class Role{
     public $id;
     public $name;
-    public $dbConnection;
+    public $db;
 
-    public function _construct($dbConnection = null){
-        $this->dbConnection = $dbConnection;
-        var_dump($dbConnection);
+    public function __construct($db = null){
+        $this->db = $db;
     }
 
     /**
@@ -22,21 +21,54 @@ class Role{
      */
     public function save(){
         $req = '';
-        $this->dbConnection->prepare($req);
+
+        $values = [];
+
+        if (!empty($this->id)){
+            $this->update();
+        }
+        else{
+            $req = 'INSERT INTO roles (name) VALUES (:name)';
+            $values["name"] = $this->name;
+            $sth = $this->db->dbConnection->prepare($req);
+            $state = $sth->execute($values);
+            $this->id = $this->db->dbConnection->lastInsertId();
+        }       
+
+        
+
+        $this->load();
     }
 
     /**
      * This method try to load information in database based on object properties informations.
      */
     public function load(){
+        $req = "SELECT * FROM roles WHERE id=:id";
 
+        if(!empty($this->id)){
+            $sth = $this->db->dbConnection->prepare($req);
+            $sth->execute(["id" => $this->id]);
+            $values = $sth->fetch();            
+
+            $this->name = $values["name"];
+        }
     }
 
     /**
      * This method try to update the database entry based on object properties informations
      */
     public function update(){
+        $values = [];
 
+        if (!empty($this->id)){
+            $req = 'UPDATE roles SET name =:name WHERE id=:id';
+            $values["id"] = $this->id;
+            $values["name"] = $this->name;
+        }
+
+        $sth = $this->db->dbConnection->prepare($req);
+        $state = $sth->execute($values);
     }
 
     /**
