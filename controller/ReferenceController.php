@@ -1,10 +1,18 @@
 <?php
-
+//require_once "model/Reference.php";
 
 class ReferenceController
 {
+    //private $reference;
+
+
+    /*function __construct(){
+        $this->reference = new Reference();
+    }*/
+
     public function index()
     {
+       // $allReference = $this->reference->all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php";
     }
 

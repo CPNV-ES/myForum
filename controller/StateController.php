@@ -1,10 +1,18 @@
 <?php
-
+//require_once "model/State.php";
 
 class StateController
 {
+   // private $state;
+
+
+   /* function __construct(){
+        $this->state = new State();
+    }*/
+
     public function index()
     {
+       // $allState = $this->state->all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/states/index.view.php";
     }
 

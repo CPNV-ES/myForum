@@ -11,6 +11,18 @@ class State
         $this->connect = getDB();
     }
 
+    /**
+     * Returns an array of objects representing all records of the table
+     */
+    public function all()
+    {
+        //TODO Build and return an array of Reference objects
+        $result = $this->connect->prepare("SELECT * FROM `states`");
+        $result->execute();
+
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 
     public function save()
     {

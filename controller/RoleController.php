@@ -1,10 +1,18 @@
 <?php
-
+//require_once "model/Role.php";
 
 class RoleController
 {
+   // private $role;
+
+
+   /* function __construct(){
+        $this->role = new Role();
+    }*/
+
     public function index()
     {
+        //$allRole = $this->role->all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/index.view.php";
     }
 

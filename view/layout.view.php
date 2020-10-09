@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content=\"text/html; charset=UTF-8\">
     <title>myForum</title>
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.css">

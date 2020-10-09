@@ -1,10 +1,18 @@
 <?php
-
+require_once "model/Theme.php";
 
 class ThemeController
 {
+    private $theme;
+
+
+    function __construct(){
+        $this->theme = new Theme();
+    }
+
     public function index()
     {
+        $allTheme = $this->theme->all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php";
     }
 

@@ -9,8 +9,21 @@ class Theme
     function __construct()
     {
         $this->connect = getDB();
+
     }
 
+    /**
+     * Returns an array of objects representing all records of the table
+     */
+    public function all()
+    {
+        //TODO Build and return an array of Reference objects
+        $result = $this->connect->prepare("SELECT * FROM `themes`");
+        $result->execute();
+        $obj = $result->fetchAll(PDO::FETCH_ASSOC, "Theme");
+        return $obj;
+
+    }
 
     public function save()
     {

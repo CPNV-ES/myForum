@@ -11,8 +11,19 @@ class Reference
     {
         $this->connect = getDB();
     }
+    /**
+     * Returns an array of objects representing all records of the table
+     */
 
+    public function all()
+    {
+        //TODO Build and return an array of Reference objects
+        $result = $this->connect->prepare("SELECT * FROM `references`");
+        $result->execute();
 
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+
+    }
     public function save()
     {
         $result = $this ->connect->prepare("INSERT INTO `references` (`description`, `url`) VALUES (:name, :url)");

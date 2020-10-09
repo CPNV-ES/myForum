@@ -12,7 +12,7 @@ function getDB()
 {
     $config = new config();
 
-    $connect = new PDO($config->GetDSN(), $config -> GetUser(), $config -> GetPass());
+    $connect = new PDO("mysql:host=$config->GetDSN()", "$config -> GetUser()", "$config -> GetPass()");
 
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
