@@ -8,11 +8,12 @@ class Reference{
     public $description;
     public $url;
 
+
     public static function all()
     {
 
-        $db = new  Db();
-        $pdo = $db->connect();
+        
+        $pdo = Db::connect();
         $req = "SELECT `id`,`description`,`url` FROM `references`";
         $stmt = $pdo->prepare($req);
         $stmt->execute();
@@ -22,7 +23,7 @@ class Reference{
 
             $ref = new Reference();
             $ref->id = $Key['id'];
-            $ref->description = $Key['descritption'];
+            $ref->description = $Key['description'];
             $ref->url = $Key['url'];
             $array[] = clone $ref;
         }
@@ -33,8 +34,7 @@ class Reference{
     public function save()
     {
         
-        $db = new  Db();
-        $pdo = $db->connect();
+        $pdo = Db::connect();
         $req = "INSERT INTO `references`(id,description,url)VALUES(NULL,'".$this->description."','".$this->url."');";
         $stmt = $pdo->prepare($req);
 
@@ -44,8 +44,7 @@ class Reference{
 
     public function load()
     {
-        $db = new  Db();
-        $pdo = $db->connect();
+        $pdo = Db::connect();
         $req = "SELECT * FROM `references` WHERE id=$this->id";
         $stmt = $pdo->prepare($req); 
         $stmt->execute();
@@ -66,8 +65,7 @@ class Reference{
 
     public function update()
     {
-        $db = new  Db();
-        $pdo = $db->connect();
+        $pdo = Db::connect();
         $req = "UPDATE `references` SET description=?,url=?  WHERE id = ? ";
         $stmt = $pdo->prepare($req);
         $stmt->execute(array($this->description, $this->url, $this->id));
@@ -75,8 +73,7 @@ class Reference{
 
     public function delete()
     {
-        $db = new  Db();
-        $pdo = $db->connect();
+        $pdo = Db::connect();
         $req = "DELETE FROM `references` WHERE id = ?";
         $stmt = $pdo->prepare($req);
         $stmt->execute(array($this->id));
