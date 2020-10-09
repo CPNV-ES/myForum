@@ -26,21 +26,41 @@ class db
     function selectOneRecord($query, $data)
     {
         $stmt = $this->dbh->prepare($query);
-        foreach ($data as $key => $value) {
-            $stmt->bindParam(":" . $key, $value);
-        }
 
-        return $stmt->execute();
+        $stmt->execute($data);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    function newReference($data)
+    function insertOneRecord($query, $data)
     {
-        $stmt = $this->dbh->prepare("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url)");
-        foreach ($data as $key => $value) {
-            $stmt->bindParam(":" . $key, $value);
-        }
+        $stmt = $this->dbh->prepare($query);
 
-        $stmt->execute();
+        $result = $stmt->execute($data);
+
+        if ($result = true)
+        {
+            return $this->dbh->lastInsertId();
+        }
+        return false;
+    }
+
+    function updateOneRecord($query, $data)
+    {
+        $stmt = $this->dbh->prepare($query);
+
+        $result = $stmt->execute($data);
+
+        return $result;
+    }
+
+    function deleteOneRecord($query, $data)
+    {
+        $stmt = $this->dbh->prepare($query);
+
+        $result = $stmt->execute($data);
+
+        return $result;
     }
 
 }
