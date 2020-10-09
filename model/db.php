@@ -1,32 +1,92 @@
 <?php
 
-class DataBase
-{
+class Db {
+    private static $instance;
+    private $dbConnection;
+
+    private function __construct() {
+        $creds = (require("../../myForum.credentials.php"))["mysql"];
+        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"]);
+    }
 
     /**
-     * DataBase constructor.
+     * Gets the current instance of Db
+     * @return Db The current instance
      */
-    public static $dbo;
+    public static function getInstance() {
+        if(!isset(self::$instance)) {
+            self::$instance = new Db();
+        }
+        return self::$instance;
+    }
 
-    public function __construct()
+    /**
+     * Returns the current open PDO connection to the database
+     * @return PDO The PDO connection
+     */
+    public static function getDbConnection() {
+        return self::getInstance()->dbConnection;
+    }
+
+    private static function select($query, $params, $multirecord)
     {
-        //Get the configuration from config.ini and put-it into variables.
-        $config  = parse_ini_file("config.ini");
-        $dbo = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['db'], $config['user'], $config['pass']);
+        $dbh = self::getDbConnection();
+        try
+        {
+            $statement = $dbh->prepare($query);//prepare query
+            $statement->execute($params);//execute query
+            if ($multirecord)
+            {
+                $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+            } else
+            {
+                $queryResult = $statement->fetch(PDO::FETCH_ASSOC);
+            }
+            return $queryResult;
+        } catch (PDOException $e)
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            return null;
+        }
     }
 
-    public static function selectOneRecord($query, $values){
-        $sth = $dbo->prepare($query);
-        $sth->execute($values);
-
-        $datas = $sth->fetch();
-        return $datas;
-    }
-
-    public static function insertOneRecord($query, $values)
+    public static function selectOne($query, $params)
     {
-        $sth = $this -> dbo->prepare($query);
-        $sth->execute($values);
+        return self::select($query, $params, false);
     }
 
+    public static function selectMany($query, $params)
+    {
+        return self::select($query, $params, true);
+    }
+
+    public static function insert($query, $params)
+    {
+        $dbh = self::getDbConnection();
+        try
+        {
+            $statement = $dbh->prepare($query);//prepare query
+            $statement->execute($params);//execute query
+            return $dbh->lastInsertId();
+        } catch (PDOException $e)
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            return null;
+        }
+    }
+
+    public static function execute($query, $params)
+    {
+        $dbh = self::getDbConnection();
+        try
+        {
+            $statement = $dbh->prepare($query);//prepare query
+            $statement->execute($params);//execute query
+            return true;
+        } catch (PDOException $e)
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            return null;
+        }
+    }
 }
