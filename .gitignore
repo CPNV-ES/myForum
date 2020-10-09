@@ -8,3 +8,5 @@ model/.idea/
 */config.php
 
 model/Dim/config.php
+
+package-lock.json

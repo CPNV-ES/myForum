@@ -6,15 +6,15 @@
  * Modified last :
  **/
 require_once ("../Reference.php");
-require_once ("../Db.php");
+require_once ("../db.php");
 // Create a new reference
 echo "Test of save(): ";
 $reference = new Reference();
-$reference->description = "testing";
+$reference->name = "testing";
 
 $reference->save(); // The method we test here: save the new value to the db
 
-$readback = Db::selectOne("select * from `references` where description=:description", ["description" => "testing"]); // function from db.php
+$readback = selectOneRecord("select * from `references` where `description`=:name", ["name" => "testing"]); // function from db.php
 if ($readback["description"] == "testing" && $reference->id > 0) {
     echo "success\n";
 } else {
@@ -28,7 +28,7 @@ echo "Test of load(): ";
 $loadedReference = new Reference();
 $loadedReference->id = $testid;
 $loadedReference->load(); // The method we test here: load the object's attribute from the db
-if ($loadedReference->description == "testing") {
+if ($loadedReference->name == "testing") {
     echo "success\n";
 } else {
     die ("fail\n");
@@ -36,12 +36,12 @@ if ($loadedReference->description == "testing") {
 
 // Change a reference
 echo "Test of update(): ";
-$loadedReference->description = "tested";
+$loadedReference->name = "tested";
 $loadedReference->update(); // The method we test here: update the object's attribute in the db
 $verify = new Reference();
 $verify->id = $testid;
 $verify->load(); // read back from db
-if ($verify->description == "tested") {
+if ($verify->name == "tested") {
     echo "success\n";
 } else {
     die ("fail\n");
