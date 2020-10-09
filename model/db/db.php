@@ -14,14 +14,28 @@ class Db{
         $conn = self::connectToDb();
         $prepare = $conn->prepare($query);
         $prepare->execute();
+        return $conn->lastInsertId();
+    }
+
+    public static function  Update($query)
+    {
+        $conn = self::connectToDb();
+        $prepare = $conn->prepare($query);
+        $prepare->execute();
+    }
+
+    public static function  Delete($query)
+    {
+        $conn = self::connectToDb();
+        $prepare = $conn->prepare($query);
+        $prepare->execute();
     }
 
     public static function selectOneRecord($query){
         $conn =  self::connectToDb();
         $prepare = $conn->prepare($query);
-        printf($query);
         $prepare->execute();
-        return $prepare->fetchAll();
+        return $prepare->fetch();
     }
 }
  
