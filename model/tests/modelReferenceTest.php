@@ -16,9 +16,8 @@ $reference->url="http://testing.com";
 $database = new Db();
 
 $reference->save(); // The method we test here: save the new value to the db
-
 $readback = $database->selectOneRecord("select * from `references` where description=:description", ["description" => "testing"]); // function from db.php
-if ($readback["description"] == "testing" && $readback["id"] > 0) {
+if ($readback["description"] == "testing" && $reference->id > 0) {
     echo "success\n";
 } else {
     die ("fail\n");
@@ -31,7 +30,7 @@ echo "Test of load(): ";
 $loadedReference = new Reference();
 $loadedReference->id = $testid;
 $loadedReference->load(); // The method we test here: load the object's attribute from the db
-if ($loadedReference->name == "testing") {
+if ($loadedReference->description == "testing") {
     echo "success\n";
 } else {
     die ("fail\n");
@@ -39,12 +38,12 @@ if ($loadedReference->name == "testing") {
 
 // Change a reference
 echo "Test of update(): ";
-$loadedReference->name = "tested";
+$loadedReference->description = "tested";
 $loadedReference->update(); // The method we test here: update the object's attribute in the db
 $verify = new Reference();
 $verify->id = $testid;
 $verify->load(); // read back from db
-if ($verify->name == "tested") {
+if ($verify->description == "tested") {
     echo "success\n";
 } else {
     die ("fail\n");
