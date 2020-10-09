@@ -22,10 +22,10 @@ export default class Router {
     }
 
     _onPopState(evt) {
-
+        this._route(evt.state.path, false);
     }
 
-    _route(path) {
+    _route(path, pushState = true) {
         let hasMatched = false;
         for (let child of this._container.children) {
             if (child.getAttribute('data-path') == path) {
@@ -38,6 +38,10 @@ export default class Router {
 
         // We do not need to create a new element
         if (hasMatched) {
+            if (pushState) {
+                history.pushState({ path }, '', path);
+            }
+            
             return;
         }
 
@@ -48,7 +52,11 @@ export default class Router {
                 let viewElement = document.createElement('div');
                 viewElement.setAttribute('data-path', path);
                 viewElement.innerHTML = view.render();
-        
+
+                if (pushState) {
+                    history.pushState({ path }, '', path);
+                }
+
                 this._container.appendChild(viewElement);
                 return;
             }
@@ -60,9 +68,9 @@ export default class Router {
     }
 
     execute() {
-        for(let route of this._routes) {
+        for (let route of this._routes) {
             if (window.location.pathname == route.path) {
-               this._route(route.path);
+                this._route(route.path);
             }
         }
     }
