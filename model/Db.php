@@ -9,10 +9,6 @@ class Db {
         $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"]);
     }
 
-    private function _getDbConnection() {
-        return $this->dbConnection;
-    }
-
     /**
      * Gets the current instance of Db
      * @return Db The current instance
@@ -29,7 +25,7 @@ class Db {
      * @return PDO The PDO connection
      */
     public static function getDbConnection() {
-        return self::getInstance()->_getDbConnection();
+        return self::getInstance()->dbConnection;
     }
 
     /**
