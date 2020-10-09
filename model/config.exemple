@@ -1,0 +1,25 @@
+<?php
+
+class config
+{
+    private $username = "username";
+    private $password = "password";
+    private $dsn = "mysql:host=localhost; dbname=mydb";
+
+
+    function GetUser()
+    {
+        return $this -> username;
+    }
+
+    function GetPass()
+    {
+        return $this -> password;
+    }
+
+    function GetDSN()
+    {
+        return $this -> dsn;
+    }
+
+}
