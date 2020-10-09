@@ -1,5 +1,5 @@
 # myForum
 
-## How to configure your env
+## Configuration
 
-You need to rename the file .env.json.exemple to .env.json and edit the file with your database connection informations.
+Configuration is stored in a file named myForum.credentials.php situated one level above the project root. The file's structure can be found in the file myForum.credentials.php.example in the project root.
