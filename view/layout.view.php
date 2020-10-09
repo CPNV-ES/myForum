@@ -10,7 +10,7 @@
     <script src="node_modules/mdbootstrap/js/popper.js"></script>
 </head>
 <body>
-<div class="w-100 bg-primary font-weight-bolder p-5 navbar"><a class="text-reset" href="/"><h1>My Forum</h1></a></div>
+<div class="w-100 bg-primary font-weight-bolder p-5 navbar"><a class="text-reset" href="/myForum"><h1>My Forum</h1></a></div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
