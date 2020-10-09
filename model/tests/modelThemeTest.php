@@ -5,8 +5,8 @@
  * Created : 2020-10-01
  * Modified last :
  **/
-require_once ("model/Theme.php");
-require_once ("model/Db.php");
+require_once ("../Theme.php");
+require_once ("../Db.php");
 // Create a new theme
 echo "Test of save(): ";
 $theme = new Theme();

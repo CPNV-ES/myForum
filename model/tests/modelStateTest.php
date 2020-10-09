@@ -5,8 +5,8 @@
  * Created : 2020-10-01
  * Modified last :
  **/
-require_once ("model/State.php");
-require_once ("model/Db.php");
+require_once ("../State.php");
+require_once ("../Db.php");
 // Create a new state
 echo "Test of save(): ";
 $state = new State();

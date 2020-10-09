@@ -1,66 +1,76 @@
 <?php
-require "db.php";
-class State
-{
+
+require_once ("Db.php");
+
+class State {
     public $id;
     public $name;
-    private $connect;
 
-    function __construct()
-    {
-        $this->connect = getDB();
+    public function __construct() {
+
     }
 
+    /**
+     * Load data from the database based on this instance's id property
+     * @return bool true on success, false otherwise
+     */
+    public function load() {
+        if($this->id == null)
+            return false;
 
-    public function save()
-    {
-        $result = $this->connect->prepare("INSERT INTO `states` (`name`) VALUES (:name)");
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+        $record = Db::selectOneRecord("SELECT name FROM `states` WHERE `id`=:id", ["id" => $this->id]);
+        if($record) {
+            $this->name = $record["name"];
 
-        $result = $this->connect->prepare("SELECT `id` FROM `states` WHERE `name`=:name");
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+            return true;
+        }
+        else {
+            $this->name = null;
+            $this->id = null;
 
-        $data = $result->fetch();
-
-        $this->id = $data;
+            return false;
+        }
     }
 
-    function load()
-    {
-        $result = $this->connect->prepare("SELECT `name`, `id` FROM `states` WHERE `id`=:id");
-        $result->bindParam(":id", $this->id);
-        $result->execute();
+    /**
+     * Save the values contained in this instance as a new entry in the database
+     * @return bool true on success, false otherwise
+     */
+    public function save() {
+        if($this->name == null)
+            return false;
 
-        $data = $result->fetch();
+        $stmt = Db::getDbConnection()->prepare("INSERT INTO `states` (`name`) VALUES (:name);");
+        $stmt->bindParam(":name", $this->name);
+        $success = $stmt->execute();
+        if($success) {
+            $this->id = Db::getDbConnection()->lastInsertId();
+        }
 
-        $this->name = $data["name"];
-        $this->id = $data["id"];
-
-        return $result->fetch();
+        return $success;
     }
 
-    function update()
-    {
-        $result = $this->connect->prepare("UPDATE `states` SET `name` = :name WHERE `id` = :id ");
-        $result->bindParam(":id", $this->id);
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+    /**
+     * Updated the values stored in the corresponding database entry based on the values of this instance
+     * @return bool true on success, false otherwise
+     */
+    public function update() {
+        $stmt = Db::getDbConnection()->prepare("UPDATE `states` SET `name` = :name WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":name", $this->name);
+        return $stmt->execute();
     }
 
-    function delete()
-    {
-        $result = $this->connect->prepare("DELETE FROM `states` WHERE `name` = :name");
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+    /**
+     * Delete the database entry corresponding to this instance
+     * @return bool true on success, false otherwise
+     */
+    public function delete() {
+        if($this->id == null)
+            return false;
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `states` WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        return $stmt->execute();
     }
 }
-
-
-
-
-
-
-
-

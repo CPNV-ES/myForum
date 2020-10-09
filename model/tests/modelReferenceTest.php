@@ -5,8 +5,8 @@
  * Created : 2020-10-01
  * Modified last :
  **/
-require_once ("model/Reference.php");
-require_once ("model/Db.php");
+require_once ("../Reference.php");
+require_once ("../Db.php");
 // Create a new reference
 echo "Test of save(): ";
 $reference = new Reference();

@@ -1,37 +1,46 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: Cyril.GOLDENSCHUE
- * Date: 02/10/2020
- */
-
 require_once "config.php";
+class Db {
+    private static $instance;
+    private $dbConnection;
 
-function getDB()
-{
-    $config = new config();
+    private function __construct() {
+        $creds = new config();
 
-    $connect = new PDO($config->GetDSN(), $config -> GetUser(), $config -> GetPass());
-
-    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    return $connect;
-}
-
-
-function selectOneRecord($req, $values)
-{
-
-    $connect = getDB();
-
-    $result = $connect->prepare($req);
-
-    foreach ($values as $key => $value){
-        $result->bindParam(":".$key, $value);
+        $this->dbConnection = new PDO($creds->GetDSN(),$creds->GetUser(),$creds->GetPass());
     }
 
-    $result->execute();
+    /**
+     * Gets the current instance of Db
+     * @return Db The current instance
+     */
+    public static function getInstance() {
+        if(!isset(self::$instance)) {
+            self::$instance = new Db();
+        }
+        return self::$instance;
+    }
 
-    return $result->fetch();
+    /**
+     * Returns the current open PDO connection to the database
+     * @return PDO The PDO connection
+     */
+    public static function getDbConnection() {
+        return self::getInstance()->dbConnection;
+    }
+
+    /**
+     * Executes the specified query with the specified parameters and returns the first row
+     * @param $query The SQL statement
+     * @param $params An array in which the keys are the parameter name and the value the parameter value
+     * @return mixed An array containing the selected rows, or false on error
+     */
+    public static function selectOneRecord($query, $params) {
+        $stmt = self::getInstance()->getDbConnection()->prepare($query);
+        foreach($params as $paramName => $paramVal) {
+            $stmt->bindParam(":" . $paramName, $paramVal);
+        }
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }

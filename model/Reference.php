@@ -1,68 +1,83 @@
 <?php
-require "db.php";
-class Reference
-{
+
+require_once ("Db.php");
+
+class Reference {
     public $id;
-    public $name;
-    public $url = 'https://testing.ch';
-    private $connect;
+    public $description;
+    public $url;
 
-    function __construct()
-    {
-        $this->connect = getDB();
+    public function __construct() {
+
     }
 
+    /**
+     * Load data from the database based on this instance's id property
+     * @return bool true on success, false otherwise
+     */
+    public function load() {
+        if($this->id == null)
+            return false;
 
-    public function save()
-    {
-        $result = $this ->connect->prepare("INSERT INTO `references` (`description`, `url`) VALUES (:name, :url)");
-        $result->bindParam(":name", $this->name);
-        $result->bindParam(":url", $this->url);
-        $result->execute();
+        $record = Db::selectOneRecord("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id]);
+        if($record) {
+            $this->description = $record["description"];
+            $this->url = $record["url"];
 
-        $result = $this ->connect->prepare("SELECT `id` FROM `references` WHERE `description`=:name");
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+            return true;
+        }
+        else {
+            $this->description = null;
+            $this->url = null;
+            $this->id = null;
 
-        $data = $result->fetch();
-
-        $this->id = $data;
+            return false;
+        }
     }
 
-    function load()
-    {
-        $result = $this ->connect->prepare("SELECT `description`, `id` FROM `references` WHERE `id`=:id");
-        $result->bindParam(":id", $this->id);
-        $result->execute();
+    /**
+     * Save the values contained in this instance as a new entry in the database
+     * @return bool true on success, false otherwise
+     */
+    public function save() {
+        if($this->description == null)
+            return false;
 
-        $data = $result->fetch();
+        $stmt = Db::getDbConnection()->prepare("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);");
+        $stmt->bindParam(":description", $this->description);
+        $stmt->bindParam(":url", $this->url);
 
-        $this->name = $data["description"];
-        $this->id = $data["id"];
+        $success = $stmt->execute();
+        if($success) {
+            $this->id = Db::getDbConnection()->lastInsertId();
+        }
 
-        return $result->fetch();
+        return $success;
     }
 
-    function update()
-    {
-        $result = $this ->connect->prepare("UPDATE `references` SET `description` = :name WHERE `id` = :id ");
-        $result->bindParam(":id", $this->id);
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+    /**
+     * Updated the values stored in the corresponding database entry based on the values of this instance
+     * @return bool true on success, false otherwise
+     */
+    public function update() {
+        $stmt = Db::getDbConnection()->prepare("UPDATE `references` SET `description`=:description, `url`=:url WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":description", $this->description);
+        $stmt->bindParam(":url", $this->url);
+
+        return $stmt->execute();
     }
 
-    function delete()
-    {
-        $result = $this ->connect->prepare("DELETE FROM `references` WHERE `description` = :name");
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+    /**
+     * Delete the database entry corresponding to this instance
+     * @return bool true on success, false otherwise
+     */
+    public function delete() {
+        if($this->id == null)
+            return false;
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `references` WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        return $stmt->execute();
     }
 }
-
-
-
-
-
-
-
-
