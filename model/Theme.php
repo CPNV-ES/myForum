@@ -10,14 +10,20 @@ class Theme
         $req = "INSERT INTO `themes` (`name`) VALUES ('$this->name')";
 
         ExecReq($req);
+
+        $req2 = "SELECT `id` FROM `themes` WHERE `name`='$this->name'";
+
+        $data = ReturnExecReq($req2)["id"];
+
+        $this->id = $data;
     }
 
     function load()
     {
-        $req = "SELECT `name` FROM `themes` WHERE `id`=$this->id";
-
+        $req = "SELECT `name`, `id` FROM `themes` WHERE `id`=$this->id";
 
         $this->name = ReturnExecReq($req)["name"];
+        $this->id = ReturnExecReq($req)["id"];
 
     }
 
