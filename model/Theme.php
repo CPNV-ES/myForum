@@ -3,11 +3,15 @@
  * File : db.php
  * Author : D. Ramos
  * Created : 2020-10-02
- * Modified last :
+ * Modified last : 2020-10-09
  **/
 
 require_once ("../db.php");
 
+/**
+ * Class Theme
+ * This class is used to deal with the themes
+ */
 class Theme
 {
     public $db;
@@ -19,6 +23,9 @@ class Theme
         $this->db = new db();
     }
 
+    /**
+     * This method is used to save a theme
+     */
     public function save()
     {
         $this->db->insertOneRecord("insert into themes values (null, :name)", ["name" => $this->name]);
@@ -28,6 +35,9 @@ class Theme
         $this->name = $data['name'];
     }
 
+    /**
+     * This method is used to load a theme
+     */
     public function load()
     {
         $data = $this->db->selectOneRecord("select * from themes where id=:id", ["id" => $this->id]);
@@ -36,11 +46,17 @@ class Theme
         $this->name = $data['name'];
     }
 
+    /**
+     * This method is used to update a theme
+     */
     public function update()
     {
         $this->db->updateOneRecord("update themes set name=:name where id=:id", ["name" => $this->name, "id" => $this->id]);
     }
 
+    /**
+     * This method is used to delete a theme
+     */
     public function delete()
     {
         $this->db->deleteOneRecord("delete from themes where id=:id", ["id" => $this->id]);

@@ -3,9 +3,13 @@
  * File : db.php
  * Author : D. Ramos
  * Created : 2020-10-02
- * Modified last :
+ * Modified last : 2020-10-09
  **/
 
+/**
+ * Class db
+ * This class is used to deal with the database
+ */
 class db
 {
     private $connection;
@@ -23,6 +27,12 @@ class db
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    /**
+     * This method is used to select data from the database
+     * @param $request
+     * @param $bindings
+     * @return mixed
+     */
     public function selectOneRecord($request, $bindings)
     {
         $statement = $this->connection->prepare($request);
@@ -33,6 +43,11 @@ class db
         return $data;
     }
 
+    /**
+     * This method is used to insert data into the database
+     * @param $request
+     * @param $bindings
+     */
     public function insertOneRecord($request, $bindings)
     {
         $statement = $this->connection->prepare($request);
@@ -47,6 +62,11 @@ class db
         }
     }
 
+    /**
+     * This method is used to update data from the database
+     * @param $request
+     * @param $bindings
+     */
     public function updateOneRecord($request, $bindings)
     {
         $statement = $this->connection->prepare($request);
@@ -61,6 +81,11 @@ class db
         }
     }
 
+    /**
+     * This method is used to delete data from the database
+     * @param $request
+     * @param $bindings
+     */
     public function deleteOneRecord($request, $bindings)
     {
         $statement = $this->connection->prepare($request);
