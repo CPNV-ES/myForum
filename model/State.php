@@ -11,7 +11,7 @@ class State {
     }
 
     public static function all() {
-        $records = Db::selectMany("SELECT * FROM `states`", null);
+        $records = Db::selectMany("SELECT * FROM `states`", null, "State");
         $states = array();
 
         foreach ($records as $record) {
