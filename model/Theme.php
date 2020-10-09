@@ -1,12 +1,12 @@
 <?php
 /**
- * File : db.php
+ * File : Db.php
  * Author : D. Ramos
  * Created : 2020-10-02
  * Modified last : 2020-10-09
  **/
 
-require_once ("../db.php");
+require_once ("../Db.php");
 
 /**
  * Class Theme
@@ -20,7 +20,7 @@ class Theme
 
     public function __construct()
     {
-        $this->db = new db();
+        $this->db = new Db();
     }
 
     /**

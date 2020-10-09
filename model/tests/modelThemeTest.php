@@ -6,7 +6,7 @@
  * Modified last :
  **/
 require_once ("../Theme.php");
-require_once ("../db.php");
+require_once("../Db.php");
 // Create a new theme
 echo "Test of save(): ";
 $theme = new Theme();
@@ -14,8 +14,8 @@ $theme->name = "testing";
 
 $theme->save(); // The method we test here: save the new value to the db
 
-$db = new db();
-$readback = $db->selectOneRecord("select * from themes where name=:name", ["name" => "testing"]); // function from db.php
+$db = new Db();
+$readback = $db->selectOneRecord("select * from themes where name=:name", ["name" => "testing"]); // function from Db.php
 if ($readback["name"] == "testing" && $theme->id > 0) {
     echo "success\n";
 } else {

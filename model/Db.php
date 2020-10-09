@@ -1,16 +1,16 @@
 <?php
 /**
- * File : db.php
+ * File : Db.php
  * Author : D. Ramos
  * Created : 2020-10-02
  * Modified last : 2020-10-09
  **/
 
 /**
- * Class db
+ * Class Db
  * This class is used to deal with the database
  */
-class db
+class Db
 {
     private $connection;
 
