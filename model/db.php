@@ -3,7 +3,7 @@
 require_once "config.php";
 class Db{
     
-    public function connect()
+    public static function connect()
     {
         $config = new config();
         $connexion = new PDO('mysql:host='.$config->host.'; dbname='.$config->databaseName, $config->username , $config->password);
