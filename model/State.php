@@ -11,6 +11,26 @@ class State {
     }
 
     /**
+     * Returns an array of objects representing all records of the table
+     * @returns array<Reference> An array containing instances of all the States stored in the database
+     */
+    public static function all()
+    {
+        $references = [];
+        $rows = Db::selectMany("SELECT id, name FROM `states`", []);
+        foreach($rows as $row) {
+            $r = new State();
+
+            $r->id = $row["id"];
+            $r->name = $row["name"];
+
+            array_push($references, $r);
+        }
+
+        return $references;
+    }
+
+    /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
      */

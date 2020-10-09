@@ -11,6 +11,26 @@ class Theme {
     }
 
     /**
+     * Returns an array of objects representing all records of the table
+     * @returns array<Reference> An array containing instances of all the Themes stored in the database
+     */
+    public static function all()
+    {
+        $references = [];
+        $rows = Db::selectMany("SELECT id, name FROM `themes`", []);
+        foreach($rows as $row) {
+            $r = new Theme();
+
+            $r->id = $row["id"];
+            $r->name = $row["name"];
+
+            array_push($references, $r);
+        }
+
+        return $references;
+    }
+
+    /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
      */
