@@ -21,7 +21,7 @@ $reference->name = "testing";
 
 $reference->save(); // The method we test here: save the new value to the db
 
-$readback = $db -> selectOneRecord("select * from myforum.references where id=:id", 1); // function from db.php
+$readback = $db -> selectOneRecord("select * from myforum.references where description=:desc", ["desc" => "Scrum guide"]); // function from db.php
 echo("readback :" . $readback);
 //if ($readback["id"] > 0) {
 if ($readback == "1") {

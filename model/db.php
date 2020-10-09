@@ -15,13 +15,14 @@ class DataBase
         $this -> dbo = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['db'], $config['user'], $config['pass']);
     }
 
-    public function selectOneRecord($query, $id){
+    public function selectOneRecord($query, $values){
         $sth = $this -> dbo->prepare($query);
-        $sth->bindParam(':id', $id, PDO::PARAM_INT);
-        $sth->execute();
 
-        $datas = $sth->fetchAll();
-        print_r($datas);
+        $sth->execute($values);
+
+        $datas = $sth->fetch();
+
+        var_dump($datas);
 
         return 1;
     }
