@@ -10,15 +10,16 @@ require_once ("../db.php");
 // Create a new reference
 echo "Test of save(): ";
 $reference = new Reference();
+$reference->description = "testing";
 
-echo $reference->description;
 // Create a new db
 $db = new db();
 
 $reference->save(); // The method we test here: save the new value to the db
 
 $readback = $db->selectOneRecord("select * from `references` where description=:description", ["description" => "testing"]); // function from db.php
-if ($readback["description"] == "testing" && $readback["id"] > 0) {
+
+if ($readback["description"] == "testing" && $reference->id > 0) {
     echo "success\n";
 } else {
     die ("fail\n");
