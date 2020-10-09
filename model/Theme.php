@@ -8,8 +8,9 @@ class Theme
 
     public function save()
     {
-        $query = "INSERT INTO themes  VALUES (id,'$this->name')";
-        $this->id = Db::Insert($query);
+        $query = "INSERT INTO themes  VALUES (id,name=:name)";
+        print_r($query);
+        $this->id = Db::Insert($query, ["name" => "testing"]);
     }
 
     public function load()

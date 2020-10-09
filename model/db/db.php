@@ -9,11 +9,11 @@ class Db{
         return $conn;
     }
 
-    public static function  Insert($query)
+    public static function  Insert($query, $params)
     {
         $conn = self::connectToDb();
         $prepare = $conn->prepare($query);
-        $prepare->execute();
+        $prepare->execute($params);
         return $conn->lastInsertId();
     }
 
