@@ -8,6 +8,27 @@ class Reference{
     public $description;
     public $url;
 
+    public static function all()
+    {
+
+        $db = new  Db();
+        $pdo = $db->connect();
+        $req = "SELECT `id`,`description`,`url` FROM `references`";
+        $stmt = $pdo->prepare($req);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        foreach ($result as $Key) {
+
+            $ref = new Reference();
+            $ref->id = $Key['id'];
+            $ref->description = $Key['descritption'];
+            $ref->url = $Key['url'];
+            $array[] = clone $ref;
+        }
+        return $array;
+
+    }
 
     public function save()
     {
