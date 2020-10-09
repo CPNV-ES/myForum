@@ -4,6 +4,8 @@
  * Created : 2020-10-02
  * Modified last : 2020-10-02
  **/
+require_once ("../db.php");
+$db = new DataBase();
 
 class Reference
 {
@@ -25,7 +27,7 @@ class Reference
 
     public function save()
     {
-
+        $db->insertOneRecord();
     }
 
     public function load()

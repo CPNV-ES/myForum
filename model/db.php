@@ -22,9 +22,13 @@ class DataBase
 
         $datas = $sth->fetch();
 
-        var_dump($datas);
 
-        return 1;
+        return $datas;
+    }
+
+    public function insertOneRecord($query, $values)
+    {
+        echo("hi everyone");
     }
 
 }

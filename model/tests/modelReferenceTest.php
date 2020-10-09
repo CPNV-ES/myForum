@@ -16,6 +16,7 @@ require_once ("../db.php");
 $db = new DataBase();
 // Create a new reference
 echo "Test of save(): ";
+
 $reference = new Reference();
 $reference->description = "testing";
 
