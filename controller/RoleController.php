@@ -1,15 +1,21 @@
 <?php
 
+require_once("model/Role.php");
 
 class RoleController
 {
     public function index()
     {
+        $roles = Role::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/index.view.php";
     }
 
     public function show($id)
     {
+        $role = new Role();
+        $role->id = $id;
+        $role->load();
+        
         require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/show.view.php";
     }
 
