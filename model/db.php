@@ -17,18 +17,16 @@ class DataBase
 
     public function selectOneRecord($query, $values){
         $sth = $this -> dbo->prepare($query);
-
         $sth->execute($values);
 
         $datas = $sth->fetch();
-
-
         return $datas;
     }
 
     public function insertOneRecord($query, $values)
     {
-        echo("hi everyone");
+        $sth = $this -> dbo->prepare($query);
+        $sth->execute($values);
     }
 
 }

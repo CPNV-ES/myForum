@@ -12,6 +12,9 @@ var_dump($datas);
 
 
 
+$query = "insert into myforum.references ('description', 'url') values (:desc, :url);";
+$values = ["desc" => "This is a test"];
+array_push($values, ["url" => "www.test.ch"]);
 
 $db->insertOneRecord($query, $values);
 
