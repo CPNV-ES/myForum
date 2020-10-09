@@ -5,7 +5,7 @@ class Db {
     private $dbConnection;
 
     private function __construct() {
-        $creds = (require("../myForum.credentials.php"))["mysql"];
+        $creds = (require("../../myForum.credentials.php"))["mysql"];
         $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"]);
     }
 
@@ -28,18 +28,65 @@ class Db {
         return self::getInstance()->dbConnection;
     }
 
-    /**
-     * Executes the specified query with the specified parameters and returns the first row
-     * @param $query The SQL statement
-     * @param $params An array in which the keys are the parameter name and the value the parameter value
-     * @return mixed An array containing the selected rows, or false on error
-     */
-    public static function selectOneRecord($query, $params) {
-        $stmt = self::getInstance()->getDbConnection()->prepare($query);
-        foreach($params as $paramName => $paramVal) {
-            $stmt->bindParam(":" . $paramName, $paramVal);
+    private static function select($query, $params, $multirecord)
+    {
+        $dbh = self::getDbConnection();
+        try
+        {
+            $statement = $dbh->prepare($query);//prepare query
+            $statement->execute($params);//execute query
+            if ($multirecord)
+            {
+                $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+            } else
+            {
+                $queryResult = $statement->fetch(PDO::FETCH_ASSOC);
+            }
+            return $queryResult;
+        } catch (PDOException $e)
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            return null;
         }
-        $stmt->execute();
-        return $stmt->fetch();
+    }
+
+    public static function selectOne($query, $params)
+    {
+        return self::select($query, $params, false);
+    }
+
+    public static function selectMany($query, $params)
+    {
+        return self::select($query, $params, true);
+    }
+
+    public static function insert($query, $params)
+    {
+        $dbh = self::getDbConnection();
+        try
+        {
+            $statement = $dbh->prepare($query);//prepare query
+            $statement->execute($params);//execute query
+            return $dbh->lastInsertId();
+        } catch (PDOException $e)
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            return null;
+        }
+    }
+
+    public static function execute($query, $params)
+    {
+        $dbh = self::getDbConnection();
+        try
+        {
+            $statement = $dbh->prepare($query);//prepare query
+            $statement->execute($params);//execute query
+            return true;
+        } catch (PDOException $e)
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            return null;
+        }
     }
 }
