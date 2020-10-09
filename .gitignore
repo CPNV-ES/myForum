@@ -1,6 +1,7 @@
 .idea/*
 node_modules
 vendor
+*.credentials
 
 model/.idea/
 

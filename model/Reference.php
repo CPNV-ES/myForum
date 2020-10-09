@@ -12,6 +12,14 @@ class Reference {
     }
 
     /**
+     * Returns an array of objects representing all records of the table
+     */
+    public static function all()
+    {
+        // TODO Build and return an array of Reference objects
+    }
+
+    /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
      */
@@ -19,7 +27,7 @@ class Reference {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
             $this->description = $record["description"];
             $this->url = $record["url"];
@@ -43,16 +51,8 @@ class Reference {
         if($this->description == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);");
-        $stmt->bindParam(":description", $this->description);
-        $stmt->bindParam(":url", $this->url);
-
-        $success = $stmt->execute();
-        if($success) {
-            $this->id = Db::getDbConnection()->lastInsertId();
-        }
-
-        return $success;
+        $this->id = Db::insert("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);",["description" => $this->description, ":url" => $this->url]);
+        return $this->id;
     }
 
     /**
@@ -60,12 +60,7 @@ class Reference {
      * @return bool true on success, false otherwise
      */
     public function update() {
-        $stmt = Db::getDbConnection()->prepare("UPDATE `references` SET `description`=:description, `url`=:url WHERE (`id` = :id);");
-        $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":description", $this->description);
-        $stmt->bindParam(":url", $this->url);
-
-        return $stmt->execute();
+        return Db::execute("UPDATE `references` SET `description`=:description, `url`=:url WHERE (`id` = :id);",["id" => $this->id, "description" => $this->description, "url" => $this->url]);
     }
 
     /**
@@ -75,9 +70,6 @@ class Reference {
     public function delete() {
         if($this->id == null)
             return false;
-
-        $stmt = Db::getDbConnection()->prepare("DELETE FROM `references` WHERE (`id` = :id);");
-        $stmt->bindParam(":id", $this->id);
-        return $stmt->execute();
+        return Db::execute("DELETE FROM `references` WHERE (`id` = :id);",["id" => $this->id]);
     }
 }
