@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php
+ob_start();
+?>
 <h1 class="text-center p-5">List State</h1>
 <?php
 $content = ob_get_clean();

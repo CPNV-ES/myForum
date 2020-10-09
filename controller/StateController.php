@@ -5,6 +5,7 @@ class StateController
 {
     public function index()
     {
+        $states = State::all();
         require_once $_SERVER['DOCUMENT_ROOT']."myForum/view/states/index.view.php";
     }
 

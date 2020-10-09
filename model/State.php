@@ -10,6 +10,19 @@ class State {
 
     }
 
+    public static function all() {
+        $records = Db::selectMany("SELECT * FROM `states`", null);
+        $states = array();
+
+        foreach ($records as $record) {
+            $state = new State();
+            $state->id = $record["id"];
+            $state->name = $record["name"];
+
+            array_push($states, $state);
+        }
+    }
+
     /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
@@ -18,7 +31,7 @@ class State {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT name FROM `states` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT name FROM `states` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
             $this->name = $record["name"];
 
