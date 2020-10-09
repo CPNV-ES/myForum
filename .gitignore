@@ -5,3 +5,5 @@ vendor
 model/.idea/
 
 */config.php
+
+model/Dim/config.php
