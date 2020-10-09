@@ -2,9 +2,10 @@
 
 require_once ("Db.php");
 
-class Theme {
+class Reference {
     public $id;
-    public $name;
+    public $description;
+    public $url;
 
     public function __construct() {
 
@@ -18,14 +19,16 @@ class Theme {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT name FROM `themes` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOneRecord("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
-            $this->name = $record["name"];
+            $this->description = $record["description"];
+            $this->url = $record["url"];
 
             return true;
         }
         else {
-            $this->name = null;
+            $this->description = null;
+            $this->url = null;
             $this->id = null;
 
             return false;
@@ -37,11 +40,13 @@ class Theme {
      * @return bool true on success, false otherwise
      */
     public function save() {
-        if($this->name == null)
+        if($this->description == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("INSERT INTO `themes` (`name`) VALUES (:name);");
-        $stmt->bindParam(":name", $this->name);
+        $stmt = Db::getDbConnection()->prepare("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);");
+        $stmt->bindParam(":description", $this->description);
+        $stmt->bindParam(":url", $this->url);
+
         $success = $stmt->execute();
         if($success) {
             $this->id = Db::getDbConnection()->lastInsertId();
@@ -55,9 +60,11 @@ class Theme {
      * @return bool true on success, false otherwise
      */
     public function update() {
-        $stmt = Db::getDbConnection()->prepare("UPDATE `themes` SET `name` = :name WHERE (`id` = :id);");
+        $stmt = Db::getDbConnection()->prepare("UPDATE `references` SET `description`=:description, `url`=:url WHERE (`id` = :id);");
         $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":description", $this->description);
+        $stmt->bindParam(":url", $this->url);
+
         return $stmt->execute();
     }
 
@@ -69,7 +76,7 @@ class Theme {
         if($this->id == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("DELETE FROM `themes` WHERE (`id` = :id);");
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `references` WHERE (`id` = :id);");
         $stmt->bindParam(":id", $this->id);
         return $stmt->execute();
     }

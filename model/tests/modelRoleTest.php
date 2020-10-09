@@ -5,8 +5,10 @@
  * Created : 2020-10-01
  * Modified last :
  **/
-require_once ("../Role.php");
-require_once("../Db.php");
+
+require_once ("model/Role.php");
+require_once ("model/Db.php");
+
 // Create a new role
 echo "Test of save(): ";
 $role = new Role();
@@ -14,8 +16,8 @@ $role->name = "testing";
 
 $role->save(); // The method we test here: save the new value to the db
 
-$readback = selectOneRecord("select * from roles where name=:name", ["name" => "testing"]); // function from Db.php
-if ($readback["name"] == "testing" && $readback["id"] > 0) {
+$readback = Db::selectOneRecord("select * from roles where name=:name", ["name" => "testing"]); // function from db.php
+if ($readback["name"] == "testing" && $role->id > 0) {
     echo "success\n";
 } else {
     die ("fail\n");

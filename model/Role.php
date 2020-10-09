@@ -2,7 +2,7 @@
 
 require_once ("Db.php");
 
-class Theme {
+class Role {
     public $id;
     public $name;
 
@@ -18,7 +18,7 @@ class Theme {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT name FROM `themes` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOneRecord("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
             $this->name = $record["name"];
 
@@ -40,7 +40,7 @@ class Theme {
         if($this->name == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("INSERT INTO `themes` (`name`) VALUES (:name);");
+        $stmt = Db::getDbConnection()->prepare("INSERT INTO `roles` (`name`) VALUES (:name);");
         $stmt->bindParam(":name", $this->name);
         $success = $stmt->execute();
         if($success) {
@@ -55,7 +55,7 @@ class Theme {
      * @return bool true on success, false otherwise
      */
     public function update() {
-        $stmt = Db::getDbConnection()->prepare("UPDATE `themes` SET `name` = :name WHERE (`id` = :id);");
+        $stmt = Db::getDbConnection()->prepare("UPDATE `roles` SET `name` = :name WHERE (`id` = :id);");
         $stmt->bindParam(":id", $this->id);
         $stmt->bindParam(":name", $this->name);
         return $stmt->execute();
@@ -69,7 +69,7 @@ class Theme {
         if($this->id == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("DELETE FROM `themes` WHERE (`id` = :id);");
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `roles` WHERE (`id` = :id);");
         $stmt->bindParam(":id", $this->id);
         return $stmt->execute();
     }

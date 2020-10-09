@@ -5,8 +5,10 @@
  * Created : 2020-10-01
  * Modified last :
  **/
-require_once ("../State.php");
-require_once("../Db.php");
+
+require_once ("model/State.php");
+require_once ("model/Db.php");
+
 // Create a new state
 echo "Test of save(): ";
 $state = new State();
@@ -14,8 +16,8 @@ $state->name = "testing";
 
 $state->save(); // The method we test here: save the new value to the db
 
-$readback = selectOneRecord("select * from states where name=:name", ["name" => "testing"]); // function from Db.php
-if ($readback["name"] == "testing" && $readback["id"] > 0) {
+$readback =  Db::selectOneRecord("select * from states where name=:name", ["name" => "testing"]); // function from db.php
+if ($readback["name"] == "testing" && $state->id > 0) {
     echo "success\n";
 } else {
     die ("fail\n");
