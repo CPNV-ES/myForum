@@ -13,10 +13,23 @@ class Reference {
 
     /**
      * Returns an array of objects representing all records of the table
+     * @returns array<Reference> An array containing instances of all the References stored in the database
      */
     public static function all()
     {
-        // TODO Build and return an array of Reference objects
+        $references = [];
+        $rows = Db::selectMany("SELECT id, description, url FROM `references`", []);
+        foreach($rows as $row) {
+            $r = new Reference();
+
+            $r->id = $row["id"];
+            $r->description = $row["description"];
+            $r->url = $row["url"];
+
+            array_push($references, $r);
+        }
+
+        return $references;
     }
 
     /**
