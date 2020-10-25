@@ -5,6 +5,8 @@
     <title>myForum</title>
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="css/all.css">
     <script src="node_modules/mdbootstrap/js/jquery.js"></script>
     <script src="node_modules/mdbootstrap/js/bootstrap.js"></script>
     <script src="node_modules/mdbootstrap/js/popper.js"></script>
