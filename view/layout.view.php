@@ -39,7 +39,7 @@
         <li class="nav-item"><a href="?controller=state&action=index" class="btn">Gestion des états</a></li>
     </ul>
 </nav>
-<div class="container-fluid">
+<div class="container p-5">
     <?= $content ?>
 </div>
 </body>

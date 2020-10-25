@@ -12,6 +12,9 @@ class ReferenceController
 
     public function show($id)
     {
+        $reference = new Reference();
+        $reference->id = $id;
+        $reference->load();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php";
     }
 
