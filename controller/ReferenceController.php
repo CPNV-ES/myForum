@@ -40,6 +40,9 @@ class ReferenceController
 
     public function destroy($id)
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php"; // back to index after destroy
+        $reference = new Reference();
+        $reference->id = $id;
+        $reference->delete();
+        $this->index();
     }
 }

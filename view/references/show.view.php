@@ -7,6 +7,9 @@
     <div class="bg-light col-2 border border-dark">URL:</div>
     <div class="col-10"><?= $reference->url ?></div>
 </div>
+<div class="row m-3">
+    <a href="?controller=Reference&action=destroy&id=<?= $reference->id ?>" class="btn btn-danger">Supprimer</a>
+</div>
 <?php
 $content = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
