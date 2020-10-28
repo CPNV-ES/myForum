@@ -30,6 +30,7 @@ class ReferenceController
         $reference->description = $_POST['description'];
         $reference->url = $_POST['url'];
         $reference->save();
+        ViewHelpers::setFlashMessage("Nouvelle référence créée");
         $this->show($reference->id);
     }
 
@@ -49,6 +50,7 @@ class ReferenceController
         $reference->description = $_POST['description'];
         $reference->url = $_POST['url'];
         $reference->update();
+        ViewHelpers::setFlashMessage("Référence modifiée");
         $this->show($id); // back to show after saving changes
     }
 
@@ -57,6 +59,7 @@ class ReferenceController
         $reference = new Reference();
         $reference->id = $id;
         $reference->delete();
+        ViewHelpers::setFlashMessage("Référence supprimée");
         $this->index();
     }
 }

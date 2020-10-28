@@ -40,6 +40,9 @@
     </ul>
 </nav>
 <div class="container p-5">
+    <?php if (ViewHelpers::peekFlashMessage()) { ?>
+        <div class="alert alert-warning"><?= ViewHelpers::getFlashMessage() ?></div>
+    <?php } ?>
     <?= $content ?>
 </div>
 </body>
