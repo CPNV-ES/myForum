@@ -20,12 +20,17 @@ class ReferenceController
 
     public function create() // simply show the creation form
     {
+        $reference = new Reference();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/create.view.php";
     }
 
     public function store() // handle form creation submit
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php"; // back to show after storing new resource
+        $reference = new Reference();
+        $reference->description = $_POST['description'];
+        $reference->url = $_POST['url'];
+        $reference->save();
+        $this->show($reference->id);
     }
 
     public function edit($id) // simply show the edit form

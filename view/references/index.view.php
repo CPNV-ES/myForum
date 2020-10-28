@@ -15,6 +15,9 @@
         </div>
     </div>
 <?php } ?>
+<div class="row m-3">
+    <a href="?controller=Reference&action=create" class="btn btn-primary">Ajouter</a>
+</div>
 
 <?php
 $content = ob_get_clean();
