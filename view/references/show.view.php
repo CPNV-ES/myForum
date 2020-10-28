@@ -9,6 +9,7 @@
 </div>
 <div class="row m-3">
     <a href="?controller=Reference&action=destroy&id=<?= $reference->id ?>" class="btn btn-danger">Supprimer</a>
+    <a href="?controller=Reference&action=edit&id=<?= $reference->id ?>" class="btn btn-primary">Modifier</a>
 </div>
 <?php
 $content = ob_get_clean();
