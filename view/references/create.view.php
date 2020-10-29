@@ -2,9 +2,9 @@
 <h1 class="text-center p-5">Create Reference</h1>
 
 <form method="POST" action="?controller=reference&action=store">
-    <input name = "description" id="description" type="text" placeholder="Description"/>
-    <input name = "url" id="url" type="text" placeholder="URL"/>
-    <input type="submit" value="Create"/>
+    <input class="form-control" name = "description" id="description" type="text" placeholder="Description"/>
+    <input class="form-control" name = "url" id="url" type="text" placeholder="URL"/>
+    <input class="btn btn-primary" type="submit" value="Create"/>
 </form>
 
 
