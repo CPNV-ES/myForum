@@ -63,21 +63,21 @@ class Reference{
         
     }
 
-    public function update()
+    public static function update($id,$description,$url)
     {
         $pdo = Db::connect();
         $req = "UPDATE `references` SET description=?,url=?  WHERE id = ? ";
         $stmt = $pdo->prepare($req);
-        $stmt->execute(array($this->description, $this->url, $this->id));
+        $stmt->execute(array($description, $url, $id));
     }
 
-    public function delete()
+    public static function delete($id)
     {
         $pdo = Db::connect();
         $req = "DELETE FROM `references` WHERE id = ?";
         $stmt = $pdo->prepare($req);
-        $stmt->execute(array($this->id));
-        $this->id =null;
+        $stmt->execute(array($id));
+        
     }
 
     
