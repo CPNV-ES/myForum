@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myForum</title>
-    <script src="scripts/app.js" type="module"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    </script>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
@@ -29,6 +27,7 @@
         </div>
     </nav>
     <div id="content"></div>
+    <script src="scripts/app.js" type="module"></script>
 </body>
 
 </html>

@@ -55,9 +55,9 @@ export function Router(base) {
                     let render = view.render();
 
                     if (render instanceof Promise) {
-                        render.then((content) =>  viewElement.innerHTML = content);
+                        render.then((content) => viewElement.innerHTML = content);
                     } else {
-                        viewElement.innerHTML =  render;
+                        viewElement.innerHTML = render;
                     }
 
                     if (pushState) {
@@ -70,11 +70,7 @@ export function Router(base) {
             }
         }
 
-        routes(routes) {
-            this.routes = routes;
-        }
-
-        execute() {
+        route() {
             for (let route of this.routes) {
                 if (window.location.pathname == route.path) {
                     this._route(route.path);

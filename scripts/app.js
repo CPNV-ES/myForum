@@ -28,4 +28,6 @@ customElements.define('app-element', App);
 
 const app = document.createElement('app-element');
 
+app.route();
+
 document.getElementById('content').appendChild(app);

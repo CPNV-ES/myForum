@@ -1,4 +1,6 @@
-export default class ThemesView {
+import { connect } from "../components/store.js";
+
+class ThemesView {
 
     async render() {
 
@@ -19,3 +21,5 @@ export default class ThemesView {
         `;
     }
 }
+
+export default connect(ThemesView);

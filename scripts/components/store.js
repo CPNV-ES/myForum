@@ -1,6 +1,6 @@
 export function Store(base) {
     return class extends base {
-        
+
         constructor(...args) {
             super(...args);
 
@@ -15,14 +15,39 @@ export function Store(base) {
 }
 
 export function connect(component) {
-    let event = new CustomEvent('connect-store', {
-        bubbles: true,
-        cancelable: false,
-        composed: true,
-        detail: {}
-    });
 
-    component.dispatchEvent(event);
+    if (component.connectedCallback) {
+        let connectedCallback = component.connectedCallback;
+        component.connectedCallback = function () {
+            connectedCallback();
+            let event = new CustomEvent('connect-store', {
+                bubbles: true,
+                cancelable: false,
+                composed: true,
+                detail: {}
+            });
 
-    component.store = event.detail.store;
+            component.dispatchEvent(event);
+
+            this.store = event.detail.store;
+        }
+    } else {
+        component.connectedCallback = function () {
+            let event = new CustomEvent('connect-store', {
+                bubbles: true,
+                cancelable: false,
+                composed: true,
+                detail: {}
+            });
+
+            component.dispatchEvent(event);
+
+            this.store = event.detail.store;
+        }
+    }
+
+
+
+
+    return component;
 }
