@@ -41,6 +41,17 @@ class RoleController
 
     public function destroy($id)
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/index.view.php"; // back to index after destroy
+        $role = new Role();
+        $role->id = $id;
+        $role->load();
+        $role_name = $role->name;
+        $role->delete();
+
+        array_push($_SESSION["flash_messages"], [
+            "text" => "Le rôle '{$role_name}' a été supprimé avec succès",
+            "type" => "info"
+        ]);
+
+        $this->index(); // back to index after destroy
     }
 }
