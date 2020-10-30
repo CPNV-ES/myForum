@@ -26,7 +26,16 @@ class RoleController
 
     public function store() // handle form creation submit
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/show.view.php"; // back to show after storing new resource
+        $role = new Role();
+        $role->name = htmlspecialchars($_GET["name"]);
+        $role->save();
+
+        array_push($_SESSION["flash_messages"], [
+            "text" => "Le rôle '{$role->name}' a bien été créé",
+            "type" => "info"
+        ]);
+
+        header("Location: /?controller=role&action=index");
     }
 
     public function edit($id) // simply show the edit form
