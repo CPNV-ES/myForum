@@ -1,18 +1,22 @@
 <?php ob_start(); ?>
+<script src="view/references.js"></script>
+
 <h1 class="text-center p-5">List Reference</h1>
 
 <div class="container">
+    <table class="table">
     <?php foreach ($references as $reference): ?>
-        <div class="row">
-            <div class="col-3">
+        <tr>
+            <td>
                 <i class="fas fa-eye mr-4"></i>
                 <i class="fas fa-search-plus"></i>
-            </div>
-            <div class="col-9">
-                <a id="<?= $reference->id; ?>"><?= $reference->description; ?></a>
-            </div>
-        </div>
+            </td>
+            <td>
+                <a id="<?= $reference->id ?>" href="?controller=reference&action=show&id=<?= $reference->id; ?>"><?= $reference->description ?></a>
+            </td>
+        </tr>
     <?php endforeach; ?>
+    </table>
 </div>
 
 <?php
