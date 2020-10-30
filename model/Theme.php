@@ -20,7 +20,7 @@ class Theme
         //TODO Build and return an array of Reference objects
         $result = $this->connect->prepare("SELECT * FROM `themes`");
         $result->execute();
-        $obj = $result->fetchAll(PDO::FETCH_ASSOC, "Theme");
+        $obj = $result->fetchAll(PDO::FETCH_ASSOC);
         return $obj;
 
     }

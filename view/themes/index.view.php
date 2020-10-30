@@ -1,9 +1,6 @@
 <?php ob_start(); $i = 0; ?>
 <h1 class="text-center p-5">List Theme</h1>
-<table align="center" class="table align-content-center" style="width: 25%; height: auto; text-align: center" >
-    <tr>
-        <th><h1>Name</h1></th>
-    </tr>
+<table align="center" class="list" style="width: 25%; height: auto; text-align: left" >
     <?php while($theme = $allTheme[$i]){ ?>
         <tr>
             <td><?= $theme['name'] ?></td>
