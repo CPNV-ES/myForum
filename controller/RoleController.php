@@ -30,11 +30,18 @@ class RoleController
         $role->name = htmlspecialchars($_GET["name"]);
         $role->save();
 
-        array_push($_SESSION["flash_messages"], [
-            "text" => "Le rôle '{$role->name}' a bien été créé",
-            "type" => "info"
-        ]);
-
+        if($role->id != null) {
+            array_push($_SESSION["flash_messages"], [
+                "text" => "Le rôle '{$role->name}' a bien été créé",
+                "type" => "info"
+            ]);
+        }
+        else {
+            array_push($_SESSION["flash_messages"], [
+                "text" => "Erreur lors de la création du rôle '{$role->name}'",
+                "type" => "error"
+            ]);
+        }
         header("Location: /?controller=role&action=index");
     }
 
@@ -52,6 +59,16 @@ class RoleController
         $role = new Role();
         $role->id = $id;
         $role->load();
+
+        if($role->id == null || !isset($_GET["name"])) {
+            array_push($_SESSION["flash_messages"], [
+                "text" => "Erreur lors de la mise à jour du rôle avec l'id '{$id}' ",
+                "type" => "error"
+            ]);
+            header("Location: /?controller=role&action=index");
+            return;
+        }
+
         $role->name = htmlspecialchars($_GET["name"]);
         $role->update();
 
@@ -67,8 +84,18 @@ class RoleController
     {
         $role = new Role();
         $role->id = $id;
-        $role->load();
         $role_name = $role->name;
+        $role->load();
+
+        if($role->id == null) {
+            array_push($_SESSION["flash_messages"], [
+                "text" => "Erreur lors de la suppression du rôle avec l'id '{$id}' ",
+                "type" => "error"
+            ]);
+            header("Location: /?controller=role&action=index");
+            return;
+        }
+
         $role->delete();
 
         array_push($_SESSION["flash_messages"], [
