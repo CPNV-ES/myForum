@@ -10,17 +10,12 @@ class State {
 
     }
 
-    public static function all() {
-        $records = Db::selectMany("SELECT * FROM `states`", null, "State");
-        $states = array();
-
-        foreach ($records as $record) {
-            $state = new State();
-            $state->id = $record["id"];
-            $state->name = $record["name"];
-
-            array_push($states, $state);
-        }
+    /**
+     * Returns an array of objects representing all records of the table
+     */
+    public static function all()
+    {
+        return Db::selectMany("SELECT * FROM `states`", [], "State");
     }
 
     /**

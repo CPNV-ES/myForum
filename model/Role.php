@@ -11,6 +11,14 @@ class Role {
     }
 
     /**
+     * Returns an array of objects representing all records of the table
+     */
+    public static function all()
+    {
+        return Db::selectMany("SELECT * FROM `roles`", [], "Role");
+    }
+
+    /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
      */
