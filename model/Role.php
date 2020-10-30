@@ -21,7 +21,6 @@ class Role {
         $record = Db::selectOneRecord("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id]);
         if($record) {
             $this->name = $record["name"];
-
             return true;
         }
         else {
@@ -40,8 +39,8 @@ class Role {
         if($this->name == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("INSERT INTO `roles` (`name`) VALUES (:name);");
-        $stmt->bindParam(":name", $this->name);
+        $stmt = Db::getDbConnection()->prepare('INSERT INTO roles (name) VALUES (:name);');
+        $stmt->bindValue(":name", $this->name);
         $success = $stmt->execute();
         if($success) {
             $this->id = Db::getDbConnection()->lastInsertId();
@@ -55,9 +54,9 @@ class Role {
      * @return bool true on success, false otherwise
      */
     public function update() {
-        $stmt = Db::getDbConnection()->prepare("UPDATE `roles` SET `name` = :name WHERE (`id` = :id);");
-        $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":name", $this->name);
+        $stmt = Db::getDbConnection()->prepare('UPDATE roles SET name = :name WHERE (id = :id)');
+        $stmt->bindValue(":id", $this->id);
+        $stmt->bindValue(":name", $this->name);
         return $stmt->execute();
     }
 
