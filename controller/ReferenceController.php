@@ -29,7 +29,9 @@ class ReferenceController
         $ref->description = $_POST['description'];
         $ref->url = $_POST['url'];
         $ref->save();
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php"; // back to show after storing new resource
+        $_SESSION['flashMessage'] = "La référence ".$ref->description." a été créée correctement";
+        header("Location: /?controller=Reference&action=index");
+       // require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php"; // back to show after storing new resource
     }
 
     public function edit($id) // simply show the edit form
