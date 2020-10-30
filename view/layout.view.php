@@ -41,5 +41,14 @@
 <div class="container-fluid">
     <?= $content ?>
 </div>
+<footer class="page-footer font-small elegant-color mt-5">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="#">Andi</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
 </body>
 </html>
