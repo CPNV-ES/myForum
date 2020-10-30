@@ -56,7 +56,7 @@ class RoleController
         $role->update();
 
         array_push($_SESSION["flash_messages"], [
-            "text" => "Le rôle '{$role_name}' a été mis à jour",
+            "text" => "Le rôle '{$role->name}' a été mis à jour",
             "type" => "info"
         ]);
 
