@@ -54,7 +54,7 @@ class Reference
         if ($this->description == null)
             return false;
 
-        $this->id = Db::insert("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);", ["description" => $this->description, ":url" => $this->url]);
+        $this->id = Db::insert("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);", ["description" => $this->description, "url" => $this->url]);
         return $this->id;
     }
 
