@@ -5,8 +5,8 @@
         <td class="ListButton"><a class="button" href="?controller=theme&action=create">Create</a></td><td></td>
     </tr>
     <?php while($theme = $allTheme[$i]){ ?>
-        <tr>
-            <td class="ListButton"></td>
+        <tr id="animation">
+            <td class="ListButton"><span class="fas fa-edit"></span></td>
             <td><?= $theme['name'] ?></td>
         </tr>
     <?php $i++; } ?>
