@@ -28,7 +28,12 @@
                     case "warning":
                         $toast_class = "flash-message-warning";
                         $icon_class = "fas fa-exclamation-circle yellow-text mr-2";
-                        $title = "Warning";
+                        $title = "Avertissement";
+                        break;
+                    case "error":
+                        $toast_class = "flash-message-warning";
+                        $icon_class = "fas fa-exclamation-triangle red-text mr-2";
+                        $title = "Erreur";
                         break;
                     default:
                         $toast_class = "flash-message-info";
