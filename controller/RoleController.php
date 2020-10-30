@@ -52,6 +52,6 @@ class RoleController
             "type" => "info"
         ]);
 
-        $this->index(); // back to index after destroy
+        header("Location: /?controller=role&action=index");
     }
 }
