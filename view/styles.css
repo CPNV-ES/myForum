@@ -9,3 +9,10 @@ tr:hover > .col-icons {
 .col-icons > a:not(:first-child) {
     margin-left: 15px;
 }
+
+#flash-message-container {
+    position:absolute;
+    right: 0;
+    width: 350px;
+    z-index: 9999;
+}

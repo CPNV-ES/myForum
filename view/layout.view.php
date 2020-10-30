@@ -13,8 +13,52 @@
     <script src="node_modules/mdbootstrap/js/jquery.js"></script>
     <script src="node_modules/mdbootstrap/js/bootstrap.js"></script>
     <script src="node_modules/mdbootstrap/js/popper.js"></script>
+    <script src="view/common.js"></script>
 </head>
 <body>
+
+<div id="flash-message-container">
+    <?php
+        if(isset($_SESSION["flash_messages"])) {
+            foreach($_SESSION["flash_messages"] as $message) {
+                $toast_class = "";
+                $icon_class = "";
+                $title = "";
+                switch($message["type"]) {
+                    case "warning":
+                        $toast_class = "flash-message-warning";
+                        $icon_class = "fas fa-exclamation-circle yellow-text mr-2";
+                        $title = "Warning";
+                        break;
+                    default:
+                        $toast_class = "flash-message-info";
+                        $icon_class = "fas fa-info-circle blue-text mr-2";
+                        $title = "Info";
+                }
+
+                echo <<<EOF
+                <div role="alert" aria-live="assertive" aria-atomic="true" class="toast $toast_class" data-autohide="true" data-delay="10000">
+                    <div class="toast-header">
+                        <i class="{$icon_class}"></i>
+                        <strong class="mr-auto">$title</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        {$message['text']}
+                    </div>
+                </div>
+EOF;
+            }
+        }
+
+    $_SESSION["flash_messages"] = [];
+
+    ?>
+
+</div>
+
 <div class="w-100 bg-primary font-weight-bolder p-5 navbar"><a class="text-reset" href="/"><h1>My Forum</h1></a></div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav mr-auto">
