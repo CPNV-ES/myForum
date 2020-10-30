@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content=\"text/html; charset=UTF-8\">
     <title>myForum</title>
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.css">
     <script src="node_modules/mdbootstrap/js/jquery.js"></script>
     <script src="node_modules/mdbootstrap/js/bootstrap.js"></script>
