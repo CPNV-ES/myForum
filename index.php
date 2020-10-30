@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <a class="btn btn-primary" href="/themes">Gestion des thèmes</a>
-                <a class="btn btn-primary" href="/refereneces">Gestion des références</a>
+                <a class="btn btn-primary" href="/references">Gestion des références</a>
                 <a class="btn btn-primary" href="/roles">Gestion des rôles</a>
                 <a class="btn btn-primary" href="/states">Gestion des états</a>
             </div>
