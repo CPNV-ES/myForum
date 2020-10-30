@@ -22,7 +22,7 @@
             </td>
             <td>
                 <a class="btn btn-primary" href="?controller=Reference&action=edit&id=<?= $reference->id ?>">Edit</a>
-                <a class="btn btn-primary" href="?controller=Reference&action=destroy&id=<?= $reference->id ?>">Delete</a></td>
+                <a class="btn btn-danger"  href="?controller=Reference&action=destroy&id=<?= $reference->id ?>">Delete</a></td>
             </td>
         </tr>
     </tbody>
