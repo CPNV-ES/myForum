@@ -4,7 +4,13 @@
 <div class="container">
     <?php foreach ($references as $reference): ?>
         <div class="row">
-            <a id="<?= $reference->id; ?>"><?= $reference->description; ?></a>
+            <div class="col-3">
+                <i class="fas fa-eye mr-4"></i>
+                <i class="fas fa-search-plus"></i>
+            </div>
+            <div class="col-9">
+                <a id="<?= $reference->id; ?>"><?= $reference->description; ?></a>
+            </div>
         </div>
     <?php endforeach; ?>
 </div>
