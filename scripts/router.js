@@ -52,7 +52,13 @@ export function Router(base) {
 
                     let viewElement = document.createElement('div');
                     viewElement.setAttribute('data-path', path);
-                    viewElement.innerHTML = view.render();
+                    let render = view.render();
+
+                    if (render instanceof Promise) {
+                        render.then((content) =>  viewElement.innerHTML = content);
+                    } else {
+                        viewElement.innerHTML =  render;
+                    }
 
                     if (pushState) {
                         history.pushState({ path }, '', path);
