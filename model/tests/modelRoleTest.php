@@ -9,14 +9,13 @@ require_once ("model/Role.php");
 require_once ("model/Db.php");
 // Create a new role
 echo "Test of save(): ";
-$db = new Db();
-
-$role = new Role($db);
+$role = new Role();
 $role->name = "testing";
 
 $role->save(); // The method we test here: save the new value to the db
 
 $readback = Db::selectOneRecord("select * from roles where name=:name", ["name" => "testing"]); // function from db.php
+
 if ($readback["name"] == "testing" && $role->id > 0) {
     echo "success\n";
 } else {
@@ -27,7 +26,7 @@ $testid = $readback["id"]; // save for later
 
 // Read a role
 echo "Test of load(): ";
-$loadedRole = new Role($db);
+$loadedRole = new Role();
 $loadedRole->id = $testid;
 $loadedRole->load(); // The method we test here: load the object's attribute from the db
 if ($loadedRole->name == "testing") {
@@ -40,7 +39,7 @@ if ($loadedRole->name == "testing") {
 echo "Test of update(): ";
 $loadedRole->name = "tested";
 $loadedRole->update(); // The method we test here: update the object's attribute in the db
-$verify = new Role($db);
+$verify = new Role();
 $verify->id = $testid;
 $verify->load(); // read back from db
 if ($verify->name == "tested") {
@@ -52,7 +51,7 @@ if ($verify->name == "tested") {
 // Delete a role
 echo "Test of delete(): ";
 $loadedRole->delete(); // The method we test here: update the object's attribute in the db
-$verify = new Role($db);
+$verify = new Role();
 $verify->id = $testid;
 $verify->load(); // try to read back from db
 if ($verify->id == null) {
