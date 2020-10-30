@@ -66,14 +66,14 @@ class Db {
         }
     }
 
-    public static function selectOne($query, $params, $classname)
+    public static function selectOneRecord($query, $params, $classname = null)
     {
-        return self::select($query, $params, false);
+        return self::select($query, $params, false, $classname = null);
     }
 
-    public static function selectMany($query, $params, $classname)
+    public static function selectMany($query, $params, $classname = null)
     {
-        return self::select($query, $params, true);
+        return self::select($query, $params, true, $classname = null);
     }
 
     public static function insert($query, $params)
