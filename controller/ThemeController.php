@@ -1,10 +1,19 @@
 <?php
 
+require('model/Theme.php');
 
 class ThemeController
 {
+    private $theme;
+    public function __construct()
+    {
+        $this->theme = new Theme();
+    }
+
     public function index()
     {
+        $AllTheme = "salut";//$this->theme->load();
+
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php";
     }
 
