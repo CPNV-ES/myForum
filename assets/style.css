@@ -7,28 +7,24 @@ body {
     font-family: Century Gothic, arial
 }
 
-.top-bar {
-    position: sticky;
-    background-color: rgb(241, 241, 241);
-    border-top: 3px solid rgb(197, 10, 10);
+.border-red {
+    border-color: rgb(197, 10, 10) !important;
 }
 
-.top-bar-content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.5rem 0;
+.btn-primary {
+    background-color: rgb(197, 56, 56);
+    border-color: rgb(197, 10, 10);
 }
 
-.top-bar-content > * {
-    display: inline-block;
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: rgb(175, 19, 19);
+    border-color: rgb(179, 11, 11);
 }
 
-.top-bar-title {
-    font-size: 1.5rem;
-    margin-right: 2rem;
+.btn-primary:focus {
+    box-shadow: 0 0 0 .25rem rgb(179, 11, 11);
 }
-
 
 #content {
     max-width: 1200px;
