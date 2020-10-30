@@ -1,10 +1,12 @@
 <?php
 
+require_once "model/Reference.php";
 
 class ReferenceController
 {
     public function index()
     {
+        $references = Reference::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php";
     }
 
