@@ -40,12 +40,27 @@ class RoleController
 
     public function edit($id) // simply show the edit form
     {
+        $role = new Role();
+        $role->id = $id;
+        $role->load();
+
         require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/update.view.php";
     }
 
     public function update($id) // handle edit form submit
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/show.view.php"; // back to show after saving changes
+        $role = new Role();
+        $role->id = $id;
+        $role->load();
+        $role->name = htmlspecialchars($_GET["name"]);
+        $role->update();
+
+        array_push($_SESSION["flash_messages"], [
+            "text" => "Le rôle '{$role_name}' a été mis à jour",
+            "type" => "info"
+        ]);
+
+        header("Location: /?controller=role&action=index");
     }
 
     public function destroy($id)
