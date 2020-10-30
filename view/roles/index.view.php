@@ -20,7 +20,7 @@ foreach($roles as $role) {
     <tr>
         <th class="col-md-1 col-icons">
             <a href="?controller=role&action=show&id=$role->id"><i class="fas fa-eye"></i></a>
-            <a href="?controller=role&action=update&id=$role->id"><i class="fas edit"></i></a>
+            <a href="?controller=role&action=update&id=$role->id"><i class="fas fa-edit"></i></a>
         </th>
         <td class="th-lg">
             $role->name
