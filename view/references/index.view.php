@@ -1,7 +1,23 @@
+
+<!--Falsh message (Message stocker dans la question)-->
 <?php ob_start(); ?>
 <h1 class="text-center p-5">List Reference</h1>
+
+
+<?php 
+    if(isset($_SESSION['flashMessage']))
+    {
+        echo "<div class='alert alert-primary'>";
+        echo $_SESSION['flashMessage'];
+        unset($_SESSION['flashMessage']);
+        echo "</div>";
+    }
+    
+?>
+</div>
+<a class="btn btn-primary" href="?controller=reference&action=create">Create</a>
+
 <?php
-echo ('<a class="btn btn-primary" href="?controller=reference&action=create">Create</a>');
 
 foreach ($references as $Key => $Value) : ?>
 
@@ -11,7 +27,7 @@ foreach ($references as $Key => $Value) : ?>
             <tr>
                 <th>Description</th>
                 <th>URL</th>
-                <th style="float:right;">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +36,7 @@ foreach ($references as $Key => $Value) : ?>
                     <?= $Value->description ?>
                 </td>
                 <td><a href="<?=$Value->url?>"><?= $Value->url ?></a></td>
-                <td style="float:right;">
+                <td>
                     <a class="btn btn-primary" href="?controller=Reference&action=show&id=<?= $Value->id ?>">Details</a>
             </tr>
         </tbody>
