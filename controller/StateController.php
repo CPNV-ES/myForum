@@ -1,11 +1,12 @@
 <?php
 
+require_once "model/State.php";
 
 class StateController
 {
     public function index()
     {
-        //$states = State::all();
+        $states = State::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/states/index.view.php";
     }
 

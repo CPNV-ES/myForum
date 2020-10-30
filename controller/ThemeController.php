@@ -1,10 +1,12 @@
 <?php
 
+require_once "model/Theme.php";
 
 class ThemeController
 {
     public function index()
     {
+        $themes = Theme::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php";
     }
 

@@ -4,7 +4,7 @@
 <?php foreach ($references as $reference): ?>
 <div class="container"
     <div class="row">
-        <a id="<?= $reference->id; ?>"><?= $reference->description; ?></a>
+        <a id="<?= $reference->id ?>"><?= $reference->description ?></a>
     </div>
 </div>
 <?php endforeach; ?>
