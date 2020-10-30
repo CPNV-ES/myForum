@@ -4,7 +4,7 @@
 <div class="container">
 <?php foreach ($roles as $role): ?>
     <div class="row">
-        <a id="<?= $role->id; ?>"><?= $role->name; ?></a>
+        <a id="<?= $role->id ?>"><?= $role->name ?></a>
     </div>
 <?php endforeach; ?>
 </div>

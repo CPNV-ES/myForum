@@ -4,7 +4,7 @@
 <div class="container">
     <?php foreach ($states as $state): ?>
         <div class="row">
-            <a id="<?= $state->id; ?>"><?= $state->name; ?></a>
+            <a id="<?= $state->id ?>"><?= $state->name ?></a>
         </div>
     <?php endforeach; ?>
 </div>

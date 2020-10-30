@@ -4,7 +4,7 @@
 <div class="container">
     <?php foreach ($themes as $theme): ?>
         <div class="row">
-            <a id="<?= $theme->id; ?>"><?= $theme->name; ?></a>
+            <a id="<?= $theme->id ?>"><?= $theme->name ?></a>
         </div>
     <?php endforeach; ?>
 </div>
