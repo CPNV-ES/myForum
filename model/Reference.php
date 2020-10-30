@@ -74,6 +74,10 @@ class Reference{
     public static function delete($id)
     {
         $pdo = Db::connect();
+        $req = "DELETE FROM `opinions_has_references` WHERE reference_id = ?";
+        $stmt = $pdo->prepare($req);
+        $stmt->execute(array($id));
+
         $req = "DELETE FROM `references` WHERE id = ?";
         $stmt = $pdo->prepare($req);
         $stmt->execute(array($id));
