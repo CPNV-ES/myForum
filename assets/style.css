@@ -29,28 +29,6 @@ body {
     margin-right: 2rem;
 }
 
-.search-bar {
-    position: relative;
-    background-color: white;
-}
-
-.search-bar::before {
-    position: absolute;
-    display: inline-block;
-    width: 1.2rem;
-    height: 1.2rem;
-    top: 50%;
-    left: 0.2rem;
-    content: "";
-    background-image: url("/assets/search.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    transform: translateY(-50%);
-}
-
-.search-bar > input {
-    padding-left: 1rem;
-}
 
 #content {
     max-width: 1200px;
