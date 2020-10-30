@@ -4,7 +4,7 @@
 <form method="POST" action="?controller=reference&action=update&id=<?=$_GET['id']?>">
     <input class="form-control" name = "description" id="description" type="text" placeholder="Description" value="<?=$reference->description?>"/>
     <input class="form-control" name = "url" id="url" type="text" placeholder="URL" value="<?=$reference->url?>"/>
-    <input class="btn btn-primary" type="submit" value="Modifier"/>
+    <input class="btn btn-success" type="submit" value="Modifier"/>
 </form>
 
 <?php
