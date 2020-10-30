@@ -1,0 +1,11 @@
+.col-icons {
+    opacity: 0;
+}
+
+tr:hover > .col-icons {
+    opacity: 1;
+}
+
+.col-icons > a:not(:first-child) {
+    margin-left: 15px;
+}
