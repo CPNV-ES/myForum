@@ -56,26 +56,38 @@ class RoleController
 
     public function update($id) // handle edit form submit
     {
-        $role = new Role();
-        $role->id = $id;
-        $role->load();
-
-        if($role->id == null || !isset($_GET["name"])) {
+        $showErrMsg = function() {
+            global $id;
             array_push($_SESSION["flash_messages"], [
                 "text" => "Erreur lors de la mise à jour du rôle avec l'id '{$id}' ",
                 "type" => "error"
             ]);
             header("Location: /?controller=role&action=index");
             return;
+        };
+
+        $role = new Role();
+        $role->id = $id;
+        $role->load();
+
+        if($role->id == null || !isset($_GET["name"])) {
+            $showErrMsg();
+            return;
         }
 
         $role->name = htmlspecialchars($_GET["name"]);
-        $role->update();
+        $success = $role->update();
 
-        array_push($_SESSION["flash_messages"], [
-            "text" => "Le rôle '{$role->name}' a été mis à jour",
-            "type" => "info"
-        ]);
+        if($success) {
+            array_push($_SESSION["flash_messages"], [
+                "text" => "Le rôle '{$role->name}' a été mis à jour",
+                "type" => "info"
+            ]);
+        }
+        else {
+            $showErrMsg();
+            return;
+        }
 
         header("Location: /?controller=role&action=index");
     }
