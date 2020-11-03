@@ -7,7 +7,7 @@
     <table class="table">
     <?php foreach ($references as $reference): ?>
         <tr>
-            <td>
+            <td class="w-25">
                 <i class="fas fa-eye mr-4"></i>
                 <i class="fas fa-search-plus"></i>
             </td>

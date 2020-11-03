@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    $('td').find('a').mouseenter(function () {
-        $(this).parent().parent().first().css({'background-color': 'red'})
+    $('tr').mouseenter(function () {
+        $(this).find('td:first-child').children('i').css({'visibility' : 'visible'});
+    }).mouseleave(function () {
+        $(this).find('td:first-child').children('i').css({'visibility' : 'hidden'});
     })
 });
