@@ -17,6 +17,11 @@ $WebBlue : #4285f4;
   width: 150px;
 }
 
+input[type='text']
+{
+  width: 100%;
+}
+
 .button {
   background-color: $WebBlue;
   BORDER: none;

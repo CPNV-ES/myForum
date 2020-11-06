@@ -18,6 +18,9 @@ class ThemeController
 
     public function show($id)
     {
+        $this->theme->id = $id;
+        $this->theme->load();
+        $name = $this->theme->name;
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/show.view.php";
     }
 
