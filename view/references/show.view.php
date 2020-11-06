@@ -1,3 +1,8 @@
+<script type="module">
+
+import "./scripts/display.js";
+
+</script>
 <?php ob_start(); ?>
 <h1 class="text-center p-5">Show : <?= $reference->description ?></h1>
 
@@ -22,7 +27,7 @@
             </td>
             <td>
                 <a class="btn btn-primary" href="?controller=Reference&action=edit&id=<?= $reference->id ?>">Edit</a>
-                <a class="btn btn-danger"  href="?controller=Reference&action=destroy&id=<?= $reference->id ?>">Delete</a></td>
+                <a id="delete" class="btn btn-danger"  href="?controller=Reference&action=destroy&id=<?= $reference->id ?>">Delete</a></td>
             </td>
         </tr>
     </tbody>
