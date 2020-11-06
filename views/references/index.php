@@ -1,4 +1,4 @@
-<a class="btn btn-primary" href="">Create</a>
+<a class="btn btn-primary" href="/references/new">Create</a>
 <table class="table">
     <thead>
         <tr>
