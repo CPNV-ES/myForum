@@ -40,11 +40,18 @@ class ThemeController
 
     public function edit($id) // simply show the edit form
     {
+        $this->theme->id = $_GET['id'];
+        $this->theme->load();
+        $name = $this->theme->name;
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/update.view.php";
     }
 
     public function update($id) // handle edit form submit
     {
+        $this->theme->name = $_POST['nameTheme'];
+        $this->theme->id = $_GET['id'];
+        $this->theme->update();
+        $name = $_POST['nameTheme'];
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/show.view.php"; // back to show after saving changes
     }
 
