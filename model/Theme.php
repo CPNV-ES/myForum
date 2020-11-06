@@ -21,7 +21,6 @@ class Theme {
         $record = Db::selectOne("SELECT * FROM `themes` WHERE `id`=:id", ["id" => $this->id], Theme::class);
         if($record) {
             $this->name = $record->name;
-
             return true;
         }
         else {
