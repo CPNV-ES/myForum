@@ -16,12 +16,12 @@
 ?>
 </div>
 <a class="btn btn-primary" href="?controller=reference&action=create">Create</a>
-
+<table class="table">
 <?php
 
 foreach ($references as $Key => $Value) : ?>
 
-    <table class="table">
+    
 
         <thead>
             <tr>
@@ -40,11 +40,13 @@ foreach ($references as $Key => $Value) : ?>
                     <a class="btn btn-primary" href="?controller=Reference&action=show&id=<?= $Value->id ?>">Details</a>
             </tr>
         </tbody>
-    </table>
+   
 
 
-
-<?php endforeach;
+      
+<?php endforeach; ?>
+</table>
+<?php
 
 
 $content = ob_get_clean();
