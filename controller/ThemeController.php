@@ -28,6 +28,10 @@ class ThemeController
 
     public function store() // handle form creation submit
     {
+        $this->theme->name = $_POST['nameTheme'];
+        $this->theme->save();
+        $id = $this->theme->id['id'];
+        $name = $this->theme->name;
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/show.view.php"; // back to show after storing new resource
     }
 

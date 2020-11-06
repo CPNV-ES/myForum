@@ -8,7 +8,11 @@ require_once "controller/ThemeController.php";
 
 $controller = $_GET['controller'] . "Controller";
 $action = $_GET['action'];
-$id = intval($_GET['id']);
+if(isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+}else{
+    $id = 0;
+}
 if (empty($controller) || empty($action)) {
     require_once "view/homepage.view.php";
 } else {

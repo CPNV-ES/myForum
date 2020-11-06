@@ -6,7 +6,7 @@
     </tr>
     <?php while($theme = $allTheme[$i]){ ?>
         <tr id="animation">
-            <td class="ListButton"><span class="fas fa-edit"></span></td>
+            <td class="ListButton"><a href="?controller=theme&action=show&id=<?= $theme['id'] ?>"><span  class="fas fa-edit"></span></a></td>
             <td><?= $theme['name'] ?></td>
         </tr>
     <?php $i++; } ?>

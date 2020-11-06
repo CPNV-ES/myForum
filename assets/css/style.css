@@ -7,28 +7,33 @@
   width: 25%;
   height: auto;
   text-align: left;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .ListButton {
-  width: 150px; }
+  width: 150px;
+}
 
 .button {
   background-color: #4285f4;
   BORDER: none;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 40px;
   padding-right: 40px;
   margin-bottom: 20px;
   color: white;
   font-size: 15px;
   width: 100%;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 .icon {
-  display: none; }
+  display: none;
+}
 
 .myText:hover .icon {
-  display: initial; }
+  display: initial;
+}
 
 /*# sourceMappingURL=style.css.map */
