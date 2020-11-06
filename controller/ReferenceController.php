@@ -22,7 +22,24 @@ class ReferenceController
 
     public function store() // handle form creation submit
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php"; // back to show after storing new resource
+        $reference = new Reference();
+        $reference->description = htmlspecialchars($_GET["description"]);
+        $reference->url = htmlspecialchars($_GET["url"]);
+        $reference->save();
+
+        if($reference->id != null) {
+            array_push($_SESSION["flash_messages"], [
+                "text" => "La référence '{$reference->description}' a bien été créé",
+                "type" => "info"
+            ]);
+        }
+        else {
+            array_push($_SESSION["flash_messages"], [
+                "text" => "Erreur lors de la création de la référence '{$reference->description}'",
+                "type" => "error"
+            ]);
+        }
+        header("Location: /?controller=reference&action=index");    
     }
 
     public function edit($id) // simply show the edit form
