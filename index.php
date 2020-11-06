@@ -63,6 +63,18 @@ $router->get('/references/:id/edit', function ($params) use ($renderer) {
     ])->render();
 });
 
+$router->get('/references/:id/delete', function ($params) {
+    require './models/Reference.php';
+
+    if (!is_int($params['id'])) {
+        Router::redirect('/');
+    }
+
+    Reference::delete()->where('id', $params['id'])->execute();
+
+    Router::redirect('/references');
+});
+
 $router->post('/references/:id/edit', function ($params) {
     require './models/Reference.php';
 
