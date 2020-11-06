@@ -21,4 +21,14 @@ $router->get('/', function () use ($renderer) {
     $renderer->view('views/index.php')->render();
 });
 
+$router->get('/references', function () use ($renderer) {
+    require './models/Reference.php';
+    
+    $references = Reference::select()->execute(); 
+
+    $renderer->view('views/references/index.php')->values([
+        'references' => $references,
+    ])->render();
+});
+
 $router->execute();

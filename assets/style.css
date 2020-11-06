@@ -26,6 +26,21 @@ body {
     box-shadow: 0 0 0 .25rem rgb(179, 11, 11);
 }
 
+.btn-secondary {
+    background-color: rgb(56, 117, 197);
+    border-color: rgb(29, 82, 151);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: rgb(48, 100, 168);
+    border-color: rgb(40, 88, 151);
+}
+
+.btn-secondary:focus {
+    box-shadow: 0 0 0 .25rem  rgb(40, 88, 151);
+}
+
 #content {
     max-width: 1200px;
     margin: 1rem auto;
