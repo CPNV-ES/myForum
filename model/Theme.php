@@ -92,13 +92,14 @@ class Theme {
 
         /*return 
         Try with choice 2 :
-
+        */
         $stmt = Db::getDbConnection()->prepare("DELETE FROM `myforum`.`topics` WHERE (`theme_id` = :id);");
         $stmt->bindParam(":id", $this->id);
         $stmt->execute();
 
         $stmt = Db::getDbConnection()->prepare("DELETE FROM `myforum`.`themes` WHERE (`id` = :id);");
         $stmt->bindParam(":id", $this->id);
-        return $stmt->execute();*/
+        return $stmt->execute();
+        /**/
     }
 }

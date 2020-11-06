@@ -32,7 +32,23 @@ class ThemeController
 
     public function store() // handle form creation submit
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/show.view.php"; // back to show after storing new resource
+        $theme = new Theme();
+        $theme->name = htmlspecialchars($_GET["name"]);
+        $theme->save();
+
+        if($theme->id != null) {
+            ViewHelpers::pushFlashMessage([
+                "text" => "Le nom '{$theme->description}' a bien été créé",
+                "type" => "info"
+            ]);
+        }
+        else {
+            ViewHelpers::pushFlashMessage([
+                "text" => "Erreur lors de la création du nom '{$theme->description}'",
+                "type" => "error"
+            ]);
+        }
+        header("Location: /?controller=theme&action=index");    
     }
 
     public function edit($id) // simply show the edit form
