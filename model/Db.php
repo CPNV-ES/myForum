@@ -38,7 +38,7 @@ class Db {
             if ($multirecord)
             {
                 if(isset($classname)){
-                    $statement->setFetchMode(PDO::FETCH_CLASS,$obj);
+                    $statement->setFetchMode(PDO::FETCH_CLASS,$classname);
                 }
                 else{
                     $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ class Db {
             } else
             {
                 if(isset($classname)){
-                    $statement->setFetchMode(PDO::FETCH_CLASS,$obj);
+                    $statement->setFetchMode(PDO::FETCH_CLASS,$classname);
                 }
                 else{
                     $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -68,12 +68,12 @@ class Db {
 
     public static function selectOneRecord($query, $params, $classname = null)
     {
-        return self::select($query, $params, false, $classname = null);
+        return self::select($query, $params, false, $classname);
     }
 
     public static function selectMany($query, $params, $classname = null)
     {
-        return self::select($query, $params, true, $classname = null);
+        return self::select($query, $params, true, $classname);
     }
 
     public static function insert($query, $params)
