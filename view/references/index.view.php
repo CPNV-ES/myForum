@@ -19,7 +19,7 @@ foreach($references as $reference) {
     echo <<<EOD
     <tr>
         <th>
-        $reference->description
+            $reference->description
         </th>
         <td scope="col" class="col-icons">
             <a href="$reference->url" target="_blank"><i class="fas fa-link"></i></a>

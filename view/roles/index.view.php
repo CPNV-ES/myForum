@@ -8,8 +8,8 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 <table class='table table-borderless table-sm col col-12'>
     <thead>
         <tr>
-            <th scope="col"></th>
             <th scope="col" class="blue-gradient-rgba white-text">Nom</th>
+            <th scope="col" class="description-title"></th>
         </tr>
     </thead>
     <tbody>
@@ -18,12 +18,12 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 foreach($roles as $role) {
     echo <<<EOD
     <tr>
-        <th scope="col" class="col-icons">
+        <th class="th-lg">
+            $role->name
+        </th>
+        <td scope="col" class="col-icons">
             <a href="?controller=role&action=show&id=$role->id"><i class="fas fa-eye"></i></a>
             <a href="?controller=role&action=edit&id=$role->id"><i class="fas fa-edit"></i></a>
-        </th>
-        <td class="th-lg">
-            $role->name
         </td>
     </tr>
 EOD;
