@@ -32,13 +32,13 @@ class ReferenceController
         $reference->save();
 
         if($reference->id != null) {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "La référence '{$reference->description}' a bien été créé",
                 "type" => "info"
             ]);
         }
         else {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Erreur lors de la création de la référence '{$reference->description}'",
                 "type" => "error"
             ]);
@@ -59,7 +59,7 @@ class ReferenceController
     {
         $showErrMsg = function() {
             global $id;
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Erreur lors de la mise à jour de la référence avec l'id '{$id}' ",
                 "type" => "error"
             ]);
@@ -81,7 +81,7 @@ class ReferenceController
         $success = $reference->update();
 
         if($success) {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "La référence '{$reference->description}' a été mise à jour",
                 "type" => "info"
             ]);
@@ -102,7 +102,7 @@ class ReferenceController
         $reference_desc = $reference->description;
 
         if($reference->id == null) {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Erreur lors de la suppression de la référence avec l'id '{$id}' ",
                 "type" => "error"
             ]);
@@ -112,7 +112,7 @@ class ReferenceController
 
         $reference->delete();
 
-        array_push($_SESSION["flash_messages"], [
+        ViewHelpers::pushFlashMessage([
             "text" => "La référence '{$reference_desc}' a été supprimée avec succès",
             "type" => "info"
         ]);

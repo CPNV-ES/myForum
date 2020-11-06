@@ -31,13 +31,13 @@ class RoleController
         $role->save();
 
         if($role->id != null) {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Le rôle '{$role->name}' a bien été créé",
                 "type" => "info"
             ]);
         }
         else {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Erreur lors de la création du rôle '{$role->name}'",
                 "type" => "error"
             ]);
@@ -58,7 +58,7 @@ class RoleController
     {
         $showErrMsg = function() {
             global $id;
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Erreur lors de la mise à jour du rôle avec l'id '{$id}' ",
                 "type" => "error"
             ]);
@@ -79,7 +79,7 @@ class RoleController
         $success = $role->update();
 
         if($success) {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Le rôle '{$role->name}' a été mis à jour",
                 "type" => "info"
             ]);
@@ -100,7 +100,7 @@ class RoleController
         $role_name = $role->name;
 
         if($role->id == null) {
-            array_push($_SESSION["flash_messages"], [
+            ViewHelpers::pushFlashMessage([
                 "text" => "Erreur lors de la suppression du rôle avec l'id '{$id}' ",
                 "type" => "error"
             ]);
@@ -110,7 +110,7 @@ class RoleController
 
         $role->delete();
 
-        array_push($_SESSION["flash_messages"], [
+        ViewHelpers::pushFlashMessage([
             "text" => "Le rôle '{$role_name}' a été supprimé avec succès",
             "type" => "info"
         ]);

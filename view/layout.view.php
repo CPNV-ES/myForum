@@ -19,43 +19,41 @@
 
 <div id="flash-message-container">
     <?php
-        if(isset($_SESSION["flash_messages"])) {
-            foreach($_SESSION["flash_messages"] as $message) {
-                $toast_class = "";
-                $icon_class = "";
-                $title = "";
-                switch($message["type"]) {
-                    case "warning":
-                        $toast_class = "flash-message-warning";
-                        $icon_class = "fas fa-exclamation-circle yellow-text mr-2";
-                        $title = "Avertissement";
-                        break;
-                    case "error":
-                        $toast_class = "flash-message-warning";
-                        $icon_class = "fas fa-exclamation-triangle red-text mr-2";
-                        $title = "Erreur";
-                        break;
-                    default:
-                        $toast_class = "flash-message-info";
-                        $icon_class = "fas fa-info-circle blue-text mr-2";
-                        $title = "Info";
-                }
-
-                echo <<<EOF
-                <div role="alert" aria-live="assertive" aria-atomic="true" class="toast $toast_class" data-autohide="true" data-delay="10000">
-                    <div class="toast-header">
-                        <i class="{$icon_class}"></i>
-                        <strong class="mr-auto">$title</strong>
-                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="toast-body">
-                        {$message['text']}
-                    </div>
-                </div>
-EOF;
+        while($message = ViewHelpers::shiftFlashMessage()) {
+            $toast_class = "";
+            $icon_class = "";
+            $title = "";
+            switch($message["type"]) {
+                case "warning":
+                    $toast_class = "flash-message-warning";
+                    $icon_class = "fas fa-exclamation-circle yellow-text mr-2";
+                    $title = "Avertissement";
+                    break;
+                case "error":
+                    $toast_class = "flash-message-warning";
+                    $icon_class = "fas fa-exclamation-triangle red-text mr-2";
+                    $title = "Erreur";
+                    break;
+                default:
+                    $toast_class = "flash-message-info";
+                    $icon_class = "fas fa-info-circle blue-text mr-2";
+                    $title = "Info";
             }
+
+            echo <<<EOF
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast $toast_class" data-autohide="true" data-delay="10000">
+                <div class="toast-header">
+                    <i class="{$icon_class}"></i>
+                    <strong class="mr-auto">$title</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    {$message['text']}
+                </div>
+            </div>
+EOF;
         }
 
     $_SESSION["flash_messages"] = [];
