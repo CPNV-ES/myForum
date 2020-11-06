@@ -5,9 +5,8 @@ class Db {
     private $dbConnection;
 
     private function __construct() {
-        //Get the configuration from config.ini and put-it into variables.
-        $config  = parse_ini_file("config.ini");
-        $this->dbConnection = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['db'], $config['user'], $config['pass']);
+        $creds = (require(".credentials.php"))["mysql"];
+        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']};charset=utf-8", $creds["username"], $creds["passwd"]);
     }
 
     /**
@@ -29,7 +28,7 @@ class Db {
         return self::getInstance()->dbConnection;
     }
 
-    private static function select($query, $params, $multirecord)
+    private static function select($query, $params, $multirecord, $classname)
     {
         $dbh = self::getDbConnection();
         try
@@ -38,10 +37,10 @@ class Db {
             $statement->execute($params);//execute query
             if ($multirecord)
             {
-                $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $queryResult = $statement->fetchAll(PDO::FETCH_CLASS, $classname);
             } else
             {
-                $queryResult = $statement->fetch(PDO::FETCH_ASSOC);
+                $queryResult = $statement->fetch(PDO::FETCH_CLASS, $classname);
             }
             return $queryResult;
         } catch (PDOException $e)
@@ -51,14 +50,14 @@ class Db {
         }
     }
 
-    public static function selectOne($query, $params)
+    public static function selectOne($query, $params, $classname)
     {
-        return self::select($query, $params, false);
+        return self::select($query, $params, false, $classname);
     }
 
-    public static function selectMany($query, $params)
+    public static function selectMany($query, $params, $classname)
     {
-        return self::select($query, $params, true);
+        return self::select($query, $params, true, $classname);
     }
 
     public static function insert($query, $params)
