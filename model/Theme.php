@@ -16,6 +16,7 @@ class Theme {
      */
     public static function all()
     {
+        /*
         $references = [];
         $rows = Db::selectMany("SELECT id, name FROM `themes`", []);
         foreach($rows as $row) {
@@ -25,9 +26,8 @@ class Theme {
             $r->name = $row["name"];
 
             array_push($references, $r);
-        }
-
-        return $references;
+        }*/
+        return Db::selectMany("SELECT * FROM `themes`", [], Theme::class);
     }
 
     /**
@@ -74,10 +74,7 @@ class Theme {
      * @return bool true on success, false otherwise
      */
     public function update() {
-        $stmt = Db::getDbConnection()->prepare("UPDATE `themes` SET `name` = :name WHERE (`id` = :id);");
-        $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":name", $this->name);
-        return $stmt->execute();
+        return Db::execute("UPDATE `themes` SET `name`=:name WHERE (`id` = :id);", ["id" => $this->id, "name" => $this->name]);
     }
 
     /**
@@ -88,8 +85,21 @@ class Theme {
         if($this->id == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("DELETE FROM `themes` WHERE (`id` = :id);");
+        /* It's actually impossible to delete the entry.
+        Try with choice 1 :
+        return Db::execute("DELETE FROM `myforum`.`themes` WHERE (`id` = :id);", ["id" => $this->id]);
+        */
+
+        /*return 
+        Try with choice 2 :
+        */
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `myforum`.`topics` WHERE (`theme_id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `myforum`.`themes` WHERE (`id` = :id);");
         $stmt->bindParam(":id", $this->id);
         return $stmt->execute();
+        /**/
     }
 }
