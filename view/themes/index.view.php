@@ -24,7 +24,6 @@ foreach($themes as $theme) {
             $theme->name
         </th>
         <td scope="col" class="col-icons">
-            <a href="$theme->name" target="_blank"><i class="fas fa-link"></i></a>
             <a href="?controller=theme&action=show&id=$theme->id"><i class="fas fa-eye"></i></a>
             <a href="?controller=theme&action=edit&id=$theme->id"><i class="fas fa-edit"></i></a>
         </td>

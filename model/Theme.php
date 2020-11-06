@@ -74,10 +74,7 @@ class Theme {
      * @return bool true on success, false otherwise
      */
     public function update() {
-        $stmt = Db::getDbConnection()->prepare("UPDATE `themes` SET `name` = :name WHERE (`id` = :id);");
-        $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":name", $this->name);
-        return $stmt->execute();
+        return Db::execute("UPDATE `themes` SET `name`=:name WHERE (`id` = :id);", ["id" => $this->id, "name" => $this->name]);
     }
 
     /**
