@@ -16,6 +16,7 @@ class Theme {
      */
     public static function all()
     {
+        /*
         $references = [];
         $rows = Db::selectMany("SELECT id, name FROM `themes`", []);
         foreach($rows as $row) {
@@ -25,9 +26,8 @@ class Theme {
             $r->name = $row["name"];
 
             array_push($references, $r);
-        }
-
-        return $references;
+        }*/
+        return Db::selectMany("SELECT * FROM `themes`", [], Theme::class);
     }
 
     /**
