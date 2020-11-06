@@ -1,33 +1,24 @@
-<html lang="fr">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>myForum</title>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/style.css">
-</head>
+require './vendor/autoload.php';
 
-<body>
-    <nav class="navbar navbar-light bg-light px-3 border-top border-red border-4">
-        <div class="row">
-            <div class="col">
-                <a class="navbar-brand" href="/">MyForum</a>
+require 'core/Renderer.php';
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <a class="btn btn-primary" href="/themes">Gestion des thèmes</a>
-                <a class="btn btn-primary" href="/references">Gestion des références</a>
-                <a class="btn btn-primary" href="/roles">Gestion des rôles</a>
-                <a class="btn btn-primary" href="/states">Gestion des états</a>
-            </div>
-        </div>
-    </nav>
-    <div id="content"></div>
-    <script src="scripts/app.js" type="module"></script>
-</body>
+use Expreql\Expreql\Database;
+use Routier\Routier\Router;
 
-</html>
+$config = parse_ini_file('config.ini');
+
+Database::set_config($config);
+$router = new Router();
+$renderer = Renderer::get_instance();
+
+// Set the layout used on every page
+$renderer->layout('layout.php');
+
+// Home page
+$router->get('/', function () use ($renderer) {
+    $renderer->view('views/index.php')->render();
+});
+
+$router->execute();
