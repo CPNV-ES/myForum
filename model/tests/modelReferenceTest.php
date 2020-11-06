@@ -3,16 +3,24 @@
  * File : modelReferenceTest.php
  * Author : X. Carrel
  * Created : 2020-10-01
- * Modified last :
+ * Contributor : M. Burnat
+ * Modified last : 2020-10-02
  **/
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once ("../Reference.php");
-require_once ("../Db.php");
+require_once ("../db.php");
+
 // Create a new reference
 echo "Test of save(): ";
+
 $reference = new Reference();
 $reference->description = "testing";
 
 $reference->save(); // The method we test here: save the new value to the db
+
 
 $readback = Db::selectOne("select * from `references` where description=:description", ["description" => "testing"]); // function from db.php
 if ($readback["description"] == "testing" && $reference->id > 0) {
@@ -58,4 +66,6 @@ if ($verify->id == null) {
 } else {
     die ("fail\n");
 }
+
+?>
 
