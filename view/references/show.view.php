@@ -37,7 +37,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
         </tr>
     </tbody>
 </table>
-<a href="/?controller=reference&action=edit&id=<?= $role->id ?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+<a href="/?controller=reference&action=edit&id=<?= $reference->id ?>"><button type="button" class="btn btn-primary">Modifier</button></a>
 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">Supprimer</button>
 </div>
 
