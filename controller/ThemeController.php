@@ -12,7 +12,8 @@ class ThemeController
 
     public function index()
     {
-        $AllTheme = "salut";//$this->theme->load();
+        $themes = "Hey ! This is a test. ";
+        //$this->theme->load();
 
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php";
     }
