@@ -8,8 +8,8 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 <table class='table table-borderless table-sm col col-12'>
     <thead>
         <tr>
-            <th scope="col"></th>
             <th class="blue-gradient-rgba white-text">Description</th>
+            <th scope="col" class="description-title"></th>
         </tr>
     </thead>
     <tbody>
@@ -18,13 +18,13 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 foreach($references as $reference) {
     echo <<<EOD
     <tr>
-        <th scope="col" class="col-icons">
+        <th>
+            $reference->description
+        </th>
+        <td scope="col" class="col-icons">
             <a href="$reference->url" target="_blank"><i class="fas fa-link"></i></a>
             <a href="?controller=reference&action=show&id=$reference->id"><i class="fas fa-eye"></i></a>
             <a href="?controller=reference&action=edit&id=$reference->id"><i class="fas fa-edit"></i></a>
-        </th>
-        <td>
-            $reference->description
         </td>
     </tr>
 EOD;
