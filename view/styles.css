@@ -26,3 +26,7 @@ tr:hover > .col-icons {
 .col-md-1 {
     max-width: 9% !important;
 }
+
+.description-title{
+    background-color: #4454a9;
+}
