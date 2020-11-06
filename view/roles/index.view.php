@@ -18,7 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 foreach($roles as $role) {
     echo <<<EOD
     <tr>
-        <th class="col-md-1 col-icons">
+        <th scope="col" class="col-icons">
             <a href="?controller=role&action=show&id=$role->id"><i class="fas fa-eye"></i></a>
             <a href="?controller=role&action=edit&id=$role->id"><i class="fas fa-edit"></i></a>
         </th>

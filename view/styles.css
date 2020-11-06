@@ -18,6 +18,11 @@ tr:hover > .col-icons {
     z-index: 9999;
 }
 
+.col-icons {
+    white-space: nowrap;
+    width: 1%;
+}
+
 .col-md-1 {
     max-width: 9% !important;
 }
