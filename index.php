@@ -31,4 +31,18 @@ $router->get('/references', function () use ($renderer) {
     ])->render();
 });
 
+$router->get('/references/:id/show', function ($params) use ($renderer) {
+    require './models/Reference.php';
+
+    if (!is_int($params['id'])) {
+        Router::redirect('/');
+    }
+
+    $reference = Reference::find_by_pk($params['id']);
+
+    $renderer->view('views/references/show.php')->values([
+        'reference' => $reference,
+    ])->render();
+});
+
 $router->execute();
