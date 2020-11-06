@@ -84,6 +84,27 @@ class ThemeController
 
     public function destroy($id)
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php"; // back to index after destroy
+        $theme = new theme();
+        $theme->id = $id;
+        $theme->load();
+        $theme_name = $theme->name;
+
+        if($theme->id == null) {
+            ViewHelpers::pushFlashMessage([
+                "text" => "Erreur lors de la suppression du thème avec l'id '{$id}' ",
+                "type" => "error"
+            ]);
+            header("Location: /?controller=theme&action=index");
+            return;
+        }
+
+        $theme->delete();
+
+        ViewHelpers::pushFlashMessage([
+            "text" => "Le thème '{$theme_name}' a été supprimé avec succès",
+            "type" => "info"
+        ]);
+
+        header("Location: /?controller=theme&action=index");    
     }
 }

@@ -85,8 +85,20 @@ class Theme {
         if($this->id == null)
             return false;
 
-        $stmt = Db::getDbConnection()->prepare("DELETE FROM `themes` WHERE (`id` = :id);");
+        /* It's actually impossible to delete the entry.
+        Try with choice 1 :
+        return Db::execute("DELETE FROM `myforum`.`themes` WHERE (`id` = :id);", ["id" => $this->id]);
+        */
+
+        /*return 
+        Try with choice 2 :
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `myforum`.`topics` WHERE (`theme_id` = :id);");
         $stmt->bindParam(":id", $this->id);
-        return $stmt->execute();
+        $stmt->execute();
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `myforum`.`themes` WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        return $stmt->execute();*/
     }
 }
