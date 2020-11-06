@@ -44,7 +44,7 @@ class ReferenceController
         $reference = new Reference();
         $reference->id = $id;
         $reference->delete();
-        
+
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php"; // back to index after destroy
     }
 }
