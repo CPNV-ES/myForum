@@ -1,6 +1,4 @@
 .idea/*
 node_modules
 
-model/db/dbconfig.php
-
-model/db/dbconfig.ini
+config.php
