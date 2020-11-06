@@ -4,7 +4,7 @@
 <form method="POST" action="?controller=reference&action=store">
     <input class="form-control" name = "description" id="description" type="text" placeholder="Description"/>
     <input class="form-control" name = "url" id="url" type="text" placeholder="URL"/>
-    <input class="btn btn-primary" type="submit" value="Create"/>
+    <input class="btn btn-success" type="submit" value="Create"/>
 </form>
 
 

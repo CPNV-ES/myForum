@@ -1,17 +1,6 @@
 <!--Falsh message (Message stocker dans la question)-->
 <?php ob_start(); ?>
 <h1 class="text-center p-5">List Reference</h1>
-
-
-<?php
-if (isset($_SESSION['flashMessage'])) {
-    echo "<div class='alert alert-primary'>";
-    echo $_SESSION['flashMessage'];
-    unset($_SESSION['flashMessage']);
-    echo "</div>";
-}
-
-?>
 </div>
 <a class="btn btn-primary" href="?controller=reference&action=create">Create</a>
 <table id="references" class="table">

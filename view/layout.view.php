@@ -38,6 +38,9 @@
     </ul>
 </nav>
 <div class="container-fluid">
+<?php if (helper::peakMessage()) { ?>
+        <div class="alert alert-warning"><?= helper::getMessage() ?></div>
+    <?php } ?>
     <?= $content ?>
 </div>
 </body>
