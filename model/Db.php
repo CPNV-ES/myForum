@@ -6,7 +6,7 @@ class Db {
 
     private function __construct() {
         $creds = (require(".credentials.php"))["mysql"];
-        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']};charset=utf-8", $creds["username"], $creds["passwd"]);
+        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']};", $creds["username"], $creds["passwd"]);
     }
 
     /**
@@ -40,13 +40,14 @@ class Db {
                 $queryResult = $statement->fetchAll(PDO::FETCH_CLASS, $classname);
             } else
             {
-                $queryResult = $statement->fetch(PDO::FETCH_CLASS, $classname);
+                $statement->setFetchMode(PDO::FETCH_CLASS, $classname);
+                $queryResult = $statement->fetch();
             }
             return $queryResult;
         } catch (PDOException $e)
         {
             print "Error!: " . $e->getMessage() . "<br/>";
-            return null;
+            return null; 
         }
     }
 

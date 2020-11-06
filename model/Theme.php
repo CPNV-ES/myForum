@@ -18,9 +18,9 @@ class Theme {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT name FROM `themes` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT name FROM `themes` WHERE `id`=:id", ["id" => $this->id], Theme::class);
         if($record) {
-            $this->name = $record["name"];
+            $this->name = $record;
 
             return true;
         }

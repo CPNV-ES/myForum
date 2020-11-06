@@ -12,7 +12,7 @@ class ThemeController
 
     public function index()
     {
-        $this->theme->id = 0;
+        $this->theme->id = 1;
 
         $themes = "Hey ! This is a test. My data = [". $this->theme->id. "] : " .$this->theme->load();
 
