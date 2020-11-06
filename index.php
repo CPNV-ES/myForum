@@ -70,6 +70,14 @@ $router->get('/references/:id/delete', function ($params) {
         Router::redirect('/');
     }
 
+    // We manually delete the record between the opinions and the references 
+    // tables as we cannot delete the reference otherwise.  
+    $connection = Database::get_connection();
+    $statement = $connection->prepare(
+        'DELETE FROM `opinions_has_references` WHERE `reference_id` = ?'
+    );
+    $statement->execute([$params['id']]);
+
     Reference::delete()->where('id', $params['id'])->execute();
 
     Router::redirect('/references');
