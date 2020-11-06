@@ -12,8 +12,9 @@ class ThemeController
 
     public function index()
     {
-        $themes = "Hey ! This is a test. ";
-        //$this->theme->load();
+        $this->theme->id = 0;
+
+        $themes = "Hey ! This is a test. My data = [". $this->theme->id. "] : " .$this->theme->load();
 
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php";
     }
