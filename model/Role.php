@@ -11,6 +11,15 @@ class Role {
     }
 
     /**
+     * Returns an array of objects representing all records of the table
+     * @returns array<Reference> An array containing instances of all the Roles stored in the database
+     */
+    public static function all()
+    {
+        return Db::selectMany("SELECT * FROM `roles`", [], "Role");
+    }
+
+    /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
      */
@@ -18,9 +27,9 @@ class Role {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOneRecord("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id], "Role");
         if($record) {
-            $this->name = $record["name"];
+            $this->name = $record->name;
 
             return true;
         }

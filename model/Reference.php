@@ -15,6 +15,7 @@ class Reference
 
     /**
      * Returns an array of objects representing all records of the table
+     * @returns array<Reference> An array containing instances of all the References stored in the database
      */
     public static function all()
     {
@@ -30,10 +31,10 @@ class Reference
         if ($this->id == null)
             return false;
 
-        $record = Db::selectOne("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id], "Reference");
         if ($record) {
-            $this->description = $record["description"];
-            $this->url = $record["url"];
+            $this->description = $record->description;
+            $this->url = $record->url;
 
             return true;
         } else {
@@ -73,8 +74,15 @@ class Reference
      */
     public function delete()
     {
-        if ($this->id == null)
+        if($this->id == null)
             return false;
-        return Db::execute("DELETE FROM `references` WHERE (`id` = :id);", ["id" => $this->id]);
+        
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `opinions_has_references` WHERE (`reference_id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `references` WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        return $stmt->execute();
     }
 }

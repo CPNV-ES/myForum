@@ -14,7 +14,7 @@ $role->name = "testing";
 
 $role->save(); // The method we test here: save the new value to the db
 
-$readback = Db::selectOneRecord("select * from roles where name=:name", ["name" => "testing"]); // function from db.php
+$readback = Db::selectOne("select * from roles where name=:name", ["name" => "testing"]); // function from db.php
 if ($readback["name"] == "testing" && $role->id > 0) {
     echo "success\n";
 } else {

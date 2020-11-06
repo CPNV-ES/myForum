@@ -1,0 +1,28 @@
+.col-icons {
+    opacity: 0;
+}
+
+tr:hover > .col-icons {
+    opacity: 1;
+}
+
+.col-icons > a:not(:first-child) {
+    margin-left: 15px;
+}
+
+#flash-message-container {
+    position:fixed;
+    right: 10px;
+    top: 10px;
+    width: 350px;
+    z-index: 9999;
+}
+
+.col-icons {
+    white-space: nowrap;
+    width: 1%;
+}
+
+.col-md-1 {
+    max-width: 9% !important;
+}
