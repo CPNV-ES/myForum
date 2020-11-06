@@ -16,18 +16,7 @@ class Role {
      */
     public static function all()
     {
-        $references = [];
-        $rows = Db::selectMany("SELECT id, name FROM `roles`", []);
-        foreach($rows as $row) {
-            $r = new Role();
-
-            $r->id = $row["id"];
-            $r->name = $row["name"];
-
-            array_push($references, $r);
-        }
-
-        return $references;
+        return Db::selectMany("SELECT * FROM `roles`", [], "Role");
     }
 
     /**
@@ -38,9 +27,9 @@ class Role {
         if($this->id == null)
             return false;
 
-        $record = Db::selectOne("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id]);
+        $record = Db::selectOne("SELECT name FROM `roles` WHERE `id`=:id", ["id" => $this->id], "Role");
         if($record) {
-            $this->name = $record["name"];
+            $this->name = $record->name;
 
             return true;
         }
