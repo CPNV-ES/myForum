@@ -8,11 +8,11 @@
     <?php foreach ($references as $reference): ?>
         <tr>
             <td class="w-25">
-                <i class="fas fa-eye mr-4"></i>
-                <i class="fas fa-search-plus"></i>
+                <a href="<?= $reference->url ?>"><span class="fas fa-eye mr-4"></span></a>
+                <a id="<?= $reference->id ?>" href="?controller=reference&action=show&id=<?= $reference->id; ?>"><span class="fas fa-search-plus"></span></a>
             </td>
             <td>
-                <a id="<?= $reference->id ?>" href="?controller=reference&action=show&id=<?= $reference->id; ?>"><?= $reference->description ?></a>
+                <?= $reference->description ?>
             </td>
         </tr>
     <?php endforeach; ?>
