@@ -6,6 +6,10 @@ tr:hover > .col-icons {
     opacity: 1;
 }
 
+tr:hover{
+    background-color: aliceblue;
+}
+
 .col-icons > a:not(:first-child) {
     margin-left: 15px;
 }
