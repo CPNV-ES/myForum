@@ -18,7 +18,7 @@ tr:hover > .col-icons {
     z-index: 9999;
 }
 
-.col-icons {
+.col-fit-content {
     white-space: nowrap;
     width: 1%;
 }

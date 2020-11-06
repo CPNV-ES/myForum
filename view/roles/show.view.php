@@ -25,11 +25,11 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 <table class='table table-bordered table-sm col col-12'>
     <tbody>
         <tr>
-            <th class="col-md-1 stylish-color white-text">ID</th>
+            <th scope="col" class="stylish-color white-text col-fit-content">ID</th>
             <td><?= $role->id ?></td>
         </tr>
         <tr>
-            <th class="col-md-1 stylish-color white-text">NOM</th>
+            <th scope="col" class="stylish-color white-text col-fit-content">NOM</th>
             <td><?= $role->name?></td>
         </tr>
     </tbody>
