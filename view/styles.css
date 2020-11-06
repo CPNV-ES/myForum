@@ -16,3 +16,7 @@ tr:hover > .col-icons {
     width: 350px;
     z-index: 9999;
 }
+
+.col-md-1 {
+    max-width: 9% !important;
+}
