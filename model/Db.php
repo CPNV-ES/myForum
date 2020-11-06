@@ -41,7 +41,8 @@ class Db {
                 $queryResult = $statement->fetchAll(PDO::FETCH_CLASS, $classname);
             } else
             {
-                $queryResult = $statement->fetch(PDO::FETCH_CLASS, $classname);
+                $statement->setFetchMode(PDO::FETCH_CLASS, $classname);
+                $queryResult = $statement->fetch();
             }
             return $queryResult;
         } catch (PDOException $e)
