@@ -76,6 +76,10 @@ class Reference
     {
         if($this->id == null)
             return false;
+        
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `opinions_has_references` WHERE (`reference_id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        $stmt->execute();
 
         $stmt = Db::getDbConnection()->prepare("DELETE FROM `references` WHERE (`id` = :id);");
         $stmt->bindParam(":id", $this->id);
