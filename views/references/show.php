@@ -13,7 +13,7 @@
             <td><?= $reference->url ?></td>
             <td>
                 <a class="btn btn-secondary" href="/references/<?= $reference->id ?>/edit">Edit</a>
-                <a class="btn btn-danger" href="/references/<?= $reference->id ?>/delete">Delete</a>
+                <a class="btn btn-danger" href="/references/<?= $reference->id ?>/delete" data-confirm="Êtes-vous certains de vouloir supprimer cette référence ?">Delete</a>
             </td>
         </tr>
     </tbody>
