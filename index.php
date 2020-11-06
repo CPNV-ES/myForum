@@ -45,6 +45,10 @@ $router->get('/references/:id/show', function ($params) use ($renderer) {
     ])->render();
 });
 
+$router->get('/references/new', function () use ($renderer) {
+    $renderer->view('views/references/new.php')->render();
+});
+
 $router->get('/references/:id/edit', function ($params) use ($renderer) {
     require './models/Reference.php';
 
@@ -70,6 +74,17 @@ $router->post('/references/:id/edit', function ($params) {
         'description' => $_POST['description'],
         'url' => $_POST['url'],
     ])->where('id', $params['id'])->execute();
+
+    Router::redirect('/references');
+});
+
+$router->post('/references/new', function () {
+    require './models/Reference.php';
+
+    Reference::insert([
+        'description' => $_POST['description'],
+        'url' => $_POST['url'],
+    ]);
 
     Router::redirect('/references');
 });
