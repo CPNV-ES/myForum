@@ -50,6 +50,10 @@ class ThemeController
 
     public function destroy($id)
     {
+        $this->theme->id = $_GET['id'];
+        $this->theme->load();
+        $this->theme->delete();
+        $allTheme = $this->theme->all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php"; // back to index after destroy
     }
 }

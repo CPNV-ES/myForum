@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.css">
     <script src="https://kit.fontawesome.com/bf0671b196.js" crossorigin="anonymous"></script>
-    <script src="assets/js/event.js"></script>
     <script src="node_modules/mdbootstrap/js/jquery.js"></script>
     <script src="node_modules/mdbootstrap/js/bootstrap.js"></script>
     <script src="node_modules/mdbootstrap/js/popper.js"></script>
