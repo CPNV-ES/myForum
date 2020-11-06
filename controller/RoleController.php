@@ -96,8 +96,8 @@ class RoleController
     {
         $role = new Role();
         $role->id = $id;
-        $role_name = $role->name;
         $role->load();
+        $role_name = $role->name;
 
         if($role->id == null) {
             array_push($_SESSION["flash_messages"], [
