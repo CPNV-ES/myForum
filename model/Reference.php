@@ -74,8 +74,11 @@ class Reference
      */
     public function delete()
     {
-        if ($this->id == null)
+        if($this->id == null)
             return false;
-        return Db::execute("DELETE FROM `references` WHERE (`id` = :id);", ["id" => $this->id]);
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `references` WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        return $stmt->execute();
     }
 }
