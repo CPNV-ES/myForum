@@ -31,7 +31,7 @@ class ReferenceController
         $reference->url = $_POST['url'];
         $reference->save();
         ViewHelpers::setFlashMessage("Nouvelle référence créée");
-        $this->show($reference->id);
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php";
     }
 
     public function edit($id) // simply show the edit form
@@ -51,7 +51,7 @@ class ReferenceController
         $reference->url = $_POST['url'];
         $reference->update();
         ViewHelpers::setFlashMessage("Référence modifiée");
-        $this->show($id); // back to show after saving changes
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php";
     }
 
     public function destroy($id)
