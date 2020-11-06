@@ -14,7 +14,7 @@ $state->name = "testing";
 
 $state->save(); // The method we test here: save the new value to the db
 
-$readback =  Db::selectOneRecord("select * from states where name=:name", ["name" => "testing"]); // function from db.php
+$readback =  Db::selectOne("select * from states where name=:name", ["name" => "testing"]); // function from db.php
 if ($readback["name"] == "testing" && $state->id > 0) {
     echo "success\n";
 } else {

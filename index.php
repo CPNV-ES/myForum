@@ -10,10 +10,11 @@ require_once "controller/ReferenceController.php";
 require_once "controller/RoleController.php";
 require_once "controller/StateController.php";
 require_once "controller/ThemeController.php";
+require_once "view/ViewHelpers.php";
 
 $controller = $_GET['controller'] . "Controller";
 $action = $_GET['action'];
-$id = intval($_GET['id']);
+$id = isset($_GET['id']) && ctype_digit($_GET['id']) ? intval($_GET['id']) : null;
 if (empty($controller) || empty($action)) {
     require_once "view/homepage.view.php";
 } else {

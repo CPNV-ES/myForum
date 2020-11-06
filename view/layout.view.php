@@ -5,11 +5,63 @@
     <title>myForum</title>
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/solid.css" integrity="sha384-HTDlLIcgXajNzMJv5hiW5s2fwegQng6Hi+fN6t5VAcwO/9qbg2YEANIyKBlqLsiT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/regular.css" integrity="sha384-R7FIq3bpFaYzR4ogOiz75MKHyuVK0iHja8gmH1DHlZSq4tT/78gKAa7nl4PJD7GP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/brands.css" integrity="sha384-KtmfosZaF4BaDBojD9RXBSrq5pNEO79xGiggBxf8tsX+w2dBRpVW5o0BPto2Rb2F" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/fontawesome.css" integrity="sha384-8WwquHbb2jqa7gKWSoAwbJBV2Q+/rQRss9UXL5wlvXOZfSodONmVnifo/+5xJIWX" crossorigin="anonymous">
+    <link rel="stylesheet" href="view/styles.css">
     <script src="node_modules/mdbootstrap/js/jquery.js"></script>
     <script src="node_modules/mdbootstrap/js/bootstrap.js"></script>
     <script src="node_modules/mdbootstrap/js/popper.js"></script>
+    <script src="view/common.js"></script>
 </head>
 <body>
+
+<div id="flash-message-container">
+    <?php
+        while($message = ViewHelpers::shiftFlashMessage()) {
+            $toast_class = "";
+            $icon_class = "";
+            $title = "";
+            switch($message["type"]) {
+                case "warning":
+                    $toast_class = "flash-message-warning";
+                    $icon_class = "fas fa-exclamation-circle yellow-text mr-2";
+                    $title = "Avertissement";
+                    break;
+                case "error":
+                    $toast_class = "flash-message-warning";
+                    $icon_class = "fas fa-exclamation-triangle red-text mr-2";
+                    $title = "Erreur";
+                    break;
+                default:
+                    $toast_class = "flash-message-info";
+                    $icon_class = "fas fa-info-circle blue-text mr-2";
+                    $title = "Info";
+            }
+
+            echo <<<EOF
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast $toast_class" data-autohide="true" data-delay="10000">
+                <div class="toast-header">
+                    <i class="{$icon_class}"></i>
+                    <strong class="mr-auto">$title</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    {$message['text']}
+                </div>
+            </div>
+EOF;
+        }
+
+    $_SESSION["flash_messages"] = [];
+
+    ?>
+
+</div>
+
 <div class="w-100 bg-primary font-weight-bolder p-5 navbar"><a class="text-reset" href="/"><h1>My Forum</h1></a></div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav mr-auto">

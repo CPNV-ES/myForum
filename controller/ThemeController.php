@@ -12,8 +12,10 @@ class ThemeController
 
     public function index()
     {
-        $AllTheme = "salut";//$this->theme->load();
-
+        $this->theme->id = 1;
+        if($this->theme->load())
+            $themes = "Hey ! This is a test. My data = [". $this->theme->id. "] : " .$this->theme->name;
+        
         require_once $_SERVER['DOCUMENT_ROOT']."/view/themes/index.view.php";
     }
 
