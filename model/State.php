@@ -16,19 +16,9 @@ class State {
      */
     public static function all()
     {
-        $references = [];
-        $rows = Db::selectMany("SELECT id, name FROM `states`", []);
-        foreach($rows as $row) {
-            $r = new State();
-
-            $r->id = $row["id"];
-            $r->name = $row["name"];
-
-            array_push($references, $r);
-        }
-
-        return $references;
+        return Db::selectMany("SELECT * FROM `states`", [], "State");
     }
+
 
     /**
      * Load data from the database based on this instance's id property
