@@ -26,7 +26,23 @@ class StateController
 
     public function store() // handle form creation submit
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/states/show.view.php"; // back to show after storing new resource
+        $state = new State();
+        $state->name = htmlspecialchars($_GET["name"]);
+        $state->save();
+
+        if($state->id != null) {
+            ViewHelpers::pushFlashMessage([
+                "text" => "Le rôle '{$state->name}' a bien été créé",
+                "type" => "info"
+            ]);
+        }
+        else {
+            ViewHelpers::pushFlashMessage([
+                "text" => "Erreur lors de la création du rôle '{$state->name}'",
+                "type" => "error"
+            ]);
+        }
+        header("Location: /?controller=state&action=index");
     }
 
     public function edit($id) // simply show the edit form
