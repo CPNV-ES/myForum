@@ -94,6 +94,27 @@ class StateController
 
     public function destroy($id)
     {
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/states/index.view.php"; // back to index after destroy
+        $state = new State();
+        $state->id = $id;
+        $state->load();
+        $state_name = $state->name;
+
+        if($state->id == null) {
+            ViewHelpers::pushFlashMessage([
+                "text" => "Erreur lors de la suppression du rôle avec l'id '{$id}' ",
+                "type" => "error"
+            ]);
+            header("Location: /?controller=state&action=index");
+            return;
+        }
+
+        $state->delete();
+
+        ViewHelpers::pushFlashMessage([
+            "text" => "Le rôle '{$state_name}' a été supprimé avec succès",
+            "type" => "info"
+        ]);
+
+        header("Location: /?controller=state&action=index");
     }
 }
