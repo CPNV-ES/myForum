@@ -13,6 +13,9 @@ class StateController
 
     public function show($id)
     {
+        $state = new State();
+        $state->id = $id;
+        $state->load();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/states/show.view.php";
     }
 
