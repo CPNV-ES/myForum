@@ -7,6 +7,7 @@ class OpinionController
     public function index()
     {
         $opinions = Opinion::all();
+        $opinionstates = Opinion::allOpinionState();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/index.view.php";
     }
 

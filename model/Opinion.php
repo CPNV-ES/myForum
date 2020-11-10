@@ -20,6 +20,13 @@ class Opinion
     {
         return Db::selectMany("SELECT * FROM `opinions` INNER JOIN `opinionstates` ON `opinionstates`.id = `opinions`.opinionstate_id INNER JOIN `users` ON `users`.id = `opinions`.user_id", [], "Opinion");
     }
+    /**
+     * Returns an array of objects representing all records of the table
+     */
+    public static function allOpinionState()
+    {
+        return Db::selectMany("SELECT * FROM `opinionstates` ", [], "Opinion");
+    }
 
     /**
      * Load data from the database based on this instance's id property
