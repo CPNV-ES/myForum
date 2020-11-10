@@ -4,7 +4,7 @@
 <h1 class="text-center">Opinions</h1>
 
 <div class="row">
-    <table class="table">
+    <table id="opinionTable" class="table">
         <thead>
             <tr>
                 <th></th>
