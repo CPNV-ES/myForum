@@ -11,7 +11,14 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
             <th class="description-title-cyan white-text">Pseudo</th>
             <th class="blue-gradient-rgba white-text">Opinion</th>
             <th class="description-title white-text">State</th>
-            <th scope="col" class="description-title"></th>
+            <th>
+                <select name="cars" id="cars" class="description-title white-text">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </th>
         </tr>
     </thead>
     <tbody>
