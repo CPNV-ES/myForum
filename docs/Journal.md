@@ -10,3 +10,4 @@
 - ajout du bouton "Modération".
 - redirection vers la page "Opinions".
 - Créer la requête sql pour récupérer toutes les opinions.
+- Afficher les opinions sur la page.
