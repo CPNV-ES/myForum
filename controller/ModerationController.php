@@ -3,7 +3,7 @@
 include "model/Opinion.php";
 include "model/User.php";
 include "model/State.php";
-include "./view/helpers/helper.php";
+
 class ModerationController
 {
     public function index()
@@ -16,6 +16,10 @@ class ModerationController
             $Value->state_name = State::getStateById($Value->opinionstate_id);
         }
         require_once "./view/moderation/index.view.php";       
+    }
+    public function cycle()
+    {
+        require_once "./view/moderation/cycle.view.php";
     }
 }
 
