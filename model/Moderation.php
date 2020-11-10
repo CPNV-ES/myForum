@@ -20,7 +20,7 @@ class Moderation
      */
     public static function all()
     {
-        return Db::selectMany("SELECT * FROM `opinions`", [], "Moderation");
+        return Db::selectMany("select * from opinions as op inner join users as us on us.id = op.user_id inner join states as st on st.id = op.opinionstate_id", [], "Moderation");
     }
 
     /**
