@@ -6,3 +6,6 @@
 - Implémenter le script JS de filtrage
 
 # Execution
+- Mise en place de la nouvelle BDD
+- Mise en place de la structure (modèle, vue, controlleur) vide pour l'instant afin de permettre d'afficher une simple page vide pour la modération des opinions
+-

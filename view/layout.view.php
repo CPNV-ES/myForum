@@ -87,6 +87,7 @@ EOF;
         <li class="nav-item"><a href="?controller=reference&action=index" class="btn">Gestion des références</a></li>
         <li class="nav-item"><a href="?controller=role&action=index" class="btn">Gestion des rôles</a></li>
         <li class="nav-item"><a href="?controller=state&action=index" class="btn">Gestion des états</a></li>
+        <li class="nav-item"><a href="?controller=opinion&action=moderate" class="btn">Modération</a></li>
     </ul>
 </nav>
 <div class="container-fluid">
