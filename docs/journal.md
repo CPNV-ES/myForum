@@ -15,3 +15,5 @@ Création du bouton "modération".
 
 On a besoin de créer la structure moderation. pour cela je crée une structure MVC similaire à celui de référence. J'adaptereai après le code.
 
+Parfait, maintenant avec une petite adaptation ma page affiche déjà mes opinons. Il faut maintenant ajouter le pseudo et ainsi que les états
+
