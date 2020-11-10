@@ -99,4 +99,19 @@ function test(){
     }
 }
 ```
-Fonction test pour cacher tous les éléments de la classe "Clos", il est maintenant temps de dynamiser tout cela.
+Fonction test pour cacher tous les éléments de la classe "Clos", il est maintenant temps de dynamiser tout cela :
+
+
+```js
+function HideContent(){
+    //Get all elements that classes names match with the selected value list     
+    var test = document.getElementsByClassName(document.getElementById('states').value);
+
+    //Hide them.
+    for(var i = 0; i < test.length; i++){
+        test[i].style.display = "none";
+    }
+}
+```
+
+Mainenant ça fonctionne hélas, le contenu ne réapparaît pas une fois que la liste se modifie. Il faut corriger ce problème.
