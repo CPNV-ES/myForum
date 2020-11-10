@@ -2,11 +2,12 @@
 
 require_once("Db.php");
 
-class Reference
+class Moderation
 {
     public $id;
-    public $description;
-    public $url;
+    public $pseudo;
+    public $opinion;
+    public $state;
 
     public function __construct()
     {
@@ -19,7 +20,7 @@ class Reference
      */
     public static function all()
     {
-        return Db::selectMany("SELECT * FROM `references`", [], "Reference");
+        return Db::selectMany("SELECT * FROM `opinions`", [], "Moderation");
     }
 
     /**
