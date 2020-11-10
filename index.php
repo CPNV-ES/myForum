@@ -109,6 +109,11 @@ $router->post('/references/new', function () {
     Router::redirect('/references');
 });
 
+$router->get('/moderation', function() use ($renderer) {
+
+    $renderer->view('views/moderation.php')->render();
+});
+
 $router->get('/:', function () use ($renderer) {
     http_response_code(404);
 
