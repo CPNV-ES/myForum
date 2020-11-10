@@ -17,8 +17,12 @@ class ModerationController
         }
         require_once "./view/moderation/index.view.php";       
     }
+
+
+
     public function cycle()
     {
+        $opinions = Opinion::all();
         require_once "./view/moderation/cycle.view.php";
     }
 }
