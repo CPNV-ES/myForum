@@ -6,10 +6,19 @@ class OpinionState {
     public $id;
     public $name;
 
+    /**
+     * Returns an array of objects representing all records of the table
+     * @returns array<Reference> An array containing instances of all the References stored in the database
+     */
     public static function all() {
         return Db::selectMany("SELECT * FROM `opinionstates`", [], "OpinionState");
     }
 
+
+    /**
+     * Load data from the database based on this instance's id property
+     * @return bool true on success, false otherwise
+     */
     public function load() {
         if ($this->id == null)
             return false;

@@ -12,6 +12,7 @@ function filterRows(opinionStateId) {
     for (var i = 0; i < rows.length; i++) {
         let e = rows[i];
 
+        // opinion state -1 means "Display all"
         if(opinionStateId != -1 && e.dataset.state != opinionStateId) {
             e.style.display = "none";
         }
