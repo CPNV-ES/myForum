@@ -1,4 +1,3 @@
-
 const selectElement = document.querySelector('.state-select');
 
 selectElement.addEventListener('change', (event) => {
@@ -9,23 +8,22 @@ selectElement.addEventListener('change', (event) => {
     let elements = document.getElementsByClassName("test");
 
     document.write(names);
-    switch(strUser) {
+    switch (strUser) {
         default:
         case '--- Tous ----':
             // code block
             break;
         case 'En Modification':
-            for(let i=0; i<elements.length; i++) {
+            for (let i = 0; i < elements.length; i++) {
                 let value = elements[i].id.valueOf();
-                if(value === "En Modification"){
+                if (value === "En Modification") {
                     elements[i].classList.add('none')
-                }
-                else {
+                } else {
                     false;
                 }
             }
             break;
-          case 'En revue':
+        case 'En revue':
             // code block
             break;
         case 'Nouveau':
@@ -40,5 +38,5 @@ selectElement.addEventListener('change', (event) => {
         case 'Rejeté':
             // code block
             break;
-}
+    }
 });

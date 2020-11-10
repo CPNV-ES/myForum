@@ -2,7 +2,8 @@
 
 require_once "db.php";
 
-class Reference{
+class Reference
+{
 
     public $id;
     public $description;
@@ -12,7 +13,7 @@ class Reference{
     public static function all()
     {
 
-        
+
         $pdo = Db::connect();
         $req = "SELECT `id`,`description`,`url` FROM `references`";
         $stmt = $pdo->prepare($req);
@@ -33,37 +34,35 @@ class Reference{
 
     public function save()
     {
-        
+
         $pdo = Db::connect();
-        $req = "INSERT INTO `references`(id,description,url)VALUES(NULL,'".$this->description."','".$this->url."');";
+        $req = "INSERT INTO `references`(id,description,url)VALUES(NULL,'" . $this->description . "','" . $this->url . "');";
         $stmt = $pdo->prepare($req);
 
         $stmt->execute();
-        $this->id =intval($pdo->lastInsertId());
+        $this->id = intval($pdo->lastInsertId());
     }
 
     public function load()
     {
         $pdo = Db::connect();
         $req = "SELECT * FROM `references` WHERE id=$this->id";
-        $stmt = $pdo->prepare($req); 
+        $stmt = $pdo->prepare($req);
         $stmt->execute();
         $result = $stmt->fetchAll();
-        if(!$result)
-        {
+        if (!$result) {
             $this->id = null;
-        }
-        else{
+        } else {
             foreach ($result as $Key) {
                 $this->id = $Key['id'];
                 $this->description = $Key['description'];
                 $this->url = $Key['url'];
             }
-        }   
-        
+        }
+
     }
 
-    public static function update($id,$description,$url)
+    public static function update($id, $description, $url)
     {
         $pdo = Db::connect();
         $req = "UPDATE `references` SET description=?,url=?  WHERE id = ? ";
@@ -81,10 +80,8 @@ class Reference{
         $req = "DELETE FROM `references` WHERE id = ?";
         $stmt = $pdo->prepare($req);
         $stmt->execute(array($id));
-        
+
     }
 
-    
-   
 
 }
