@@ -109,7 +109,15 @@ $router->post('/references/new', function () {
     Router::redirect('/references');
 });
 
-$router->get('/moderation', function() use ($renderer) {
+$router->get('/moderation', function () use ($renderer) {
+    require_once './models/Opinion.php';
+    require_once './models/OpinionState.php';
+    require_once './models/User.php';
+
+    $opinions = Opinion::select()->join([
+        OpinionState::class,
+        User::class
+    ])->execute();
 
     $renderer->view('views/moderation.php')->render();
 });
