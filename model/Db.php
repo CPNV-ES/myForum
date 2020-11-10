@@ -54,14 +54,47 @@ class Db {
         }
     }
 
+    private static function selectToArray($query, $params, $multirecord)
+    {
+        $dbh = self::getDbConnection();
+        try
+        {
+            $statement = $dbh->prepare($query);//prepare query
+            $statement->execute($params);//execute query
+            if ($multirecord)
+            {
+                $queryResult = $statement->fetchAll(PDO::FETCH_ASSOC);
+            } else
+            {
+                $statement->setFetchMode(PDO::FETCH_ASSOC);
+                $queryResult = $statement->fetch();
+            }
+            return $queryResult;
+        } catch (PDOException $e)
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            return null;
+        }
+    }
+
     public static function selectOne($query, $params, $classname)
     {
         return self::select($query, $params, false, $classname);
     }
 
+    public static function selectOneToArray($query, $params)
+    {
+        return self::selectToArray($query, $params, false);
+    }
+
     public static function selectMany($query, $params, $classname)
     {
         return self::select($query, $params, true, $classname);
+    }
+
+    public static function selectManyToArray($query, $params)
+    {
+        return self::selectToArray($query, $params, true);
     }
 
     public static function insert($query, $params)
