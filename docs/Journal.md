@@ -6,4 +6,4 @@
 - Gestion des opinions par rapport à l'état sélectionner.
 
 # Execution
-- 
+- ajout du bouton "Modération".
