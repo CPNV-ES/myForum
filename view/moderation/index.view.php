@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 <table class='table table-borderless table-sm col col-12'>
     <thead>
         <tr>
-            <th class="blue-gradient-rgba white-text">Pseudo</th>
+            <th class="description-title-cyan white-text">Pseudo</th>
             <th class="blue-gradient-rgba white-text">Opinion</th>
             <th class="description-title white-text">State</th>
             <th scope="col" class="description-title"></th>
