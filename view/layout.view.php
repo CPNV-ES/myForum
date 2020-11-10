@@ -8,6 +8,7 @@
     <script src="node_modules/mdbootstrap/js/jquery.js"></script>
     <script src="node_modules/mdbootstrap/js/bootstrap.js"></script>
     <script src="node_modules/mdbootstrap/js/popper.js"></script>
+    <script src="./script/dataconfirm.js"></script>
 </head>
 <body>
 <div class="w-100 bg-primary font-weight-bolder p-5 navbar"><a class="text-reset" href="/"><h1>My Forum</h1></a></div>

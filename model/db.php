@@ -10,15 +10,4 @@ class Db{
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $connexion;
     }
-
-    public function selectOneRecord($req,$name)
-    {
-        $pdo = $this->connect();
-        $stmt = $pdo->prepare($req);//Protect from injection
-        $stmt->execute($name);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $data = $stmt->fetch();
-        return $data;
-    }
-
 }
