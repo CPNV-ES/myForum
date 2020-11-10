@@ -5,4 +5,8 @@
 
 #Executions
 
--
+- Ajouter un nouveau controller opinions
+- Ajouter un nouveau model opinions
+- Ajouter une nouvelle vue opinions
+- Ajouter le controller opinion à index.php
+- 
