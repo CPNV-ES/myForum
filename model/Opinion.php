@@ -1,6 +1,7 @@
 <?php
 
 require_once("Db.php");
+require_once("OpinionState.php");
 
 class Opinion {
     public $id;
@@ -37,7 +38,7 @@ class Opinion {
         Db::getDbConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $record = Db::selectOneToArray("
-            SELECT description as description, users.pseudo as user_pseudo, opinionstates.name as opinionstate_name
+            SELECT description as description, users.pseudo as user_pseudo, opinionstate_id as opinionstate_id
             FROM `opinions` 
             INNER JOIN users ON users.id = opinions.user_id
             INNER JOIN opinionstates on opinionstates.id = opinionstate_id
@@ -46,9 +47,12 @@ class Opinion {
         
 
         if ($record) {
+            $opstate = new OpinionState();
             $this->description = $record["description"];
             $this->user_pseudo = $record["user_pseudo"];
-            $this->state = $record["opinionstate_name"];
+            $opstate->id = $record["opinionstate_id"];
+            $opstate->load();
+            $this->state = $opstate;
 
             return true;
         } else {
