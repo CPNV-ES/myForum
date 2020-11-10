@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 
 <label for="filter">Filtre</label>
 <select id="filter">
-    <option value="-1">--- ALL ---</option>
+    <option value="-1">--- Tous ---</option>
     <?php
 
     foreach($opinionStates as $opinionState) {
