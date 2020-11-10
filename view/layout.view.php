@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.css">
-    <script src="https://kit.fontawesome.com/bf0671b196.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="css/all.css">
     <script src="node_modules/mdbootstrap/js/jquery.js"></script>
     <script src="node_modules/mdbootstrap/js/bootstrap.js"></script>
     <script src="node_modules/mdbootstrap/js/popper.js"></script>
@@ -39,7 +40,10 @@
         <li class="nav-item"><a href="?controller=state&action=index" class="btn">Gestion des états</a></li>
     </ul>
 </nav>
-<div class="container-fluid">
+<div class="container p-5">
+    <?php if (ViewHelpers::peekFlashMessage()) { ?>
+        <div class="alert alert-warning"><?= ViewHelpers::getFlashMessage() ?></div>
+    <?php } ?>
     <?= $content ?>
 </div>
 </body>

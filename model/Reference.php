@@ -1,5 +1,7 @@
 <?php
-require "db.php";
+
+require_once("Db.php");
+
 class Reference
 {
     public $id;
@@ -7,9 +9,9 @@ class Reference
     public $url = 'https://testing.ch';
     private $connect;
 
-    function __construct()
+    public function __construct()
     {
-        $this->connect = getDB();
+
     }
     /**
      * Returns an array of objects representing all records of the table
@@ -17,12 +19,7 @@ class Reference
 
     public function all()
     {
-        //TODO Build and return an array of Reference objects
-        $result = $this->connect->prepare("SELECT * FROM `references`");
-        $result->execute();
-
-        return $result->fetchAll(PDO::FETCH_ASSOC);
-
+        return Db::selectMany("SELECT * FROM `references`", [], "Reference");
     }
     public function save()
     {
@@ -31,42 +28,62 @@ class Reference
         $result->bindParam(":url", $this->url);
         $result->execute();
 
-        $result = $this ->connect->prepare("SELECT `id` FROM `references` WHERE `description`=:name");
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+    /**
+     * Load data from the database based on this instance's id property
+     * @return bool true on success, false otherwise
+     */
+    public function load()
+    {
+        if ($this->id == null)
+            return false;
 
-        $data = $result->fetch();
+        $record = Db::selectOne("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id],"Reference");
 
-        $this->id = $data;
+        if ($record) {
+            $this->description = $record->description;
+            $this->url = $record->url;
+
+            return true;
+        } else {
+            $this->description = null;
+            $this->url = null;
+            $this->id = null;
+
+            return false;
+        }
     }
 
-    function load()
+    /**
+     * Save the values contained in this instance as a new entry in the database
+     * @return bool true on success, false otherwise
+     */
+    public function save()
     {
-        $result = $this ->connect->prepare("SELECT `description`, `id` FROM `references` WHERE `id`=:id");
-        $result->bindParam(":id", $this->id);
-        $result->execute();
+        if ($this->description == null)
+            return false;
 
-        $data = $result->fetch();
-
-        $this->name = $data["description"];
-        $this->id = $data["id"];
-
-        return $result->fetch();
+        $this->id = Db::insert("INSERT INTO `references` (`description`, `url`) VALUES (:description, :url);", ["description" => $this->description, ":url" => $this->url]);
+        return $this->id;
     }
 
-    function update()
+    /**
+     * Updated the values stored in the corresponding database entry based on the values of this instance
+     * @return bool true on success, false otherwise
+     */
+    public function update()
     {
-        $result = $this ->connect->prepare("UPDATE `references` SET `description` = :name WHERE `id` = :id ");
-        $result->bindParam(":id", $this->id);
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+        return Db::execute("UPDATE `references` SET `description`=:description, `url`=:url WHERE (`id` = :id);", ["id" => $this->id, "description" => $this->description, "url" => $this->url]);
     }
 
-    function delete()
+    /**
+     * Delete the database entry corresponding to this instance
+     * @return bool true on success, false otherwise
+     */
+    public function delete()
     {
-        $result = $this ->connect->prepare("DELETE FROM `references` WHERE `description` = :name");
-        $result->bindParam(":name", $this->name);
-        $result->execute();
+        if ($this->id == null)
+            return false;
+        return Db::execute("DELETE FROM `references` WHERE (`id` = :id);", ["id" => $this->id]);
     }
 }
 
