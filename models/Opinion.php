@@ -2,6 +2,8 @@
 
 use Expreql\Expreql\Model;
 
+require_once 'models/OpinionState.php';
+
 class Opinion extends Model
 {
     public static $table = 'opinions';
@@ -13,5 +15,9 @@ class Opinion extends Model
         'description',
         'user_id',
         'opinionstate_id'
+    ];
+
+    public static $has_one = [
+        OpinionState::class => 'opinionstate_id',
     ];
 }
