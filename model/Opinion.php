@@ -73,4 +73,17 @@
         $stmt->bindValue(":opinionstateid", $this->opinionStateId);
         return $stmt->execute();
     }
+
+    /**
+     * Delete the database entry corresponding to this instance
+     * @return bool true on success, false otherwise
+     */
+    public function delete() {
+        if($this->id == null)
+            return false;
+
+        $stmt = Db::getDbConnection()->prepare("DELETE FROM `opinions` WHERE (`id` = :id);");
+        $stmt->bindParam(":id", $this->id);
+        return $stmt->execute();
+    }
  }
