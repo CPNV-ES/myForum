@@ -23,8 +23,6 @@ class OpinionState {
         if ($this->id == null)
             return false;
 
-        Db::getDbConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $record = Db::selectOneToArray("SELECT name FROM `opinionstates` WHERE `id`=:id",
             ["id" => $this->id]);
 

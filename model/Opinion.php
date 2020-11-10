@@ -34,9 +34,7 @@ class Opinion {
     public function load() {
         if ($this->id == null)
             return false;
-
-        Db::getDbConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        
         $record = Db::selectOneToArray("
             SELECT description as description, users.pseudo as user_pseudo, opinionstate_id as opinionstate_id
             FROM `opinions` 
