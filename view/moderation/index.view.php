@@ -12,11 +12,13 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
             <th class="blue-gradient-rgba white-text">Opinion</th>
             <th class="description-title white-text">State</th>
             <th>
-                <select name="cars" id="cars" class="description-title white-text">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
+                <select name="states" id="states" class="description-title white-text">
+                    <option value="all">--- Tous ---</option>
+                    <option value="saab">Censuré</option>
+                    <option value="opel">Clos</option>
+                    <option value="audi">En discussion</option>
+                    <option value="audi">Proposé</option>
+                    <option value="audi">Publié</option>
                 </select>
             </th>
         </tr>
