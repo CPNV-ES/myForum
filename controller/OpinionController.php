@@ -7,7 +7,7 @@ class OpinionController
     public function index()
     {
         $opinions = Opinion::all();
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php";
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/index.view.php";
     }
 
     public function show($id)
@@ -15,13 +15,13 @@ class OpinionController
         $reference = new Reference();
         $reference->id = $id;
         $reference->load();
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php";
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/show.view.php";
     }
 
     public function create() // simply show the creation form
     {
         $reference = new Reference();
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/create.view.php";
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/create.view.php";
     }
 
     public function store() // handle form creation submit
@@ -30,8 +30,8 @@ class OpinionController
         $reference->description = $_POST['description'];
         $reference->url = $_POST['url'];
         $reference->save();
-        ViewHelpers::setFlashMessage("Nouvelle référence créée");
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php";
+        ViewHelpers::setFlashMessage("Nouvelle opinions créée");
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/show.view.php";
     }
 
     public function edit($id) // simply show the edit form
@@ -39,7 +39,7 @@ class OpinionController
         $reference = new Reference();
         $reference->id = $id;
         $reference->load();
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/update.view.php";
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/update.view.php";
     }
 
     public function update($id) // handle edit form submit
@@ -50,8 +50,8 @@ class OpinionController
         $reference->description = $_POST['description'];
         $reference->url = $_POST['url'];
         $reference->update();
-        ViewHelpers::setFlashMessage("Référence modifiée");
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/show.view.php";
+        ViewHelpers::setFlashMessage("opinions modifiée");
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/show.view.php";
     }
 
     public function destroy($id)
@@ -59,7 +59,7 @@ class OpinionController
         $reference = new Reference();
         $reference->id = $id;
         $reference->delete();
-        ViewHelpers::setFlashMessage("Référence supprimée");
+        ViewHelpers::setFlashMessage("opinions supprimée");
         $this->index();
     }
 }
