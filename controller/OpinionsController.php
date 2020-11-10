@@ -2,7 +2,7 @@
 
 require_once "model/Opinion.php";
 
-class OpinionController
+class OpinionsController
 {
     public function index()
     {
