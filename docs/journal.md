@@ -57,10 +57,26 @@ select * from states
 ça tombe bien, en peut réutiliser notre code créé en classe !
 
 ```php
+//Model
 require_once("model/State.php");
 
 //[...]
 
 $states = State::all();
+
+//View
+<?php
+    foreach($states as $state) 
+    {
+        echo <<<EOD
+            <option value="$state->name">$state->name</option>
+        EOD;
+    }
+?>
 ```
+
+Voilà maintenant qui est parfait !
+J'espère seulement que les noms en français ne posseront pas de problème lors des contrôles techniques faits en java script...
+
+## Java Scrip interactions
 
