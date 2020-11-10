@@ -38,4 +38,25 @@
             return false;
         }
     }
+
+    /**
+     * Save the values contained in this instance as a new entry in the database
+     * @return bool true on success, false otherwise
+     */
+    public function save() {
+        if($this->description == null)
+            return false;
+
+        $stmt = Db::getDbConnection()->prepare('INSERT INTO `opinions` (description,topic_id,user_id,opinionstate_id) VALUES (:description,:topicid,:userid,:opinionstateid);');
+        $stmt->bindValue(":description", $this->description);
+        $stmt->bindValue(":topicid", $this->topicId);
+        $stmt->bindValue(":userid", $this->userId);
+        $stmt->bindValue(":opinionstateid", $this->opinionStateId);
+        $success = $stmt->execute();
+        if($success) {
+            $this->id = Db::getDbConnection()->lastInsertId();
+        }
+
+        return $success;
+    }
  }
