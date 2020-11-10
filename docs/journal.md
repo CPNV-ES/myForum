@@ -14,3 +14,4 @@
 
 1. Rédaction du plan d'intervention de l'implementation de la feature
 2. Analyse de la nouvelle table opinions dans le dataset fournis
+3. Ajout du modèle Opinion avec ses différentes méthodes basés sur les autres modèles.(load, save, update, delete)
