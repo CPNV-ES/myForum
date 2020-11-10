@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<table>
+<table class="table">
     <tbody>
         <?php foreach ($opinions as $opinion) : ?>
             <tr>
