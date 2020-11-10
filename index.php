@@ -6,6 +6,7 @@ require_once "controller/RoleController.php";
 require_once "controller/StateController.php";
 require_once "controller/ThemeController.php";
 require_once "controller/OpinionsController.php";
+require_once "controller/TransitionController.php";
 require_once "view/helpers/ViewHelpers.php";
 
 $controller = isset($_GET['controller']) ? $_GET['controller'] . "Controller" : null;

@@ -38,6 +38,7 @@
         <li class="nav-item"><a href="?controller=role&action=index" class="btn">Gestion des rôles</a></li>
         <li class="nav-item"><a href="?controller=state&action=index" class="btn">Gestion des états</a></li>
         <li class="nav-item"><a href="?controller=opinions&action=index" class="btn">Modération</a></li>
+        <li class="nav-item"><a href="?controller=transition&action=index" class="btn">Cycle de vie</a></li>
     </ul>
 </nav>
 <div class="container p-5">
