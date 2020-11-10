@@ -9,7 +9,17 @@
             <tr>
                 <th></th>
                 <th></th>
-                <th>vide</th>
+                <th>
+                    <select id="statusFilter" name="status">
+                        <option value="all">--- Tous ---</option>
+                        <?php foreach($states as $state) :
+                            ?>
+                                <option value="<?= $state ?>"><?= ucfirst($state) ?></option>
+                            <?
+                            endforeach;
+                        ?>
+                    </select>
+                </th>
             </tr>
         </thead>
         <tbody>
