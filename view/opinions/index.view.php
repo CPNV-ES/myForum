@@ -1,9 +1,11 @@
 <?php ob_start(); ?>
+<script src="view/opinions/opinionslist.js" defer></script>
+
 <h1 class="text-center p-5">Opinions</h1>
 
 <div class="container">
     <div class="row">
-        <select class="browser-default custom-select">
+        <select id="opinions-select" class="browser-default custom-select">
             <option selected>---Tous---</option>
             <?php foreach ($opinionStates as $opinionState): ?>
                 <option value="<?= $opinionState->name ?>"><?= $opinionState->name ?></option>
@@ -18,7 +20,7 @@
             <div class="col-6">
                 <?= $opinion->description ?>
             </div>
-            <div class="col-3">
+            <div class="col-3 state-column" data-state="<?= $opinion->name ?>">
                 <?= $opinion->name ?>
             </div>
         </div>
