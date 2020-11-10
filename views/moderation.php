@@ -5,6 +5,9 @@
         <div>Filtre: </div>
         <select class="form-control " name="filter" id="filter">
             <option value="all">--- Tous ---</option>
+            <?php foreach ($opinion_states as $state) : ?>
+                <option value="<?= $state->id?>"><?= $state->name ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
 </div>
