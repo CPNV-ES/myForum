@@ -89,3 +89,14 @@ Après avoir dessiner ce que je souhaite et chercher un peu sur internet.
 Je pense pouvoir adapter mon code pour le rendre dynamiquement lisible.
 
 Java Script fonctionne par classe, donc il est potentiellement possible de pouvoir cacher tout objet comprenant la même classe. En tout cas dans la théorie.
+
+```js
+function test(){
+    var test = document.getElementsByClassName("Clos");
+
+    for(var i = 0; i < test.length; i++){
+        test[i].style.display = "none";
+    }
+}
+```
+Fonction test pour cacher tous les éléments de la classe "Clos", il est maintenant temps de dynamiser tout cela.
