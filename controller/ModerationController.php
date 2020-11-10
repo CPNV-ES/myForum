@@ -7,7 +7,7 @@ class ModerationController
     public function index()
     {
         $opinions = Moderation::all();
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php";
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/moderation/index.view.php";
     }
 
     public function show($id)
