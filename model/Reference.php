@@ -30,7 +30,8 @@ class Reference
         if ($this->id == null)
             return false;
 
-        $record = Db::selectOne("SELECT `description`, `url` FROM `references` WHERE `id`=:id", ["id" => $this->id], "Reference");
+        $record = Db::selectOne("SELECT description, url FROM `references` WHERE `id`=:id", ["id" => $this->id],"Reference");
+
         if ($record) {
             $this->description = $record->description;
             $this->url = $record->url;

@@ -1,12 +1,27 @@
 <?php ob_start(); ?>
-<h1 class="text-center p-5">Show Reference <?= $id ?></h1>
 
-<div class="container">
-    <div class="form-row">
-        <div class="col">
-            <h2><?= $reference->description ?></h2>
-            <a href="" class="btn btn-blue">Modifier</a>
-            <a href="?controller=reference&action=destroy&id=<?= $id ?>" class="btn btn-danger">Supprimer</a>
+<div class="row">
+    <div class="bg-light col-2 border border-dark">Titre:</div>
+    <div class="col-10"><?= $reference->description ?></div>
+</div>
+<div class="row">
+    <div class="bg-light col-2 border border-dark">URL:</div>
+    <div class="col-10"><?= $reference->url ?></div>
+</div>
+<div class="row m-3">
+    <a href="#" data-toggle="modal" data-target="#confirm-delete" class="btn btn-danger">Supprimer</a>
+    <a href="?controller=Reference&action=edit&id=<?= $reference->id ?>" class="btn btn-primary">Modifier</a>
+</div>
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                Sûr et certain ???
+            </div>
+            <div class="modal-footer flex-row justify-content-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                <a class="btn btn-danger btn-ok" href="?controller=Reference&action=destroy&id=<?= $reference->id ?>">Confirmer</a>
+            </div>
         </div>
     </div>
 </div>
