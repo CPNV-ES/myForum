@@ -8,5 +8,6 @@
 # Execution
 - Mise en place de la nouvelle BDD
 - Mise en place de la structure (modèle, vue, controlleur) vide pour l'instant afin de permettre d'afficher une simple page vide pour la modération des opinions
-- Implémentation de nouvelles methodes DB (selectToArray) vu que select() parse lui-même le résultat de la query et que la table Opinions a des clés étrangères ... 
+- Implémentation de nouvelles methodes DB (selectToArray) vu que select() parse lui-même le résultat de la query à partir d'un nom de classe et que la table Opinions a des clés étrangères et devrait donc parser un user et un opinionstate et je ne veux pas perdre de temps
 - Implémentation de la méthode load() du modèle Opinion
+- Implémentation de ::all() du modèle Opinion

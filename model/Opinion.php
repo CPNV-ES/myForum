@@ -13,7 +13,17 @@ class Opinion {
      * @returns array<Reference> An array containing instances of all the References stored in the database
      */
     public static function all() {
+        $opinions = [];
+        $ids = Db::selectManyToArray("SELECT id from `opinions`;", []);
+        foreach($ids as $id) {
+            $op = new Opinion();
+            $op->id = $id["id"];
+            $op->load();
 
+            array_push($opinions, $op);
+        }
+
+        return $opinions;
     }
 
     /**
