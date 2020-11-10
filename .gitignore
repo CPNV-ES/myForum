@@ -2,3 +2,5 @@
 node_modules
 vendor
 *.credentials.php
+
+model/config.php
