@@ -80,3 +80,6 @@ J'espère seulement que les noms en français ne posseront pas de problème lors
 
 ## Java Scrip interactions
 Pour l'instant je n'ai pas d'idées comment implémenter le java script afin de pouvoir trier dynamiquement les différentes opinions par étâts. Je dois prendre du recul et dessiner un peu.
+
+*[...]*
+
