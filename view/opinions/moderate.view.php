@@ -5,6 +5,18 @@ $content = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 ?>
 <div class="container">
+
+<label for="filter">Filtre</label>
+<select id="filter">
+    <?php
+
+    foreach($opinionStates as $opinionState) {
+        echo "<option value='{$opinionState->id}'>{$opinionState->name}</option>";
+    }
+
+    ?>
+</select>
+
 <table class='table table-borderless table-sm col col-12'>
     <thead>
         <tr class="blue-gradient-rgba white-text">
