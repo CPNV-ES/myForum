@@ -17,6 +17,19 @@
     private $userId;
     private $opinionStateId;
 
+     /**
+     * Returns an array of objects representing all records of the table
+     */
+    public static function all()
+    {
+        $sql = "SELECT opinions.id,opinions.description,users.pseudo,states.name as opinionState, topics.description FROM `opinions`
+                    INNER JOIN users ON opinions.user_id = users.id
+                    INNER JOIN states ON opinions.opinionstate_id = states.id
+                    INNER JOIN topics ON opinions.topic_id = topics.id";
+
+        return Db::selectMany($sql, [], "Opinion");
+    }
+
     /**
      * Load data from the database based on this instance's id property
      * @return bool true on success, false otherwise
