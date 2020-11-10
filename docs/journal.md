@@ -1,4 +1,4 @@
-# Modification
+# Opinion states 
 - Créer une nouvelle page *modération*
 - Récupéré et afficher toutes les opinions dans tableau
 - Ajouter une liste déroulante pour le filtrage

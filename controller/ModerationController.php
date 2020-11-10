@@ -6,7 +6,7 @@ class ModerationController
 {
     public function index()
     {
-        //$references = Reference::all();
+        $moderations = Moderation::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/moderations/index.view.php";
     }
 }
