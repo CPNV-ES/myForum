@@ -1,13 +1,8 @@
-// JS code specific to the reference list page
-// Author: XCL
-// Date Oct 20
-
-titles = document.getElementsByClassName("divtitle")
-for (i = 0; i < titles.length; i++) {
-    titles[i].addEventListener('mouseover', function() {
-        document.getElementById('divIcons'+this.dataset.id).classList.remove('d-none')
-    })
-    titles[i].addEventListener('mouseout', function() {
-        document.getElementById('divIcons'+this.dataset.id).classList.add('d-none')
-    })
-}
+$( "tr td" ).on( "mouseenter", function() {
+  $(this).parent().addClass("teal lighten-3");
+  $(this).parent().find( "a" ).removeClass("d-none");
+});
+$( "tr td" ).on( "mouseleave", function() {
+  $(this).parent().removeClass("teal lighten-3");
+  $(this).parent().find( "a" ).addClass("d-none");
+});
