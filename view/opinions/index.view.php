@@ -1,16 +1,16 @@
+<script src="view/opinions/ChangeState.js" defer></script>
+
 <?php ob_start(); ?>
 <h1 class="text-center p-5">Opinions</h1>
 <div class="row text-center">
     <div class="col-12 text-right">
-        Filtre :
-        <form>
-            <select name="nom" size="1">
-                <option selected>--- Tous ---
+            <label for="OpinionState">Filtre :</label>
+            <select id="OpinionState" name="OpinionState" size="1">
+                <option selected>--- Tous ---</option>
                 <?php foreach ($opinionstates as $opinionstate) {   ?>
-                    <option><?= $opinionstate->name ?>
+                    <option value="<?= str_replace(" ", "_", $opinionstate->name) ?>"><?= $opinionstate->name  ?></option>
                 <?php } ?>
             </select>
-        </form>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
     </div>
 </div>
 <?php foreach ($opinions as $opinion) { ?>
-    <div class="row text-center">
+    <div id="<?= str_replace(" ", "_", $opinion->name)  ?>" class="row text-center">
         <div class="col-2 text-left">
             <?= $opinion->pseudo ?>
         </div>
