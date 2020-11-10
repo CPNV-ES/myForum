@@ -28,10 +28,14 @@ afin de voir lesquelles nécessitent une intervention de ma part
 
 # Valeur
 
-Cette user story vaut 30 points
+Cette user story vaut 40 points
 
 - 23 points sont répartis sur les tests du DoD
 
 - 4 points sont attribués à la qualité du code (présentation, choix d'identificateurs, commentaires, ...)
 
 - 3 points sont attribués à la qualité des commits Git (nommage, atomicité, granularité) 
+
+- 5 points sont attribués à la justesse de l'implémentation dans le modèle MVC
+
+- 5 points sont attribués au journal de travail (`journal.md` dans le dossier `docs`)
