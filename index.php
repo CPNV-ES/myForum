@@ -119,8 +119,14 @@ $router->get('/moderation', function () use ($renderer) {
         User::class
     ])->execute();
 
+    // We are doing a second request to get only the opinionStates, we could
+    // iterate over the opinions and extract unique opinionStates but we would
+    // have to iterate over every opinions
+    $opinion_states = OpinionState::select()->execute();
+
     $renderer->view('views/moderation.php')->values([
         'opinions' => $opinions,
+        'opinion_states' => $opinion_states,
     ])->render();
 });
 
