@@ -27,6 +27,7 @@ $renderer = Renderer::get_instance();
                 <a class="btn btn-primary" href="/references">Gestion des références</a>
                 <a class="btn btn-primary" href="/roles">Gestion des rôles</a>
                 <a class="btn btn-primary" href="/states">Gestion des états</a>
+                <a class="btn btn-primary" href="/moderation">Modération</a>
             </div>
         </div>
     </nav>
