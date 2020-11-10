@@ -16,3 +16,5 @@
 2. Analyse de la nouvelle table opinions dans le dataset fournis
 3. Ajout du modèle Opinion avec ses différentes méthodes basés sur les autres modèles.(load, save, update, delete)
 4. Ajout dans le modèle Opinion d'une méthode pour récupérer toutes les enregistrements
+5. Création du controller des opinions
+6. Ajout de la méthode index, appelle à la base de donner pour les datas et affichage de la vue
