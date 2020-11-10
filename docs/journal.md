@@ -54,3 +54,13 @@ La solution simple sera de récupérer le nom des états puis de les afficher dy
 select * from states
 ```
 
+ça tombe bien, en peut réutiliser notre code créé en classe !
+
+```php
+require_once("model/State.php");
+
+//[...]
+
+$states = State::all();
+```
+
