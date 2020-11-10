@@ -1,3 +1,5 @@
+<script src="view/opinions/opinionlist.js" defer></script>
+
 <?php ob_start();?>
 <h1 class="text-center">Opinions</h1>
 
