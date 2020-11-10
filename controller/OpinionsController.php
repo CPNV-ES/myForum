@@ -6,7 +6,7 @@ class OpinionsController
 {
     public function index()
     {
-        $references = Reference::all();
+        $opinions = Opinions::all();
         require_once "./view/opinions/index.view.php";
     }
 }
