@@ -4,7 +4,7 @@ class config
 {
     private $username = "username";
     private $password = "password";
-    private $dsn = "mysql:host=localhost; dbname=mydb";
+    private $dsn = "mysql:host=localhost; dbname=mydb; charset=utf8";
 
 
     function GetUser()
