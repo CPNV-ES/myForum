@@ -8,7 +8,9 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 <table class='table table-borderless table-sm col col-12'>
     <thead>
         <tr>
-            <th class="blue-gradient-rgba white-text">Opinions</th>
+            <th class="blue-gradient-rgba white-text">Pseudo</th>
+            <th class="blue-gradient-rgba white-text">Opinion</th>
+            <th class="description-title white-text">State</th>
             <th scope="col" class="description-title"></th>
         </tr>
     </thead>
@@ -19,13 +21,15 @@ foreach($opinions as $opinion) {
     echo <<<EOD
     <tr>
         <th>
-            $opinion->description
+            $opinion->pseudo
         </th>
-        <td scope="col" class="col-icons">
-            <a href="$opinion->url" target="_blank"><i class="fas fa-link"></i></a>
-            <a href="?controller=opinion&action=show&id=$opinion->id"><i class="fas fa-eye"></i></a>
-            <a href="?controller=opinion&action=edit&id=$opinion->id"><i class="fas fa-edit"></i></a>
-        </td>
+        <th>
+            $opinion->description
+
+        </th>
+        <th>
+            $opinion->name
+        </th>
     </tr>
 EOD;
 }
