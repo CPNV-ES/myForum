@@ -11,6 +11,7 @@ require_once "controller/ReferenceController.php";
 require_once "controller/RoleController.php";
 require_once "controller/StateController.php";
 require_once "controller/ThemeController.php";
+require_once "controller/ModerationController.php";
 require_once "view/ViewHelpers.php";
 
 $controller = $_GET['controller'] . "Controller";

@@ -2,11 +2,11 @@
 
 require_once("model/Moderation.php");
 
-class ReferenceController
+class ModerationController
 {
     public function index()
     {
-        $opinions = Opinions::all();
+        $opinions = Moderation::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/references/index.view.php";
     }
 
