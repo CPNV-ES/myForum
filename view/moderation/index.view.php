@@ -1,10 +1,12 @@
+<script src="./scripts/sort.js" defer></script>
+
 <?php ob_start(); ?>
 
 <h1 class="text-center p-5">Opinions</h1>
 
-<table id="references" class="table">
+<table id="opinions" class="table">
     <thead>
-        <tr>
+        <tr class="header">
             <th>
                 <h4>Utilisateur</h4>
             </th>
@@ -13,7 +15,7 @@
             </th>
             <th>
                 <h4>filtre</h4>
-                <select>
+                <select id="filter">
                     <option>--Tout--</option>
                     <?php foreach ($stateType as $Key => $Value) : ?>
                         <option><?=$Value->name?></option>
