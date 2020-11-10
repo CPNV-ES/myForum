@@ -32,8 +32,25 @@ Après quelques ajustements dans l'index.php, le contenu est maintenant correcte
 
 J'ai rapidement changé l'affichage CSS de la bar de titre.
 
+### List déroulante
 Il faut maintenant rajouter une liste déroulante.
 
+```html
+<select name="states" id="states" class="description-title white-text">
+    <option value="all">--- Tous ---</option>
+    <option value="saab">Censuré</option>
+    <option value="opel">Clos</option>
+    <option value="audi">En discussion</option>
+    <option value="audi">Proposé</option>
+    <option value="audi">Publié</option>
+</select>
+```
 
+L'affichage de la liste déroulante est fonctionnelle, cependant elle est écrite en dure, je n'aime pas cela car ça signifie que si un jour, un état est modfié / ajouté / supprimé, un changement devra être necessaire.
 
+La solution simple sera de récupérer le nom des états puis de les afficher dynamiquement.
+
+```sql
+select * from states
+```
 
