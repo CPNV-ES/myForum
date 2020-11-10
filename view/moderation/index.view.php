@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
             <th class="blue-gradient-rgba white-text">Opinion</th>
             <th class="description-title white-text">Etat</th>
             <th>
-                <select name="states" id="states" class="description-title white-text">
+                <select name="states" id="states" class="description-title white-text" onchange="test()">
                     <option value="all">--- Tous ---</option>
                     <?php
                         foreach($states as $state) 
