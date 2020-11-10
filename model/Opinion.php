@@ -59,4 +59,18 @@
 
         return $success;
     }
+
+    /**
+     * Updated the values stored in the corresponding database entry based on the values of this instance
+     * @return bool true on success, false otherwise
+     */
+    public function update() {
+        $stmt = Db::getDbConnection()->prepare('UPDATE `opinions` SET description = :description, topic_id = :topicid, user_id = :userid, opinionstate_id = :opinionstateid  WHERE (id = :id)');
+        $stmt->bindValue(":id", $this->id);
+        $stmt->bindValue(":description", $this->description);
+        $stmt->bindValue(":topicid", $this->topicId);
+        $stmt->bindValue(":userid", $this->userId);
+        $stmt->bindValue(":opinionstateid", $this->opinionStateId);
+        return $stmt->execute();
+    }
  }
