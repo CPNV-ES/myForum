@@ -7,17 +7,7 @@ class OpinionState {
     public $name;
 
     public static function all() {
-        $opinionstates = [];
-        $ids = Db::selectManyToArray("SELECT id from `opinionstates`;", []);
-        foreach($ids as $id) {
-            $op = new OpinionState();
-            $op->id = $id["id"];
-            $op->load();
-
-            array_push($opinionstates, $op);
-        }
-
-        return $opinionstates;
+        return Db::selectMany("SELECT * FROM `opinionstates`", [], "OpinionState");
     }
 
     public function load() {
