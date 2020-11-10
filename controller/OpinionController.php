@@ -1,12 +1,14 @@
 <?php
 
 require_once "model/Opinion.php";
+require_once "model/Opinionstates.php";
 
 class OpinionController
 {
     public function index()
     {
         $opinions = Opinion::all();
+        $opinionstates = Opinionstates::all();
         require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/index.view.php";
     }
 
