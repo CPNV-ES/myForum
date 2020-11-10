@@ -1,11 +1,10 @@
 $( document ).ready(function() {
-    CpTable = $("#moderation");
     let rows = $("#moderation tr").each(function(){
         let row = $(this);
-        let columns = row.children('td');
+        let columns = row.children(' td');
     });
 
-    $('selectState').change(function(){
+    $('#selectState').change(function(){
         let state = $(this).val();
         if(!state == 'All')
         {

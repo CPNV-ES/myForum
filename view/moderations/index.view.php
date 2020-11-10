@@ -1,7 +1,7 @@
 <script src="view/moderations/moderationJs.js" defer></script>
 <?php ob_start(); ?>
 <h1 class="text-center p-5">Opinions</h1>
-<select name="selectState">
+<select id="selectState">
   <option value="All">Tous</option>
   <?php foreach($moderations as $Key => $Value) :?>
   <option value="<?=$Value->opId ?>"> <?=$Value->name ?>  </option>
