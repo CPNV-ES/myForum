@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>myForum</title>
-    <link rel="stylesheet" href="view/styles.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
