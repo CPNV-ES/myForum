@@ -17,10 +17,11 @@
             </th>
         </tr>
     </thead>
-    <?php
+    <tbody>
+        <?php
 
-    foreach ($references as $Key => $Value) : ?>
-        <tbody>
+        foreach ($references as $Key => $Value) : ?>
+
             <tr>
                 <td>
                     <?= $Value->description ?>
@@ -30,12 +31,13 @@
                     <a class="btn btn-primary" href="?controller=Reference&action=show&id=<?= $Value->id ?>">Details</a>
                 </td>
             </tr>
-        </tbody>
 
 
 
 
-    <?php endforeach; ?>
+
+        <?php endforeach; ?>
+    </tbody>
 </table>
 <?php
 

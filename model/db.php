@@ -7,13 +7,13 @@ class Db{
     {
         $config = new config();
         $connexion = new PDO('mysql:host='.$config->host.'; dbname='.$config->databaseName, $config->username , $config->password);
-        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Enable exception warning
         return $connexion;
     }
 
     public function selectOneRecord($req,$name)
     {
-        $pdo = $this->connect();
+        $pdo = Db::connect();
         $stmt = $pdo->prepare($req);//Protect from injection
         $stmt->execute($name);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);

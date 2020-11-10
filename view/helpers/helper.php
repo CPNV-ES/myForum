@@ -22,12 +22,6 @@ class helper{
 
 }
 
-if (isset($_SESSION['flashMessage'])) {
-    echo "<div class='alert alert-primary'>";
-    echo $_SESSION['flashMessage'];
-    unset($_SESSION['flashMessage']);
-    echo "</div>";
-}
 
 
 
