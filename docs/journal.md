@@ -9,4 +9,6 @@
 - Ajouter un nouveau model opinions
 - Ajouter une nouvelle vue opinions
 - Ajouter le controller opinion à index.php
-- 
+- Change le model opinions pour que chaque valeur retourné dans le all ait un nom unique
+- Afficher toutes les opinions dans un tableau
+- Changer popper.js de place afin qu'il soit au dessus de bootstrap. Sinon bootstrap ne le prends pas en compte
