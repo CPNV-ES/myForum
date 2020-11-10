@@ -1,7 +1,12 @@
 <script src="view/moderations/moderationJs.js" defer></script>
 <?php ob_start(); ?>
 <h1 class="text-center p-5">Opinions</h1>
-
+<select name="selectState">
+  <option value="All">Tous</option>
+  <?php foreach($moderations as $Key => $Value) :?>
+  <option value="<?=$Value->opId ?>"> <?=$Value->name ?>  </option>
+<?php endforeach; ?>
+</select>
 <table id="moderation" class="table">
     <thead>
         <tr>
@@ -24,7 +29,7 @@
                     <?=$Value->pseudo ?>
                 </td>
                 <td><?=$Value->description ?></td>
-                <td data-status="<?=$Value->opId ?>">
+                <td data-state="<?=$Value->opId ?>">
                     <?=$Value->name ?>
                 </td>
             </tr>
