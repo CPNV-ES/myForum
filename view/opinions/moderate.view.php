@@ -14,7 +14,17 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
         </tr>
     </thead>
     <tbody>
-    
+    <?php
+
+    foreach($opinions as $opinion) {
+        echo "<tr>";
+        echo "<td>{$opinion->user_pseudo}</td>";
+        echo "<td>{$opinion->description}</td>";
+        echo "<td>{$opinion->state}</td>";
+        echo "</tr>";
+    }
+
+    ?>
     </tbody>
 </table>
 </div>
