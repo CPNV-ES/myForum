@@ -15,5 +15,14 @@ Création du bouton "modération".
 
 On a besoin de créer la structure moderation. pour cela je crée une structure MVC similaire à celui de référence. J'adaptereai après le code.
 
-Parfait, maintenant avec une petite adaptation ma page affiche déjà mes opinons. Il faut maintenant ajouter le pseudo et ainsi que les états
+Parfait, maintenant avec une petite adaptation ma page affiche déjà mes opinons. Il faut maintenant ajouter le pseudo et ainsi que les états.
+
+Il est temps maintenant de tester si la fonction all() récupère mes trois valeurs souhaitées.
+
+(Voir model/document/MLD.pdf) Je viens de me rendre comte d'un *- petit problème* -, la table "Opinions possède deux foreign key, je vais devoir rajouter deux inner join dans ma requête.
+
+```sql
+select * from opinions as op inner join users as us on us.id = op.user_id inner join states as st on st.id = op.opinionstate_id
+```
+
 
