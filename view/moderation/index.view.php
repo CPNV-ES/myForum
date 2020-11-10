@@ -8,9 +8,9 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 <table class='table table-borderless table-sm col col-12'>
     <thead>
         <tr>
-            <th class="description-title-cyan white-text">Pseudo</th>
+            <th class="description-title-cyan white-text">Auteur</th>
             <th class="blue-gradient-rgba white-text">Opinion</th>
-            <th class="description-title white-text">State</th>
+            <th class="description-title white-text">Etat</th>
             <th>
                 <select name="states" id="states" class="description-title white-text">
                     <option value="all">--- Tous ---</option>
@@ -49,5 +49,4 @@ EOD;
 
     </tbody>
 </table>
-<a href="/?controller=opinion&action=create"><button type="button" class="btn btn-primary">Nouveau</button></a>
 </div>
