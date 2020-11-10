@@ -18,3 +18,7 @@
 4. Ajout dans le modèle Opinion d'une méthode pour récupérer toutes les enregistrements
 5. Création du controller des opinions
 6. Ajout de la méthode index, appelle à la base de donner pour les datas et affichage de la vue
+7. Ajout du bouton Opinions
+8. Création de la vue index
+9. Ajout de l'affichage des Opinions
+10. Ajout du selecteur des états
