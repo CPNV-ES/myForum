@@ -9,6 +9,10 @@
  class Opinion {
     public $id;
     public $description;
+    public $topic;
+    public $pseudo;
+    public $opinionState;
+
     private $topicId;
     private $userId;
     private $opinionStateId;
