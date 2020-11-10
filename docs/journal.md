@@ -83,3 +83,9 @@ Pour l'instant je n'ai pas d'idées comment implémenter le java script afin de 
 
 *[...]*
 
+Après avoir dessiner ce que je souhaite et chercher un peu sur internet. 
+(tuto intéressant : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_hide_show)
+
+Je pense pouvoir adapter mon code pour le rendre dynamiquement lisible.
+
+Java Script fonctionne par classe, donc il est potentiellement possible de pouvoir cacher tout objet comprenant la même classe. En tout cas dans la théorie.
