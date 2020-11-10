@@ -4,6 +4,8 @@
 $content = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 ?>
+
+<script src="view/moderation/hider.js" defer></script>
 <div class="container">
 <table class='table table-borderless table-sm col col-12'>
     <thead>
@@ -31,7 +33,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 <?php
 foreach($opinions as $opinion) {
     echo <<<EOD
-    <tr>
+    <tr class="$opinion->name" >
         <th>
             $opinion->pseudo
         </th>
