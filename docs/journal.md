@@ -13,4 +13,4 @@
 # Execution
 
 1. Rédaction du plan d'intervention de l'implementation de la feature
-2. 
+2. Analyse de la nouvelle table opinions dans le dataset fournis
