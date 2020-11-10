@@ -12,3 +12,4 @@
 - Implémentation de la méthode load() du modèle Opinion
 - Implémentation de ::all() du modèle Opinion
 - Affichage dans tableau des opitions
+- Implémentation d'un modèle OpitionState
