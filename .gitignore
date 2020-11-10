@@ -1,7 +1,7 @@
 .idea/*
 node_modules
 vendor
-*.credentials.php
+*.credentials
 
 model/.idea/
 
@@ -10,5 +10,3 @@ model/.idea/
 model/Dim/config.php
 
 package-lock.json
-
-old/model/config.php
