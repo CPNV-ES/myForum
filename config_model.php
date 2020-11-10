@@ -1,5 +1,5 @@
 <?php
-
+/*rename it ton config.php and insert your credentials*/
 class config{
 
     public $host;
