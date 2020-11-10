@@ -5,8 +5,8 @@ class Db {
     private $dbConnection;
 
     private function __construct() {
-        $creds = (require(dirname(__DIR__)."/myForum.credentials.php"))["mysql"];
-        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']}", $creds["username"], $creds["passwd"], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+        $creds = (require(".credentials.php"))["mysql"];
+        $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']};charset=utf8", $creds["username"], $creds["passwd"]);
     }
 
     /**
@@ -28,7 +28,7 @@ class Db {
         return self::getInstance()->dbConnection;
     }
 
-    private static function select($query, $params, $multirecord, $classname = null)
+    private static function select($query, $params, $multirecord, $classname)
     {
         $dbh = self::getDbConnection();
         try
@@ -37,26 +37,11 @@ class Db {
             $statement->execute($params);//execute query
             if ($multirecord)
             {
-                if(isset($classname)){
-                    $statement->setFetchMode(PDO::FETCH_CLASS,$classname);
-                }
-                else{
-                    $statement->setFetchMode(PDO::FETCH_ASSOC);
-                }
-
-                $queryResult = $statement->fetchAll();
-
+                $queryResult = $statement->fetchAll(PDO::FETCH_CLASS, $classname);
             } else
             {
-                if(isset($classname)){
-                    $statement->setFetchMode(PDO::FETCH_CLASS,$classname);
-                }
-                else{
-                    $statement->setFetchMode(PDO::FETCH_ASSOC);
-                }
-
-                $queryResult = $statement->fetch();
-
+                $statement->setFetchMode( PDO::FETCH_CLASS, $classname);
+                $queryResult = $statement->fetch(PDO::FETCH_CLASS);
             }
             return $queryResult;
         } catch (PDOException $e)
@@ -66,12 +51,12 @@ class Db {
         }
     }
 
-    public static function selectOneRecord($query, $params, $classname = null)
+    public static function selectOne($query, $params, $classname)
     {
         return self::select($query, $params, false, $classname);
     }
 
-    public static function selectMany($query, $params, $classname = null)
+    public static function selectMany($query, $params, $classname)
     {
         return self::select($query, $params, true, $classname);
     }
