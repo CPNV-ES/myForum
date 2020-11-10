@@ -20,11 +20,20 @@ class Opinion
      */
     public static function all()
     {
-        return Db::selectMany("SELECT * FROM `opinions`
+        return Db::selectMany("SELECT
+            `opinions`.`id`,
+            `opinions`.`description`,
+            `opinions`.`topic_id` AS `topic_id`,
+            `opinions`.`user_id` AS `user_id`,
+            `opinions`.`opinionstate_id` AS `opinionstate_id`,
+            `topics`.`description` AS `top_description`,
+            `users`.`pseudo` AS `use_pseudo`,
+            `opinionstates`.`name` AS `ops_name`
+            FROM `opinions`
             INNER JOIN `topics` ON `topics`.`id` = `opinions`.`topic_id`
             INNER JOIN `users` ON `users`.`id` = `opinions`.`user_id`
-            INNER JOIN `opinionstates` ON `opinionstates`.`id` = `opinions`.`opinionstate_id`
-            ", [], "Opinion");
+            INNER JOIN `opinionstates` ON `opinionstates`.`id` = `opinions`.`opinionstate_id`",
+            [], "Opinion");
     }
 
 
