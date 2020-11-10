@@ -5,7 +5,7 @@ class Db {
     private $dbConnection;
 
     private function __construct() {
-        $creds = (require(".credentials.php"))["mysql"];
+        $creds = (require("config.php"))["mysql"];
         $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']};charset=utf8", $creds["username"], $creds["passwd"]);
     }
 
