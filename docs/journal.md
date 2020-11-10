@@ -13,3 +13,6 @@
 - Implémentation de ::all() du modèle Opinion
 - Affichage dans tableau des opitions
 - Implémentation d'un modèle OpitionState
+- Affichage du select de filtrage en utilisant les opitionstates obtenus depuis la bdd
+- Ajout d'un attribut a chaque <tr> du tableau correspondant à l'id de l'opinionstate
+- Ecriture du script de filtrage

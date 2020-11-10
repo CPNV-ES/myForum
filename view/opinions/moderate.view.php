@@ -8,6 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
 
 <label for="filter">Filtre</label>
 <select id="filter">
+    <option value="-1">--- ALL ---</option>
     <?php
 
     foreach($opinionStates as $opinionState) {
@@ -29,10 +30,10 @@ require_once $_SERVER['DOCUMENT_ROOT']."/view/layout.view.php";
     <?php
 
     foreach($opinions as $opinion) {
-        echo "<tr>";
+        echo "<tr class='opinion-row' data-state='{$opinion->state->id}'>";
         echo "<td>{$opinion->user_pseudo}</td>";
         echo "<td>{$opinion->description}</td>";
-        echo "<td>{$opinion->state}</td>";
+        echo "<td>{$opinion->state->name}</td>";
         echo "</tr>";
     }
 
