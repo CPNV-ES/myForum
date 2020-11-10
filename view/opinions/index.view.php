@@ -7,7 +7,17 @@
     <tr>
         <th></th>
         <th></th>
-        <th>Filtre:</th>
+        <th>Filtre:<br>
+    <SELECT>
+        <OPTION>--- Tous ----</OPTION>
+        <OPTION>En Modification</OPTION>
+        <OPTION>En revue</OPTION>
+        <OPTION>Nouveau</OPTION>
+        <OPTION>Obsolet</OPTION>
+        <OPTION>Publié</OPTION>
+        <OPTION>Rejeté</OPTION>
+    </SELECT>
+    </th>
     </tr>
     </thead>
     <tbody>
