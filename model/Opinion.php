@@ -18,6 +18,6 @@ class Opinion
      */
     public static function all()
     {
-        return Db::selectMany("SELECT * FROM `opinions`", [], "Opinion");
+        return Db::selectMany("SELECT * FROM `opinions` INNER JOIN `users` ON `opinions`.`user_id` = `users`.`id` INNER JOIN `opinionstates` ON `opinions`.`opinionstate_id` = `opinionstates`.`id`", [], "Opinion");
     }
 }

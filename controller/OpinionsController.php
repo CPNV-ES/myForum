@@ -7,6 +7,6 @@ class OpinionController
     public function index()
     {
         $opinions = Opinion::all();
-        require_once $_SERVER['DOCUMENT_ROOT']."/view/roles/index.view.php";
+        require_once $_SERVER['DOCUMENT_ROOT']."/view/opinions/index.view.php";
     }
 }
