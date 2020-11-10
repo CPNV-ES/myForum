@@ -11,5 +11,12 @@
 
 <table>
     <tbody>
+        <?php foreach ($opinions as $opinion) : ?>
+            <tr>
+                <td><?= $opinion->users[0]->pseudo ?></td>
+                <td><?= $opinion->description ?></td>
+                <td><?= $opinion->opinionstates[0]->name ?></td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>

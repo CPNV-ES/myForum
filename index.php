@@ -119,7 +119,9 @@ $router->get('/moderation', function () use ($renderer) {
         User::class
     ])->execute();
 
-    $renderer->view('views/moderation.php')->render();
+    $renderer->view('views/moderation.php')->values([
+        'opinions' => $opinions,
+    ])->render();
 });
 
 $router->get('/:', function () use ($renderer) {
