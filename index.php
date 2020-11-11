@@ -5,6 +5,7 @@ require_once "controller/ReferenceController.php";
 require_once "controller/RoleController.php";
 require_once "controller/StateController.php";
 require_once "controller/ThemeController.php";
+require_once "controller/OpinionController.php";
 require_once "view/helpers/ViewHelpers.php";
 
 
