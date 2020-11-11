@@ -7,6 +7,7 @@ class Db {
     private function __construct() {
         $creds = (require(".credentials.php"))["mysql"];
         $this->dbConnection = new PDO("mysql:host={$creds['host']};dbname={$creds['dbname']};charset=utf8", $creds["username"], $creds["passwd"]);
+        $this->dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**
